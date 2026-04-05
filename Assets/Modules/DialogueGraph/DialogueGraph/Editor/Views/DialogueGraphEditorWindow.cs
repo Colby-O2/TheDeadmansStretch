@@ -269,6 +269,10 @@ namespace DialogueGraph.Editor.Views
                     setIntNode.SelectedName = nodeData.PropertyName;
                     setIntNode.Value = nodeData.PropertyIntValue;
                 }
+                else if (node is WaitForSecondsNode waitForSeconds)
+                {
+                    waitForSeconds.Duration = nodeData.Duration;
+                }
                 else if (node is EmitEventNode emitEventNode)
                 {
                     emitEventNode.EventID = nodeData.EventID;
@@ -288,7 +292,7 @@ namespace DialogueGraph.Editor.Views
                 {
                     cameraTransitionNode.FromLocationTag = nodeData.CameraFromLocationTag;
                     cameraTransitionNode.ToLocationTag = nodeData.CameraToLocationTag;
-                    cameraTransitionNode.LookAtTag= nodeData.CameraLookAtTag;
+                    cameraTransitionNode.LookAtTag = nodeData.CameraLookAtTag;
                     cameraTransitionNode.Duration = nodeData.Duration;
                 }
                 else if (node is CameraLookAtNode cameraLookAtNode)
@@ -400,6 +404,10 @@ namespace DialogueGraph.Editor.Views
                         data.PropertyType = "Int";
                         data.PropertyName = setIntNode.SelectedName;
                         data.PropertyIntValue = setIntNode.Value;
+                    }
+                    else if (node is WaitForSecondsNode waitForSeconds)
+                    {
+                        data.Duration = waitForSeconds.Duration;
                     }
                     else if (node is EmitEventNode emitEventNode)
                     {

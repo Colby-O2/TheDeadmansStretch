@@ -141,6 +141,7 @@ namespace DialogueGraph.Editor.Views
             this.AddManipulator(CreateNodeMenu(DialogueType.SetInt, "Add Node/Set Int"));
             this.AddManipulator(CreateNodeMenu(DialogueType.Increment, "Add Node/Increment"));
             this.AddManipulator(CreateNodeMenu(DialogueType.Comparator, "Add Node/Comparator"));
+            this.AddManipulator(CreateNodeMenu(DialogueType.WaitForSeconds, "Add Node/Wait For Seconds"));
             this.AddManipulator(CreateNodeMenu(DialogueType.Connector, "Add Node/Connector"));
             this.AddManipulator(CreateNodeMenu(DialogueType.EnableCinematicCamera, "Add Node/Enable Cinematic Camera"));
             this.AddManipulator(CreateNodeMenu(DialogueType.DisableCinematicCamera, "Add Node/Diable Cinematic Camera"));

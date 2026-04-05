@@ -13,6 +13,7 @@ namespace DialogueGraph.Enumeration
         Comparator,
         Connector,
         SetInt,
+        WaitForSeconds,
         EmitEvent,
         EnableCinematicCamera, 
         DisableCinematicCamera,

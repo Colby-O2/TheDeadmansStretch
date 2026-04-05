@@ -517,6 +517,9 @@ namespace DialogueGraph
                     SetInt();
                     NextNode(0);
                     break;
+                case DialogueType.WaitForSeconds:
+                    StartCoroutine(WaitThenNext(_currentDialogueNode.Duration));
+                    break;
                 case DialogueType.EmitEvent:
                     EmitEvent(_currentDialogueNode.EventID);
                     NextNode(0);

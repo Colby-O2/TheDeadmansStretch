@@ -22,79 +22,89 @@ namespace DialogueGraph.Editor.Views
             {
                 new SearchTreeGroupEntry(new GUIContent("Create Element")),
                 new SearchTreeGroupEntry(new GUIContent("Create Node"), 1),
+                new SearchTreeGroupEntry(new GUIContent("Dialogue Nodes"), 2),
                 new SearchTreeEntry(new GUIContent("Single Choice"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.SingleChoice,
                 },
                 new SearchTreeEntry(new GUIContent("Multiple Choice"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.MultipleChoice,
                 },
+                new SearchTreeGroupEntry(new GUIContent("Logic Nodes"), 2),
                 new SearchTreeEntry(new GUIContent("Set Boolean"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.SetBoolean,
                 },
                 new SearchTreeEntry(new GUIContent("Branch"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.Branch,
                 },
                 new SearchTreeEntry(new GUIContent("SetInt"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.SetInt,
                 },
                 new SearchTreeEntry(new GUIContent("Increment"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.Increment,
                 },
                 new SearchTreeEntry(new GUIContent("Comparator"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.Comparator,
                 },
+                new SearchTreeEntry(new GUIContent("Wait For Seconds"))
+                {
+                    level = 3,
+                    userData = DialogueType.WaitForSeconds,
+                },
+                new SearchTreeGroupEntry(new GUIContent("Helpers Nodes"), 2),
                 new SearchTreeEntry(new GUIContent("Connector"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.Connector,
                 },
+                new SearchTreeGroupEntry(new GUIContent("Event Nodes"), 2),
                 new SearchTreeEntry(new GUIContent("Emit Event"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.EmitEvent,
                 },
+                new SearchTreeGroupEntry(new GUIContent("Camera Nodes"), 2),
                 new SearchTreeEntry(new GUIContent("Enable Cinematic Camera"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.EnableCinematicCamera,
                 },
                 new SearchTreeEntry(new GUIContent("Disable Cinematic Camera"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.DisableCinematicCamera,
                 },
                 new SearchTreeEntry(new GUIContent("Camera Move"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.CameraMove,
                 },
                 new SearchTreeEntry(new GUIContent("Camera Move For"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.CameraMoveFor,
                 },
                 new SearchTreeEntry(new GUIContent("Camera Transition"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.CameraTransition,
                 },
                 new SearchTreeEntry(new GUIContent("Camera Look At"))
                 {
-                    level = 2,
+                    level = 3,
                     userData = DialogueType.CameraLookAt,
                 },
                 new SearchTreeGroupEntry(new GUIContent("Create Group"), 1),
@@ -173,6 +183,10 @@ namespace DialogueGraph.Editor.Views
                 case DialogueType.CameraLookAt:
                     BaseNode cameraLookAtNode = _graphView.CreateNode(DialogueType.CameraLookAt, mousePosition);
                     _graphView.AddElement(cameraLookAtNode);
+                    return true;
+                case DialogueType.WaitForSeconds:
+                    BaseNode waitForSecondsNode = _graphView.CreateNode(DialogueType.WaitForSeconds, mousePosition);
+                    _graphView.AddElement(waitForSecondsNode);
                     return true;
                 case Group _:
                     GraphElement group = _graphView.CreateGroup("New Group", true);
