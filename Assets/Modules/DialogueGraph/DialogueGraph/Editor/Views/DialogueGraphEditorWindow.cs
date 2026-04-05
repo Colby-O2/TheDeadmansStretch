@@ -1,5 +1,6 @@
 using DialogueGraph.Data;
 using DialogueGraph.Editor.Nodes;
+using DialogueGraph.Enumeration;
 using DialogueGraph.Utilities;
 using System.Collections.Generic;
 using System.IO;
@@ -208,6 +209,20 @@ namespace DialogueGraph.Editor.Views
                 }
             }
 
+            if (
+                !graphSO.Nodes.Any(
+                    nodeData => nodeData.Type == DialogueType.Start
+                ))
+            {
+                BaseNode node = _graphView.CreateNode(DialogueType.Start);
+
+                node.Initialize(Vector2.zero, _graphView, node.ID);
+                node.Draw();
+                _graphView.AddElement(node);
+
+                nodeMap.Add(node.ID, node);
+            }
+
             foreach (DialogueNodeData nodeData in graphSO.Nodes)
             {
                 BaseNode node = _graphView.CreateNode(nodeData.Type);
@@ -258,6 +273,29 @@ namespace DialogueGraph.Editor.Views
                 {
                     emitEventNode.EventID = nodeData.EventID;
                 }
+                else if (node is CameraMoveNode cameraMoveNode)
+                {
+                    cameraMoveNode.LocationTag = nodeData.CameraToLocationTag;
+                    cameraMoveNode.LookAtTag = nodeData.CameraLookAtTag;
+                }
+                else if (node is CameraMoveForNode cameraMoveForNode)
+                {
+                    cameraMoveForNode.LocationTag = nodeData.CameraToLocationTag;
+                    cameraMoveForNode.LookAtTag = nodeData.CameraLookAtTag;
+                    cameraMoveForNode.Duration = nodeData.Duration;
+                }
+                else if (node is CameraTransitionNode cameraTransitionNode)
+                {
+                    cameraTransitionNode.FromLocationTag = nodeData.CameraFromLocationTag;
+                    cameraTransitionNode.ToLocationTag = nodeData.CameraToLocationTag;
+                    cameraTransitionNode.LookAtTag= nodeData.CameraLookAtTag;
+                    cameraTransitionNode.Duration = nodeData.Duration;
+                }
+                else if (node is CameraLookAtNode cameraLookAtNode)
+                {
+                    cameraLookAtNode.LookAtTag = nodeData.CameraLookAtTag;
+                    cameraLookAtNode.Duration = nodeData.Duration;
+                }
 
                 node.Initialize(nodeData.position, _graphView, nodeData.Guid);
                 node.Draw();
@@ -278,8 +316,8 @@ namespace DialogueGraph.Editor.Views
                     Port inPort = nextNode.Query<Port>().ToList().FirstOrDefault(p => p.direction == Direction.Input);
                     Edge edge = new Edge()
                     {
-                        input = inPort,
-                        output =ports[i]
+                        input  = inPort,
+                        output = ports[i]
                     };
                     edge.input.Connect(edge);
                     edge.output.Connect(edge);
@@ -366,6 +404,29 @@ namespace DialogueGraph.Editor.Views
                     else if (node is EmitEventNode emitEventNode)
                     {
                         data.EventID = emitEventNode.EventID;
+                    }
+                    else if (node is CameraMoveNode cameraMoveNode)
+                    {
+                        data.CameraToLocationTag = cameraMoveNode.LocationTag;
+                        data.CameraLookAtTag = cameraMoveNode.LookAtTag;
+                    }
+                    else if (node is CameraMoveForNode cameraMoveForNode)
+                    {
+                        data.CameraToLocationTag = cameraMoveForNode.LocationTag;
+                        data.CameraLookAtTag = cameraMoveForNode.LookAtTag;
+                        data.Duration = cameraMoveForNode.Duration;
+                    }
+                    else if (node is CameraTransitionNode cameraTransitionNode)
+                    {
+                        data.CameraFromLocationTag = cameraTransitionNode.FromLocationTag;
+                        data.CameraToLocationTag = cameraTransitionNode.ToLocationTag;
+                        data.CameraLookAtTag = cameraTransitionNode.LookAtTag;
+                        data.Duration = cameraTransitionNode.Duration;
+                    }
+                    else if (node is CameraLookAtNode cameraLookAtNode)
+                    {
+                        data.CameraLookAtTag = cameraLookAtNode.LookAtTag;
+                        data.Duration = cameraLookAtNode.Duration;
                     }
 
                     data.Choices = new List<DialogueChoiceData>();

@@ -6943,8 +6943,8 @@
     "m_ObjectId": "889e91e219774f08be23c61347fdb9fc",
     "m_Title": "Color Quantization",
     "m_Position": {
-        "x": -137.99996948242188,
-        "y": 825.999755859375
+        "x": -138.0,
+        "y": 826.0
     }
 }
 
@@ -7968,8 +7968,8 @@
     "m_ObjectId": "a9965c48c7724d7a95128b96f97b049e",
     "m_Title": "Lit Shading",
     "m_Position": {
-        "x": 388.9999694824219,
-        "y": 998.0000610351563
+        "x": 389.0,
+        "y": 998.0
     }
 }
 
@@ -8127,6 +8127,7 @@
     "isMainTexture": false,
     "useTilingAndOffset": false,
     "useTexelSize": true,
+    "isHDR": false,
     "m_Modifiable": true,
     "m_DefaultType": 0
 }
@@ -9536,8 +9537,8 @@
     "m_ObjectId": "d6cc7f6ee4a54edc8709c000cbbd8884",
     "m_Title": "Snow Height",
     "m_Position": {
-        "x": -2325.000244140625,
-        "y": -1921.9998779296875
+        "x": -2325.0,
+        "y": -1922.0
     }
 }
 

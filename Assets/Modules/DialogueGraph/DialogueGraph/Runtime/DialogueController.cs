@@ -2,11 +2,11 @@ using DialogueGraph.Attribute;
 using DialogueGraph.Data;
 using DialogueGraph.Enumeration;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
-using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 namespace DialogueGraph
 {
@@ -15,8 +15,12 @@ namespace DialogueGraph
         [Header("Database")]
         [SerializeField] protected DialogueGraphDatabase _db;
 
+        [Header("Camera Settings")]
+        [SerializeField] protected string _cinematicCameraTag = "MainCamera";
+
         protected Dictionary<string, DialogueExposedPropertiesData> _exposedVariables = new Dictionary<string, DialogueExposedPropertiesData>();
         protected Dictionary<string, UnityEvent<int>> _events = new Dictionary<string, UnityEvent<int>>();
+        protected Dictionary<string, Transform> _cameraLocations = new Dictionary<string, Transform>();
         protected Dictionary<string, DialogueGraphSO> _dialogueGrapths;
 
         [Header("Debugging")]
@@ -24,7 +28,15 @@ namespace DialogueGraph
         [SerializeField, ReadOnly] protected DialogueNodeData _currentDialogueNode;
         [SerializeField, ReadOnly] protected DialogueType _currentNodeType;
         [SerializeField, ReadOnly] protected bool _isDialogueInProgress;
+
+        private Camera _cinematicCamera;
         private System.Action _completelyFinishedCallback;
+
+        protected virtual void Awake()
+        {
+            DisabeCinematicCamera();
+            InitializeDialogues();
+        }
 
         public bool IsPlayingDialogue()
         {
@@ -125,6 +137,9 @@ namespace DialogueGraph
             _currentDialogue = null;
             _currentDialogueNode = null;
             _isDialogueInProgress = false;
+
+            DisabeCinematicCamera();
+            
             OnDialogueFinished();
         }
 
@@ -240,6 +255,237 @@ namespace DialogueGraph
             }
         }
 
+        protected IEnumerator WaitThenNext(float timeToWait)
+        {
+            yield return new WaitForSeconds(timeToWait);
+            NextNode(0);
+        }
+
+        protected virtual void EnableCinematicCamera()
+        {
+            if (_cinematicCamera && !_cinematicCamera.gameObject.activeSelf) _cinematicCamera.gameObject.SetActive(true);
+        }
+
+        protected virtual void DisabeCinematicCamera()
+        {
+            if (_cinematicCamera && _cinematicCamera.gameObject.activeSelf) _cinematicCamera.gameObject.SetActive(false);
+        }
+
+        protected virtual void MoveCinematicCamera(Transform loc, Transform lookAt, Transform parnet)
+        {
+            _cinematicCamera.transform.SetParent(loc);
+            _cinematicCamera.transform.SetPositionAndRotation(loc.position, loc.rotation);
+        }
+
+        private Transform GetCameraLocation(string tag)
+        {
+            if (!_cameraLocations.TryGetValue(tag, out Transform cameraLoc))
+            {
+                if (!string.IsNullOrEmpty(tag))
+                {
+                    GameObject cameraLocGO = GameObject.FindGameObjectWithTag(tag);
+
+                    if (cameraLocGO != null)
+                    {
+                        cameraLoc = cameraLocGO.transform;
+                        _cameraLocations[tag] = cameraLoc;
+                    }
+                }
+            }
+
+            return cameraLoc;
+        }
+
+        protected virtual void TransitionCinematicCamera(Transform from, Transform to, Transform lookAt, float duration, Transform parent = null)
+        {
+            if (from == null || to == null) return;
+            _cinematicCamera.transform.SetParent(parent);
+            StartCoroutine(TransitionRoutine(from, to, lookAt, duration));
+        }
+
+        private IEnumerator TransitionRoutine(Transform from, Transform to, Transform lookAt, float duration)
+        {
+            float elapsed = 0f;
+
+            from.GetPositionAndRotation(out Vector3 startPos, out Quaternion startRot);
+
+            Quaternion endRot = to.rotation;
+            if (lookAt != null)
+            {
+                Vector3 direction = (lookAt.position - to.position).normalized;
+                endRot = Quaternion.LookRotation(direction);
+            }
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+
+                float normalizedTime = elapsed / duration;
+
+                _cinematicCamera.transform.SetPositionAndRotation(
+                    Vector3.Lerp(startPos, to.position, normalizedTime), 
+                    Quaternion.Slerp(startRot, endRot, normalizedTime)
+                );
+                yield return null;
+            }
+
+            _cinematicCamera.transform.SetPositionAndRotation(to.position, to.rotation);
+            NextNode(0);
+        }
+
+        protected virtual void CinematicCameraLookAt(Transform lookAtLoc, float duration)
+        {
+            if (lookAtLoc == null) return;
+
+            StartCoroutine(LookAtRoutine(lookAtLoc, duration));
+        }
+
+        private IEnumerator LookAtRoutine(Transform target, float duration)
+        {
+            float elapsed = 0f;
+
+            Quaternion startRot = _cinematicCamera.transform.rotation;
+            Vector3 direction = (target.position - _cinematicCamera.transform.position).normalized;
+            Quaternion endRot = Quaternion.LookRotation(direction);
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float percent = elapsed / duration;
+
+                if (direction != Vector3.zero)
+                {
+                    Quaternion targetRot = Quaternion.LookRotation(direction);
+
+                    _cinematicCamera.transform.rotation = Quaternion.Slerp(startRot, endRot, percent);
+                }
+
+                yield return null;
+            }
+
+            _cinematicCamera.transform.rotation = endRot;
+            
+            NextNode(0);
+        }
+
+        private void HandleCameraMove(string tag, string lookAtTag, float duration)
+        {
+            if (_cinematicCamera == null)
+            {
+                GameObject cinematicCameraGO = GameObject.FindGameObjectWithTag(_cinematicCameraTag);
+                if (cinematicCameraGO != null)
+                {
+                    _cinematicCamera = cinematicCameraGO.GetComponent<Camera>();
+                }
+
+                if (!_cinematicCamera)
+                {
+                    Debug.LogWarning($"Cannot Move Dialogue Camera To '{tag}' As No Camera With tag '{_cinematicCameraTag}' Exist.");
+                    NextNode(0);
+                    return;
+                }
+            }
+
+            if (!_cinematicCamera.gameObject.activeSelf)
+            {
+                NextNode(0);
+                return;
+            }
+
+            Transform cameraLoc = GetCameraLocation(tag);
+            if (cameraLoc == null)
+            {
+                Debug.LogWarning($"Cannot Move Dialogue Camera To '{tag}' As No GameObject With tag '{tag}' Exist.");
+                NextNode(0);
+                return;
+            }
+
+            Transform lookAtLoc = GetCameraLocation(lookAtTag);
+
+            MoveCinematicCamera(cameraLoc, lookAtLoc, cameraLoc);
+            StartCoroutine(WaitThenNext(duration));
+        }
+
+        private void HandleCameraTransition(string fromTag, string toTag, string lookAtTag, float duration)
+        {
+            if (_cinematicCamera == null)
+            {
+                GameObject cinematicCameraGO = GameObject.FindGameObjectWithTag(_cinematicCameraTag);
+                if (cinematicCameraGO != null)
+                {
+                    _cinematicCamera = cinematicCameraGO.GetComponent<Camera>();
+                }
+
+                if (!_cinematicCamera)
+                {
+                    Debug.LogWarning($"Cannot Move Dialogue Camera To '{tag}' As No Camera With tag '{_cinematicCameraTag}' Exist.");
+                    NextNode(0);
+                    return;
+                }
+            }
+
+            if (!_cinematicCamera.gameObject.activeSelf)
+            {
+                NextNode(0);
+                return;
+            }
+
+            Transform fromLoc = GetCameraLocation(fromTag);
+            if (fromLoc == null)
+            {
+                Debug.LogWarning($"Cannot Transition Dialogue Camera From '{fromTag}' to '{toTag}' As No GameObject With tag '{fromTag}' Exist.");
+                NextNode(0);
+                return;
+            }
+
+            Transform toLoc = GetCameraLocation(toTag);
+            if (toLoc == null)
+            {
+                Debug.LogWarning($"Cannot Transition Dialogue Camera From '{fromTag}' to '{toTag}' As No GameObject With tag '{toTag}' Exist.");
+                NextNode(0);
+                return;
+            }
+
+            Transform lookAtLoc = GetCameraLocation(lookAtTag);
+
+            TransitionCinematicCamera(fromLoc, toLoc, lookAtLoc, duration, toLoc);
+        }
+
+        protected void HandleCameraLookAt(string lookAtTag, float duration)
+        {
+            if (_cinematicCamera == null)
+            {
+                GameObject cinematicCameraGO = GameObject.FindGameObjectWithTag(_cinematicCameraTag);
+                if (cinematicCameraGO != null)
+                {
+                    _cinematicCamera = cinematicCameraGO.GetComponent<Camera>();
+                }
+
+                if (!_cinematicCamera)
+                {
+                    Debug.LogWarning($"Dialogue Camera Cannot Look At '{lookAtTag}' As No Camera With tag '{_cinematicCameraTag}' Exist.");
+                    NextNode(0);
+                    return;
+                }
+            }
+
+            if (!_cinematicCamera.gameObject.activeSelf)
+            {
+                NextNode(0);
+                return;
+            }
+
+            Transform lookAtLoc = GetCameraLocation(lookAtTag);
+            if (lookAtTag == null)
+            {
+                Debug.LogWarning($"Dialogue Camera Cannot Look At '{lookAtTag}' As No GameObject With tag '{lookAtTag}' Exist.");
+                NextNode(0);
+                return;
+            }
+
+            CinematicCameraLookAt(lookAtLoc, duration);
+        }
+
         protected void ProcessCurrentNode()
         {
             switch (_currentNodeType)
@@ -275,6 +521,36 @@ namespace DialogueGraph
                     EmitEvent(_currentDialogueNode.EventID);
                     NextNode(0);
                     break;
+                case DialogueType.EnableCinematicCamera:
+                    EnableCinematicCamera();
+                    NextNode(0);
+                    break;
+                case DialogueType.DisableCinematicCamera:
+                    DisabeCinematicCamera();
+                    NextNode(0);
+                    break;
+                case DialogueType.CameraMove:
+                case DialogueType.CameraMoveFor:
+                    HandleCameraMove(
+                        _currentDialogueNode.CameraToLocationTag, 
+                        _currentDialogueNode.CameraLookAtTag, 
+                        _currentDialogueNode.Duration
+                    );
+                    break;
+                case DialogueType.CameraTransition:
+                    HandleCameraTransition(
+                        _currentDialogueNode.CameraFromLocationTag, 
+                        _currentDialogueNode.CameraToLocationTag,
+                        _currentDialogueNode.CameraLookAtTag,
+                        _currentDialogueNode.Duration
+                    );
+                    break;
+                case DialogueType.CameraLookAt:
+                    HandleCameraLookAt(
+                        _currentDialogueNode.CameraLookAtTag, 
+                        _currentDialogueNode.Duration
+                    );
+                    break;
             }
         }
 
@@ -305,10 +581,5 @@ namespace DialogueGraph
 
         protected abstract void PlayDialogueNode();
         public abstract void OnDialogueFinished();
-
-        protected virtual void Awake()
-        {
-            InitializeDialogues();
-        }
     }
 }

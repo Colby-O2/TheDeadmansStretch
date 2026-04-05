@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 3
   tags:
   - MusicSource
+  - CinematicCamera
+  - CinematicView
+  - test_loc_1
+  - test_loc_2
   layers:
   - Default
   - TransparentFX

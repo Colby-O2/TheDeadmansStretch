@@ -1,21 +1,20 @@
+using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+
 using UnityEngine;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+
+using UnityEditor.Experimental.GraphView;
+
+using DialogueGraph.Enumeration;
+using DialogueGraph.Utilities;
 using DialogueGraph.Editor.Nodes;
 
 namespace DialogueGraph.Editor.Views
 {
-    using DialogueGraph.Data;
-    using DialogueGraph.Enumeration;
-    using System;
-    using System.Linq;
-    using Unity.VisualScripting.YamlDotNet.Core.Tokens;
-    using UnityEditor;
-    using UnityEditor.UIElements;
-    using Utilities;
-
     internal sealed class DialogueGraphView : GraphView
     {
         public Blackboard Blackboard { get; set; }
@@ -143,7 +142,12 @@ namespace DialogueGraph.Editor.Views
             this.AddManipulator(CreateNodeMenu(DialogueType.Increment, "Add Node/Increment"));
             this.AddManipulator(CreateNodeMenu(DialogueType.Comparator, "Add Node/Comparator"));
             this.AddManipulator(CreateNodeMenu(DialogueType.Connector, "Add Node/Connector"));
-            this.AddManipulator(CreateNodeMenu(DialogueType.EmitEvent, "Add Node/Emit Event"));
+            this.AddManipulator(CreateNodeMenu(DialogueType.EnableCinematicCamera, "Add Node/Enable Cinematic Camera"));
+            this.AddManipulator(CreateNodeMenu(DialogueType.DisableCinematicCamera, "Add Node/Diable Cinematic Camera"));
+            this.AddManipulator(CreateNodeMenu(DialogueType.CameraMove, "Add Node/Camera Move"));
+            this.AddManipulator(CreateNodeMenu(DialogueType.CameraMoveFor, "Add Node/Camera Move For"));
+            this.AddManipulator(CreateNodeMenu(DialogueType.CameraTransition, "Add Node/Camera Transition"));
+            this.AddManipulator(CreateNodeMenu(DialogueType.CameraLookAt, "Add Node/Camera Look At"));
             //this.AddManipulator(CreateNodeMenu(DialogueType.Start, "Add Node/Start"));
 
             SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);

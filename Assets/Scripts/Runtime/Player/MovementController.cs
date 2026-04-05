@@ -48,7 +48,11 @@ namespace ColbyO.Untitled
 
         private void Update()
         {
-            if (UTGameManager.LockMovement || UTGameManager.IsPaused) return;
+            if (UTGameManager.LockMovement || UTGameManager.IsPaused)
+            {
+                _animationController.SetWalking(false);
+                return;
+            }
             _movement = Vector2.ClampMagnitude(_input.RawMovement, 1f);
             _animationController.SetWalking(_movement.magnitude > 0.01f);
             ApplyGravity();

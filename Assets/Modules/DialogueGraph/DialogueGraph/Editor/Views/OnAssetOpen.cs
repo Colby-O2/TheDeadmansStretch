@@ -9,9 +9,11 @@ namespace DialogueGraph.Editor
     public class OnAssetOpen : MonoBehaviour
     {
         [OnOpenAsset]
-        public static bool OpenGraphWindow(int instanceID, int line)
+        public static bool OpenGraphWindow(EntityId instanceID, int line)
         {
-            UnityEngine.Object obj = EditorUtility.InstanceIDToObject(instanceID);
+            if (!instanceID.IsValid()) return false;
+
+            UnityEngine.Object obj = EditorUtility.EntityIdToObject(instanceID);
 
             if (obj is DialogueGraphSO so)
             {

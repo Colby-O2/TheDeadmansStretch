@@ -15,6 +15,195 @@ MonoBehaviour:
   id: -1
   includeInDatabase: 1
   Name: Test
-  Nodes: []
+  Nodes:
+  - Guid: 0f61891d-7106-477e-b424-5eedbad24daa
+    ActorName: 
+    GroupName: 
+    Type: 0
+    Text: 
+    EventID: 
+    position: {x: -211, y: -3}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 2fc101c4-e972-4eea-8162-0ca334f90bd8
+  - Guid: 5efc97e2-53fe-4724-9418-577e08c972d4
+    ActorName: Some Guy
+    GroupName: 
+    Type: 1
+    Text: Yo
+    EventID: 
+    position: {x: 685, y: 33}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: b1d795e9-2fd1-4ea0-87a1-20fcfd7d75d9
+  - Guid: 2fc101c4-e972-4eea-8162-0ca334f90bd8
+    ActorName: 
+    GroupName: 
+    Type: 10
+    Text: 
+    EventID: 
+    position: {x: 89, y: 48}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: ee5c9d65-3c8d-4581-bce0-98dd9465c960
+  - Guid: 5a0c1e3e-3b3c-40af-9f0d-cf396c390fc7
+    ActorName: Other Guy
+    GroupName: 
+    Type: 1
+    Text: yo?yo?
+    EventID: 
+    position: {x: 2352, y: 128}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 
+  - Guid: 4808ad70-7996-4819-9586-18faf6cf1964
+    ActorName: 
+    GroupName: 
+    Type: 11
+    Text: 
+    EventID: 
+    position: {x: 2094, y: 139}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 5a0c1e3e-3b3c-40af-9f0d-cf396c390fc7
+  - Guid: e6a1e3ab-fa38-4fe3-bcc5-ba5aeaa11c04
+    ActorName: Other Guy
+    GroupName: 
+    Type: 1
+    Text: yo?
+    EventID: 
+    position: {x: 1717, y: 42}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 4808ad70-7996-4819-9586-18faf6cf1964
+  - Guid: ee5c9d65-3c8d-4581-bce0-98dd9465c960
+    ActorName: 
+    GroupName: 
+    Type: 12
+    Text: 
+    EventID: 
+    position: {x: 346, y: 49}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: test_loc_1
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 5efc97e2-53fe-4724-9418-577e08c972d4
+  - Guid: b1d795e9-2fd1-4ea0-87a1-20fcfd7d75d9
+    ActorName: 
+    GroupName: 
+    Type: 14
+    Text: 
+    EventID: 
+    position: {x: 1031, y: 54}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: test_loc_1
+    CameraToLocationTag: test_loc_2
+    CameraLookAtTag: Player
+    Duration: 2
+    Choices:
+    - Text: 
+      Next: e6a1e3ab-fa38-4fe3-bcc5-ba5aeaa11c04
+  - Guid: a0783eab-ef73-4ae0-bb9d-cc0e98902582
+    ActorName: 
+    GroupName: 
+    Type: 15
+    Text: 
+    EventID: 
+    position: {x: 1397, y: 315}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: Player
+    Duration: 2
+    Choices:
+    - Text: 
+      Next: 
   Groups: []
   Properties: []

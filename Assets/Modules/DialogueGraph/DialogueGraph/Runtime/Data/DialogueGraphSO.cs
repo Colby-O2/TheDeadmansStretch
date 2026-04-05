@@ -57,6 +57,10 @@ namespace DialogueGraph.Data
         public int IncrementAmount;
         public ComparisonType ComparisonType;
         public int ComparsionCondition;
+        public string CameraFromLocationTag;
+        public string CameraToLocationTag;
+        public string CameraLookAtTag;
+        public float Duration;
         public List<DialogueChoiceData> Choices = new List<DialogueChoiceData>();
     }
 }

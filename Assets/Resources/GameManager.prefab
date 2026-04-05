@@ -33,8 +33,54 @@ Transform:
   - {fileID: 7812873260911935718}
   - {fileID: 2910637481746450729}
   - {fileID: 6016921950981385492}
+  - {fileID: 3744646568223183308}
   m_Father: {fileID: 8569789199062375347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2647972626966093752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3744646568223183308}
+  - component: {fileID: 3851248995646610873}
+  m_Layer: 0
+  m_Name: CinematicSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3744646568223183308
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647972626966093752}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5101180350896635473}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3851248995646610873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647972626966093752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2139a0af575295340aac31adce2a48f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.MonoSystems.CinematicMonoSystem
+  _cinematicCameraTag: CinematicCamera
 --- !u!1 &5135323140742576035
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.MonoSystems.DialogueMonoSystem
   _db: {fileID: 11400000, guid: 886c4d551f991444fbd64ebd1d877ac6, type: 2}
+  _cinematicCameraTag: CinematicCamera
   _currentDialogue: {fileID: 0}
   _currentDialogueNode:
     Guid: 
@@ -96,6 +143,8 @@ MonoBehaviour:
     IncrementAmount: 0
     ComparisonType: 0
     ComparsionCondition: 0
+    CameraMoveLocationTag: 
+    CameraMoveDuration: 0
     Choices: []
   _currentNodeType: 0
   _isDialogueInProgress: 0

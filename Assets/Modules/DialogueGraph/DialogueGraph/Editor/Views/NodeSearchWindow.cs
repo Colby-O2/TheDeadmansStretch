@@ -67,6 +67,36 @@ namespace DialogueGraph.Editor.Views
                     level = 2,
                     userData = DialogueType.EmitEvent,
                 },
+                new SearchTreeEntry(new GUIContent("Enable Cinematic Camera"))
+                {
+                    level = 2,
+                    userData = DialogueType.EnableCinematicCamera,
+                },
+                new SearchTreeEntry(new GUIContent("Disable Cinematic Camera"))
+                {
+                    level = 2,
+                    userData = DialogueType.DisableCinematicCamera,
+                },
+                new SearchTreeEntry(new GUIContent("Camera Move"))
+                {
+                    level = 2,
+                    userData = DialogueType.CameraMove,
+                },
+                new SearchTreeEntry(new GUIContent("Camera Move For"))
+                {
+                    level = 2,
+                    userData = DialogueType.CameraMoveFor,
+                },
+                new SearchTreeEntry(new GUIContent("Camera Transition"))
+                {
+                    level = 2,
+                    userData = DialogueType.CameraTransition,
+                },
+                new SearchTreeEntry(new GUIContent("Camera Look At"))
+                {
+                    level = 2,
+                    userData = DialogueType.CameraLookAt,
+                },
                 new SearchTreeGroupEntry(new GUIContent("Create Group"), 1),
                 new SearchTreeEntry(new GUIContent("Single Group"))
                 {
@@ -119,6 +149,30 @@ namespace DialogueGraph.Editor.Views
                 case DialogueType.EmitEvent:
                     BaseNode emitEventNode = _graphView.CreateNode(DialogueType.EmitEvent, mousePosition);
                     _graphView.AddElement(emitEventNode);
+                    return true;
+                case DialogueType.EnableCinematicCamera:
+                    BaseNode enableCinematicCamera = _graphView.CreateNode(DialogueType.EnableCinematicCamera, mousePosition);
+                    _graphView.AddElement(enableCinematicCamera);
+                    return true;
+                case DialogueType.DisableCinematicCamera:
+                    BaseNode disableCinematicCamera = _graphView.CreateNode(DialogueType.DisableCinematicCamera, mousePosition);
+                    _graphView.AddElement(disableCinematicCamera);
+                    return true;
+                case DialogueType.CameraMove:
+                    BaseNode cameraMoveNode = _graphView.CreateNode(DialogueType.CameraMove, mousePosition);
+                    _graphView.AddElement(cameraMoveNode);
+                    return true;
+                case DialogueType.CameraMoveFor:
+                    BaseNode cameraMoveForNode = _graphView.CreateNode(DialogueType.CameraMoveFor, mousePosition);
+                    _graphView.AddElement(cameraMoveForNode);
+                    return true;
+                case DialogueType.CameraTransition:
+                    BaseNode cameraTransitionNode = _graphView.CreateNode(DialogueType.CameraTransition, mousePosition);
+                    _graphView.AddElement(cameraTransitionNode);
+                    return true;
+                case DialogueType.CameraLookAt:
+                    BaseNode cameraLookAtNode = _graphView.CreateNode(DialogueType.CameraLookAt, mousePosition);
+                    _graphView.AddElement(cameraLookAtNode);
                     return true;
                 case Group _:
                     GraphElement group = _graphView.CreateGroup("New Group", true);
