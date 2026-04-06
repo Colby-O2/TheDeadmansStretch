@@ -12,21 +12,25 @@ namespace ColbyO.Untitled.MonoSystems
         private InputAction _moveAction;
         private InputAction _lookAction;
         private InputAction _sprintAction;
+        private InputAction _useCameraAction;
 
         public Vector2 RawMovement { get; private set; }
         public Vector2 RawLook { get; private set; }
 
         public UnityEvent OnShift { get; private set; }
+        public UnityEvent OnUseCamera { get; private set; }
 
         private void Awake()
         {
             if (!_input) _input = GetComponent<PlayerInput>();
 
             OnShift = new UnityEvent();
+            OnUseCamera = new UnityEvent();
 
             _moveAction = _input.actions["Move"];
             _lookAction = _input.actions["Look"];
             _sprintAction = _input.actions["Sprint"];
+            _useCameraAction = _input.actions["Camera"];
         }
 
         private void OnEnable()
@@ -35,6 +39,7 @@ namespace ColbyO.Untitled.MonoSystems
             _lookAction.performed   += HandleLookAction;
             _sprintAction.performed += HandleSprintAction;
             _sprintAction.canceled  += HandleSprintAction;
+            _useCameraAction.performed += HandleUseCameraAction;
         }
 
         private void OnDisable()
@@ -43,6 +48,7 @@ namespace ColbyO.Untitled.MonoSystems
             _lookAction.performed   -= HandleLookAction;
             _sprintAction.performed -= HandleSprintAction;
             _sprintAction.canceled  -= HandleSprintAction;
+            _useCameraAction.performed -= HandleUseCameraAction;
         }
 
         private void HandleMoveAction(InputAction.CallbackContext e)
@@ -58,6 +64,11 @@ namespace ColbyO.Untitled.MonoSystems
         private void HandleSprintAction(InputAction.CallbackContext e)
         {
             OnShift?.Invoke();
+        }
+        
+        private void HandleUseCameraAction(InputAction.CallbackContext obj)
+        {
+            OnUseCamera.Invoke();
         }
 
 

@@ -9,6 +9,7 @@ namespace ColbyO.Untitled.MonoSystems
         public Vector2 RawMovement { get; }
         public Vector2 RawLook { get; }
         public UnityEvent OnShift { get; }
+        public UnityEvent OnUseCamera { get; }
 
         public void EnableMovement();
         public void DisableMovement();
