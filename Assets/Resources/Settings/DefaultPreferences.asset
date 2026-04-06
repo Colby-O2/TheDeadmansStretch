@@ -14,3 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.Preferences
   Cursor: {fileID: 0}
   DialogueSpeedMul: 1
+  PolaroidCameraShakeImageMag: 10
+  PolaroidCameraShakeCrosshairMag: 20
+  PolaroidCameraShakeRestorationRate: 5

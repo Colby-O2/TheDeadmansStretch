@@ -1,7 +1,9 @@
 using ColbyO.Untitled.MonoSystems;
 using InteractionSystem.Controls;
 using PlazmaGames.Animation;
+using PlazmaGames.Attribute;
 using PlazmaGames.Core;
+using PlazmaGames.UI;
 using UnityEngine;
 
 namespace ColbyO.Untitled
@@ -11,15 +13,21 @@ namespace ColbyO.Untitled
         [Header("References")]
         [SerializeField] private Transform _target;
         [SerializeField] private Camera _camera;
+        [SerializeField] private GameObject _mesh;
 
         [Header("Settings")]
         [SerializeField] private LayerMask _ignoreCameraCollisionMask;
         [SerializeField] private MovementSettings _settings;
 
         [Header("Orbit")]
-        [SerializeField] private float _distance = 10f;
-        [SerializeField] private float _targetOffset = 0.25f;
-        [SerializeField] private Vector3 _offset;
+        [SerializeField] private float _thirdPersonDistance = 10f;
+        [SerializeField] private float _firstPersonDistance = 0.1f;
+        [SerializeField, ReadOnly] private float _distance = 10f;
+        [SerializeField] private float _thirdPersonTargetOffset = 0.25f;
+        [SerializeField, ReadOnly] private float _targetOffset = 0.25f;
+        [SerializeField] private Vector3 _thirdPersonOffset;
+        [SerializeField] private Vector3 _firstPersonOffset = new Vector3(0, -0.6f, 0);
+        [SerializeField, ReadOnly] private Vector3 _offset;
         [SerializeField] private Vector2 _zoomLimits = new Vector2(3f, 20f);
         [SerializeField] private float _heightOffset = 1.5f;
 
@@ -28,12 +36,22 @@ namespace ColbyO.Untitled
         private Vector2 _cameraAngle;
 
         private bool _isTransitioning = false;
+        
+        private bool _isInFirstPerson = false;
 
         public float Sensitivity => _settings.Sensitivity * (InputDeviceHandler.IsCurrentGamepad ? _settings.ControllerSensitivityScaleFactor : 1f);
 
         private void Awake()
         {
             _inputSystem = GameManager.GetMonoSystem<IInputMonoSystem>();
+            _distance = _thirdPersonDistance;
+            _targetOffset = _thirdPersonTargetOffset;
+            _offset = _thirdPersonOffset;
+        }
+
+        private void Start()
+        {
+            _inputSystem.OnUseCamera.AddListener(ToggleFirstPerson);
         }
 
         private void Update()
@@ -96,9 +114,10 @@ namespace ColbyO.Untitled
         private void UpdateLook()
         {
             Vector2 look = _inputSystem.RawLook;
+            look.y *= -1;
 
             if (_settings.InvertLookX) look.x *= -1f;
-            if (_settings.InvertLookY) look.y *= -1f;
+            if (_settings.InvertLookY && !_isInFirstPerson) look.y *= -1f;
 
             _cameraAngle.x += look.x * Sensitivity;
             _cameraAngle.y += look.y * Sensitivity;
@@ -172,5 +191,27 @@ namespace ColbyO.Untitled
             _cameraAngle.y = Mathf.Clamp(_cameraAngle.y, _settings.YLookLimit.x, _settings.YLookLimit.y);
 
         }
+        
+        private void ToggleFirstPerson()
+        {
+            _isInFirstPerson = !_isInFirstPerson;
+            if (_isInFirstPerson)
+            {
+                GameManager.GetMonoSystem<IUIMonoSystem>().Show<PolaroidView>();
+                _mesh.SetActive(false);
+                _distance = _firstPersonDistance;
+                _targetOffset = 0.0f;
+                _offset = _firstPersonOffset;
+            }
+            else
+            {
+                _mesh.SetActive(true);
+                GameManager.GetMonoSystem<IUIMonoSystem>().ShowLast();
+                _distance = _thirdPersonDistance;
+                _targetOffset = _thirdPersonTargetOffset;
+                _offset = _thirdPersonOffset;
+            }
+        }
+
     }
 }

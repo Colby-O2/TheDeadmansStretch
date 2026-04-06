@@ -9,6 +9,8 @@ TagManager:
   - CinematicView
   - test_loc_1
   - test_loc_2
+  - ViewFinderImage
+  - ViewFinderCrosshair
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - ActiveClickable
   - Inspecting
   - InteractionHint
-  - 
+  - PolaroidCamera
   - 
   - 
   - 

@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8475298942520829260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4fe390e187c1b145bd4823ee9ede4bd, type: 3}
-  m_Name: VolumetricLightingFeature
-  m_EditorClassIdentifier: ColbyO.VolumetricLights::ColbyO.VolumetricLights.VolumetricLightingFeature
-  m_Active: 1
-  _renderEvent: 550
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,8 +28,7 @@ MonoBehaviour:
   - {fileID: 7833122117494664109}
   - {fileID: 1129362501930414751}
   - {fileID: 5284478506437780199}
-  - {fileID: -8475298942520829260}
-  m_RendererFeatureMap: ad6b866f10d7b46c9f72353e364dac0fe7226907343d5649b45acd0d84b0618a
+  m_RendererFeatureMap: ad6b866f10d7b46c9f72353e364dac0fe7226907343d5649
   m_UseNativeRenderPass: 1
   xrSystemData: {fileID: 0}
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
