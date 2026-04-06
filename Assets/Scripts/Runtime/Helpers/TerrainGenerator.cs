@@ -31,7 +31,7 @@ namespace ColbyO.VNTG.Example
         [SerializeField] Vector2 _treeHeight;
         [SerializeField] Vector2 _treeWidth;
         [SerializeField] float _minSpacing = 4f;
-        [SerializeField] int _treePrototypeIndex = 0;
+        [SerializeField] List<int> _treePrototypeIndex = new List<int>();
 
         [Header("Editor Settings")]
         [SerializeField] bool _autoUpdate = true;
@@ -113,7 +113,7 @@ namespace ColbyO.VNTG.Example
                         TreeInstance tree = new TreeInstance();
                         tree.position = new Vector3(x, normalizedHeight, z);
 
-                        tree.prototypeIndex = _treePrototypeIndex;
+                        tree.prototypeIndex = _treePrototypeIndex[Random.Range(0, _treePrototypeIndex.Count)];
                         tree.widthScale = Random.Range(_treeWidth.x, _treeWidth.y);
                         tree.heightScale = Random.Range(_treeHeight.x, _treeHeight.y);
                         tree.rotation = Random.value * Mathf.PI * 2f;

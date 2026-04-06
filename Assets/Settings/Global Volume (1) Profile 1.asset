@@ -74,7 +74,7 @@ MonoBehaviour:
     m_Value: 0
   PixelResolution:
     m_OverrideState: 1
-    m_Value: {x: 100, y: 100}
+    m_Value: {x: 200, y: 200}
   ColorPrecision:
     m_OverrideState: 1
     m_Value: 24
@@ -89,10 +89,10 @@ MonoBehaviour:
     m_Value: 1
   DitherPixelPerfect:
     m_OverrideState: 1
-    m_Value: 1
+    m_Value: 0
   DitherScale:
     m_OverrideState: 1
-    m_Value: 0.465
+    m_Value: 0.137
   DitherThreshold:
     m_OverrideState: 1
     m_Value: 0
@@ -175,7 +175,6 @@ MonoBehaviour:
   - {fileID: -8827923213541892008}
   - {fileID: -6800830309814471312}
   - {fileID: -4072510148650163873}
-  - {fileID: 7092582758151167844}
 --- !u!114 &6105632308231103110
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -226,49 +225,3 @@ MonoBehaviour:
   dirtIntensity:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &7092582758151167844
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07c3a44e259e3a94db4d09d23e808dbb, type: 3}
-  m_Name: VolumetricLightingSettings
-  m_EditorClassIdentifier: ColbyO.VolumetricLights::ColbyO.VolumetricLights.VolumetricLightingSettings
-  active: 0
-  Enabled:
-    m_OverrideState: 1
-    m_Value: 1
-  ShowInSceneView:
-    m_OverrideState: 1
-    m_Value: 1
-  MarchingSteps:
-    m_OverrideState: 1
-    m_Value: 256
-  NoiseOffset:
-    m_OverrideState: 1
-    m_Value: 0
-  MainLightIntensity:
-    m_OverrideState: 1
-    m_Value: 0
-  MainLightScattering:
-    m_OverrideState: 1
-    m_Value: -1
-  AdditionalLightIntensity:
-    m_OverrideState: 1
-    m_Value: 422
-  AdditionalLightScattering:
-    m_OverrideState: 1
-    m_Value: 0
-  BaseDensity:
-    m_OverrideState: 0
-    m_Value: 0.05
-  FogScale:
-    m_OverrideState: 0
-    m_Value: 1
-  FogSpeed:
-    m_OverrideState: 0
-    m_Value: 1

@@ -357,49 +357,37 @@ MonoBehaviour:
   m_Name: VolumetricLightingSettings
   m_EditorClassIdentifier: ColbyO.VolumetricLights::ColbyO.VolumetricLights.VolumetricLightingSettings
   active: 1
-  <displayName>k__BackingField: 
   Enabled:
-    <fieldHash>k__BackingField: 1258643656
     m_OverrideState: 1
     m_Value: 1
   ShowInSceneView:
-    <fieldHash>k__BackingField: 1737344440
     m_OverrideState: 1
     m_Value: 0
   MarchingSteps:
-    <fieldHash>k__BackingField: 1976694832
     m_OverrideState: 1
     m_Value: 32
   NoiseOffset:
-    <fieldHash>k__BackingField: -2078922072
     m_OverrideState: 1
     m_Value: 1
   MainLightIntensity:
-    <fieldHash>k__BackingField: -1839571680
     m_OverrideState: 1
     m_Value: 1
   MainLightScattering:
-    <fieldHash>k__BackingField: -1600221288
     m_OverrideState: 1
     m_Value: 0
   AdditionalLightIntensity:
-    <fieldHash>k__BackingField: -882170112
     m_OverrideState: 1
     m_Value: 1
   AdditionalLightScattering:
-    <fieldHash>k__BackingField: -403469328
     m_OverrideState: 1
     m_Value: 0
   BaseDensity:
-    <fieldHash>k__BackingField: -164118936
     m_OverrideState: 1
     m_Value: 0.05
   FogScale:
-    <fieldHash>k__BackingField: 75231456
     m_OverrideState: 1
     m_Value: 1
   FogSpeed:
-    <fieldHash>k__BackingField: 314581848
     m_OverrideState: 1
     m_Value: 1
 --- !u!114 &-4463884970436517307
@@ -419,6 +407,52 @@ MonoBehaviour:
     m_OverrideState: 1
     m_Value: 0
   cropToFit:
+    m_OverrideState: 1
+    m_Value: 1
+--- !u!114 &-2680820716453929338
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07c3a44e259e3a94db4d09d23e808dbb, type: 3}
+  m_Name: VolumetricLightingSettings
+  m_EditorClassIdentifier: ColbyO.VolumetricLights::ColbyO.VolumetricLights.VolumetricLightingSettings
+  active: 1
+  Enabled:
+    m_OverrideState: 1
+    m_Value: 1
+  ShowInSceneView:
+    m_OverrideState: 1
+    m_Value: 0
+  MarchingSteps:
+    m_OverrideState: 1
+    m_Value: 32
+  NoiseOffset:
+    m_OverrideState: 1
+    m_Value: 1
+  MainLightIntensity:
+    m_OverrideState: 1
+    m_Value: 1
+  MainLightScattering:
+    m_OverrideState: 1
+    m_Value: 0
+  AdditionalLightIntensity:
+    m_OverrideState: 1
+    m_Value: 1
+  AdditionalLightScattering:
+    m_OverrideState: 1
+    m_Value: 0
+  BaseDensity:
+    m_OverrideState: 1
+    m_Value: 0.05
+  FogScale:
+    m_OverrideState: 1
+    m_Value: 1
+  FogSpeed:
     m_OverrideState: 1
     m_Value: 1
 --- !u!114 &-1410297666881709256
@@ -592,6 +626,7 @@ MonoBehaviour:
   - {fileID: -1410297666881709256}
   - {fileID: 6314777912700992301}
   - {fileID: 2598637748519170614}
+  - {fileID: -2680820716453929338}
 --- !u!114 &853819529557874667
 MonoBehaviour:
   m_ObjectHideFlags: 3

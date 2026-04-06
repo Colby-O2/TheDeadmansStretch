@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TreeBranchMat
+  m_Name: PineTreeBranchMat
   m_Shader: {fileID: -6465566751694194690, guid: e33fd88a58c3d4048b28fc59e66b9b92, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: d282105e17c33644fb0553d28845311f, type: 3}
+        m_Texture: {fileID: 2800000, guid: c90c761d02a14544bbeec47610b7506e, type: 3}
         m_Scale: {x: 100, y: 100}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -103,7 +103,7 @@ Material:
     - _AddPrecomputedVelocity: 0
     - _AffineWrapStrength: 1
     - _AlphaClip: 1
-    - _AlphaClipThreshold: 0.5
+    - _AlphaClipThreshold: 0.2
     - _AlphaToMask: 1
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
@@ -126,9 +126,9 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _HueShift: 0.028
+    - _HueShift: 0
     - _LIGHTINGMETHOD: 2
-    - _LightnessMultiplier: 1
+    - _LightnessMultiplier: 1.217
     - _MaxDepth: 2.49
     - _Metallic: 0
     - _OcclusionStrength: 1

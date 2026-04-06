@@ -114,52 +114,6 @@ MonoBehaviour:
   FogNoiseStart:
     m_OverrideState: 0
     m_Value: 0.7
---- !u!114 &-4265157857884528493
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07c3a44e259e3a94db4d09d23e808dbb, type: 3}
-  m_Name: VolumetricLightingSettings
-  m_EditorClassIdentifier: ColbyO.VolumetricLights::ColbyO.VolumetricLights.VolumetricLightingSettings
-  active: 0
-  Enabled:
-    m_OverrideState: 1
-    m_Value: 1
-  ShowInSceneView:
-    m_OverrideState: 1
-    m_Value: 1
-  MarchingSteps:
-    m_OverrideState: 1
-    m_Value: 256
-  NoiseOffset:
-    m_OverrideState: 1
-    m_Value: 0
-  MainLightIntensity:
-    m_OverrideState: 1
-    m_Value: 0
-  MainLightScattering:
-    m_OverrideState: 1
-    m_Value: -1
-  AdditionalLightIntensity:
-    m_OverrideState: 1
-    m_Value: 422
-  AdditionalLightScattering:
-    m_OverrideState: 1
-    m_Value: 0
-  BaseDensity:
-    m_OverrideState: 0
-    m_Value: 0.05
-  FogScale:
-    m_OverrideState: 0
-    m_Value: 1
-  FogSpeed:
-    m_OverrideState: 0
-    m_Value: 1
 --- !u!114 &-3357603926938260329
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -206,7 +160,6 @@ MonoBehaviour:
   - {fileID: 7391319092446245454}
   - {fileID: -3357603926938260329}
   - {fileID: 5472618809591162659}
-  - {fileID: -4265157857884528493}
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3

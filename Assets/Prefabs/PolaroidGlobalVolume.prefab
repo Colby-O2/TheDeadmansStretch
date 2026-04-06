@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5312739958639040973}
   - component: {fileID: 224976134045086292}
   m_Layer: 13
-  m_Name: Global Volume (1)
+  m_Name: PolaroidGlobalVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

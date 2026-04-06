@@ -8,6 +8,8 @@ namespace ColbyO.Untitled
         [SerializeField] private Transform _target;
         [SerializeField] private float _snap = 0;
         [SerializeField] private bool _rotateY;
+        [SerializeField] private bool _followAtHeight;
+        [SerializeField] private float _followHeight;
 
         private void Update()
         {
@@ -20,6 +22,10 @@ namespace ColbyO.Untitled
             if (_rotateY)
             {
                 transform.eulerAngles = transform.eulerAngles.SetY(_target.eulerAngles.y);
+            }
+            if (_followAtHeight)
+            {
+                transform.position = transform.position.SetY(_target.position.y + _followHeight);
             }
         }
     }
