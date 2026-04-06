@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c2b071da8102e2b46b06fd067534e412, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -137,5 +141,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.029069949, y: 0.29093483, z: 0.033910833}
-  m_Center: {x: 9.028194e-16, y: -0.1283128, z: 0.0069554034}
+  m_Size: {x: 0.029069955, y: 0.29093483, z: 0.026658308}
+  m_Center: {x: 0, y: -0.12831281, z: 0.0033291387}

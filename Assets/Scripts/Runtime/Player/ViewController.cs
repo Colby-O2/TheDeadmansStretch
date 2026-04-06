@@ -73,42 +73,42 @@ namespace ColbyO.Untitled
 
         private Vector3 ResolveCameraCollision(Vector3 targetPos, Vector3 desiredPos)
         {
-            float viewHeight = 2.0f * Mathf.Tan(Mathf.Deg2Rad * _camera.fieldOfView * 0.5f) * _camera.nearClipPlane;
-            float viewWidth = viewHeight / _camera.pixelHeight * _camera.pixelWidth;
+            float clipBuffer = _camera.nearClipPlane * 1.1f;
 
-            Vector3 camForward = (desiredPos - targetPos).normalized;
-            Quaternion rotation = Quaternion.LookRotation(camForward);
+            float h = Mathf.Tan(_camera.fieldOfView * Mathf.Deg2Rad * 0.5f) * clipBuffer;
+            float w = h * _camera.aspect;
 
+            Quaternion rotation = Quaternion.LookRotation(desiredPos - targetPos);
             Vector3 camRight = rotation * Vector3.right;
             Vector3 camUp = rotation * Vector3.up;
 
-            Vector3[] offsets =
-            {
-                -camRight * viewWidth / 2f + camUp * viewHeight / 2f,
-                 camRight * viewWidth / 2f + camUp * viewHeight / 2f,
-                -camRight * viewWidth / 2f - camUp * viewHeight / 2f,
-                 camRight * viewWidth / 2f - camUp * viewHeight / 2f,
+            Vector3[] corners = {
+                (camUp * h) - (camRight * w),
+                (camUp * h) + (camRight * w),
+                -(camUp * h) - (camRight * w),
+                -(camUp * h) + (camRight * w)
             };
 
-            float closestDist = float.MaxValue;
-            Vector3 bestPos = desiredPos;
+            float minDistance = _distance;
 
-            foreach (var offset in offsets)
+            foreach (Vector3 cornerOffset in corners)
             {
-                Vector3 dir = (desiredPos + offset) - targetPos;
-                Ray ray = new Ray(targetPos, dir.normalized);
+                Vector3 cornerTarget = desiredPos + cornerOffset;
+                Vector3 dir = cornerTarget - targetPos;
 
-                if (Physics.Raycast(ray, out RaycastHit hit, dir.magnitude, ~_ignoreCameraCollisionMask))
+                if (Physics.Raycast(targetPos, dir.normalized, out RaycastHit hit, dir.magnitude, ~_ignoreCameraCollisionMask))
                 {
-                    if (hit.distance < closestDist)
+                    float hitDistance = hit.distance - clipBuffer;
+                    if (hitDistance < minDistance)
                     {
-                        closestDist = hit.distance;
-                        bestPos = hit.point - offset;
+                        minDistance = hitDistance;
                     }
                 }
             }
 
-            return bestPos;
+            minDistance = Mathf.Max(minDistance, 0.2f);
+
+            return targetPos + (desiredPos - targetPos).normalized * minDistance;
         }
 
         private void UpdateLook()

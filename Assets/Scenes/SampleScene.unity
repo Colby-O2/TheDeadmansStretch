@@ -2206,17 +2206,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail (265)
       objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 62.535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1676
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.762329
+      value: -3.752
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5912094
+      value: -3.479
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.564102
+      value: 40.577
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2521,17 +2537,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail (261)
       objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 57.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0019
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1249
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0153
+      objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.288971
+      value: 3.286
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.9164987
+      value: -3.84
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.112457
+      value: 40.121
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3478,16 +3510,20 @@ PrefabInstance:
       value: ParkRail (269)
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.807373
+      value: -10.799
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9365811
+      value: -3.056
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.860962
+      value: 40.848
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5546,133 +5582,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
   m_PrefabInstance: {fileID: 1682668216}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &410087039
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 410087041}
-  - component: {fileID: 410087040}
-  - component: {fileID: 410087042}
-  m_Layer: 0
-  m_Name: Directional Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &410087040
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410087039}
-  m_Enabled: 1
-  serializedVersion: 13
-  m_Type: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize2D: {x: 10, y: 10}
-  m_Shadows:
-    m_Type: 1
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 4090
-  m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
-  m_ShapeRadius: 0
-  m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
---- !u!4 &410087041
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410087039}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.97486657, y: -0.009189634, z: 0.04094419, w: 0.2188019}
-  m_LocalPosition: {x: 0, y: 6.99, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 154.7, y: -4.81, z: 0}
---- !u!114 &410087042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 410087039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_CustomShadowLayers: 0
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
-  m_SoftShadowQuality: 1
-  m_RenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ShadowRenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_Version: 4
-  m_LightLayerMask: 1
-  m_ShadowLayerMask: 1
-  m_RenderingLayers: 1
-  m_ShadowRenderingLayers: 1
 --- !u!1 &416686613 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2095025991292979123, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
@@ -7144,6 +7053,133 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
   m_PrefabInstance: {fileID: 228285689}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &518096805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 518096808}
+  - component: {fileID: 518096807}
+  - component: {fileID: 518096806}
+  m_Layer: 0
+  m_Name: Directional Light
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &518096806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518096805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_CustomShadowLayers: 0
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
+  m_RenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_ShadowRenderingLayersMask:
+    serializedVersion: 0
+    m_Bits: 1
+  m_Version: 4
+  m_LightLayerMask: 1
+  m_ShadowLayerMask: 1
+  m_RenderingLayers: 1
+  m_ShadowRenderingLayers: 1
+--- !u!108 &518096807
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518096805}
+  m_Enabled: 1
+  serializedVersion: 13
+  m_Type: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShapeRadius: 0.025
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!4 &518096808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518096805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 418.33456, y: 12.31649, z: 58.92196}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &518870858 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2095025991292979123, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
@@ -7767,17 +7803,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail (264)
       objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 62.49824
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.228
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.0012207
+      value: -1.988
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.7399654
+      value: -3.581
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.467728
+      value: 40.486
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -11898,17 +11950,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail (268)
       objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 60.485
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0029
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.2293
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.024
+      objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.044312
+      value: -9.031
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.0906925
+      value: -2.951
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.80162
+      value: 40.819
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17457,16 +17525,20 @@ PrefabInstance:
       value: ParkRail (271)
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.339691
+      value: -14.3384
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.7310834
+      value: -2.8729
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.93138
+      value: 40.9149
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -28453,17 +28525,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail (263)
       objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 57.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1562
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0031
+      objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.23843384
+      value: -0.228
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.8609343
+      value: -3.698
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.362152
+      value: 40.381
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -29948,17 +30036,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail (266)
       objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 62.535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0005
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1663
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0009
+      objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.5230713
+      value: -5.513
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.4271975
+      value: -3.331
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.652054
+      value: 40.664
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30494,17 +30598,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail (262)
       objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 57.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.147
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.008
+      objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.52771
+      value: 1.532
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.933753
+      value: -3.798
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.245438
+      value: 40.261
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -31167,16 +31287,20 @@ PrefabInstance:
       value: ParkRail (270)
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.572235
+      value: -12.5708
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.8088393
+      value: -2.9705
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.906326
+      value: 40.8875
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -32536,16 +32660,20 @@ PrefabInstance:
       value: ParkRail (272)
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2097
+      objectReference: {fileID: 0}
+    - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -16.109161
+      value: -16.1079
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.71593
+      value: -2.8518
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.912216
+      value: 40.8964
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -33569,17 +33697,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: ParkRail (267)
       objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 62.535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0009
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1638
+      objectReference: {fileID: 0}
+    - target: {fileID: 5107006290272068457, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0009
+      objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.283478
+      value: -7.277
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.2574615
+      value: -3.189
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.73146
+      value: 40.74
       objectReference: {fileID: 0}
     - target: {fileID: 5109235461397131691, guid: 036bead7b08db5f4c89321d41e865656, type: 3}
       propertyPath: m_LocalRotation.w
@@ -44271,12 +44415,12 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1978361733}
   - {fileID: 999476740}
+  - {fileID: 1978361733}
+  - {fileID: 518096808}
   - {fileID: 1502184252}
   - {fileID: 1107499478}
   - {fileID: 2084216229}
-  - {fileID: 410087041}
   - {fileID: 942818620}
   - {fileID: 8301800924632153449}
   - {fileID: 19301130}
