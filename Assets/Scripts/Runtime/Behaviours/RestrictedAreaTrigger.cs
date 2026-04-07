@@ -3,6 +3,9 @@ using System.Collections;
 using UnityEngine;
 
 using ColbyO.Untitled.Player;
+using DialogueGraph.Data;
+using PlazmaGames.Core;
+using ColbyO.Untitled.MonoSystems;
 
 namespace ColbyO.Untitled
 {
@@ -12,7 +15,12 @@ namespace ColbyO.Untitled
         [SerializeField] private float _pushBackDistance = 3.0f;
         [SerializeField] private float _rotationSpeed = 10f;
 
+        [Header("Dialogue")]
+        [SerializeField] private bool _onlyPlaceOnce;
+        [SerializeField] private string _dialogue;
+
         private bool _isProcessing = false;
+        private bool _hasTriggered = false;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -20,6 +28,11 @@ namespace ColbyO.Untitled
 
             if (other.TryGetComponent(out MovementController player))
             {
+                if (!string.IsNullOrEmpty(_dialogue) && (!_hasTriggered || !_onlyPlaceOnce))
+                {
+                    GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise(_dialogue, passive: true);
+                }
+                _hasTriggered = true;
                 StartCoroutine(ForcePlayerBack(player));
             }
         }

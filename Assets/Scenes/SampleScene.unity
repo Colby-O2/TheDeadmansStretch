@@ -11703,9 +11703,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.RestrictedAreaTrigger
   _pushBackDistance: 2.5
-  _walkSpeed: 3
   _rotationSpeed: 10
-  _cameraTurnDuration: 1
+  _onlyPlaceOnce: 0
+  _dialogue: 
 --- !u!1001 &1041491081
 PrefabInstance:
   m_ObjectHideFlags: 0
