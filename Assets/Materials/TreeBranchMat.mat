@@ -26,6 +26,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _ALPHATEST_ON
+  - _ANCHORAXIS_Y
   - _LIGHTINGMETHOD_TEXEL_LIT
   - _TEXTURESAMPLEMODE_POINT
   - _VERTEXJITTERMODE_DISABLED
@@ -100,11 +101,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _ANCHORAXIS: 1
     - _AddPrecomputedVelocity: 0
     - _AffineWrapStrength: 1
     - _AlphaClip: 1
     - _AlphaClipThreshold: 0.5
     - _AlphaToMask: 1
+    - _Anchor: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -141,6 +144,10 @@ Material:
     - _ShadowOffset: 0.01
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
+    - _SnowAlpha: 1
+    - _SnowFallOff: 0
+    - _SnowNoiseExponent: 2
+    - _SnowNoiseScale: 10
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
@@ -155,6 +162,7 @@ Material:
     - _WaterScale: 700
     - _WaterSharpness: 10.12
     - _WaterSpeed: 0
+    - _WindFallofThresh: 0
     - _WindFalloff: 4
     - _WindNoiseScale: 1
     - _WindSpeed: 1
@@ -170,6 +178,7 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
     - _ShadowTint: {r: 0, g: 0, b: 0, a: 1}
+    - _SnowColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 0}
     - _Tiling: {r: 1, g: 1, b: 0, a: 0}
