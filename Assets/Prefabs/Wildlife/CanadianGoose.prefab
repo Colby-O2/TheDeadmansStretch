@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7448517870603152184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4077368091634089077}
+  - component: {fileID: 2596989114807848581}
+  m_Layer: 0
+  m_Name: CanadianGoose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4077368091634089077
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7448517870603152184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 262.77267, y: 24.78113, z: 355.16888}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4262910303989256795}
+  - {fileID: 3163590219583137140}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2596989114807848581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7448517870603152184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1cb73b40c8b8f34fab21e231b276bf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.Fowl
+  _swimmingMesh: {fileID: 6747768852677551562}
+  _flyingMesh: {fileID: 3309973262148573265}
+--- !u!1001 &545428799173812418
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4077368091634089077}
+    m_Modifications:
+    - target: {fileID: 2081826384624453116, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.50008726
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081826384624453116, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.49991274
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081826384624453116, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.50008726
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081826384624453116, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.49991274
+      objectReference: {fileID: 0}
+    - target: {fileID: 2081826384624453116, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500141903895299336, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+      propertyPath: m_Name
+      value: GooseSwimming
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+--- !u!4 &3163590219583137140 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3203910987604477366, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+  m_PrefabInstance: {fileID: 545428799173812418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6747768852677551562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6500141903895299336, guid: 5b0eaaf1db341684ea791604a8273cda, type: 3}
+  m_PrefabInstance: {fileID: 545428799173812418}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5015675484331069552
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4077368091634089077}
+    m_Modifications:
+    - target: {fileID: 7334847465141695928, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334847465141695928, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334847465141695928, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526677584086059041, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_Name
+      value: CanadaGooseFlying
+      objectReference: {fileID: 0}
+    - target: {fileID: 7526677584086059041, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.68521047
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7283451
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -93.496
+      objectReference: {fileID: 0}
+    - target: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+--- !u!1 &3309973262148573265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7526677584086059041, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+  m_PrefabInstance: {fileID: 5015675484331069552}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4262910303989256795 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9129821269151285803, guid: 4656cd2c28e37f3469bd28265d907755, type: 3}
+  m_PrefabInstance: {fileID: 5015675484331069552}
+  m_PrefabAsset: {fileID: 0}

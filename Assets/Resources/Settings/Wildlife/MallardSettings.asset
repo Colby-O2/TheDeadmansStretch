@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0ada48a0f4b2b46bb5f1a3f117886a, type: 3}
+  m_Name: MallardSettings
+  m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.FowlSettings
+  SpeciesName: Mallard
+  FowlPrefabs:
+  - {fileID: 1089043320779577209, guid: 396817bcc0ceaa94c86b3bae732975b9, type: 3}
+  - {fileID: 8687707466502208594, guid: 0dcf29f894c39d24899ff4ec7ebd2cfd, type: 3}
+  FlockSize: {x: 12, y: 30}
+  MoveSpeed: 5
+  TurnSpeed: 5
+  FlyingSpeedMul: 3
+  VSpacing: 2
+  AirDriftAmount: 0.4
+  AirDriftSpeed: 1.5
+  SwimmingSpeedMul: 1
+  HeigtOffset: 0.2
+  WaitAtWaypointTime: {x: 10, y: 25}
+  SwimSpread: 3
+  IdleRadius: 4
+  IdleWait: {x: 2, y: 7}
+  ChanceToLand: 0.05
+  LandingDetectionRadius: 20
+  LandingSlowdownDistance: 7
+  LandingRotationFlatDistance: 10
+  ChanceToTakeoff: 0.01
+  TakeoffLevelingZone: 100

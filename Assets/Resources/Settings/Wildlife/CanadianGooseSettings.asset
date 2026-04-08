@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a0ada48a0f4b2b46bb5f1a3f117886a, type: 3}
+  m_Name: CanadianGooseSettings
+  m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.FowlSettings
+  SpeciesName: CanadianGoose
+  FowlPrefabs:
+  - {fileID: 2596989114807848581, guid: b3f4dd27d829c6b4283fa20819a81a49, type: 3}
+  FlockSize: {x: 6, y: 17}
+  MoveSpeed: 5
+  TurnSpeed: 5
+  FlyingSpeedMul: 3
+  VSpacing: 2
+  AirDriftAmount: 0.4
+  AirDriftSpeed: 1.5
+  SwimmingSpeedMul: 1
+  HeigtOffset: 0.2
+  WaitAtWaypointTime: {x: 10, y: 25}
+  SwimSpread: 3
+  IdleRadius: 4
+  IdleWait: {x: 2, y: 7}
+  ChanceToLand: 0.05
+  LandingDetectionRadius: 20
+  LandingSlowdownDistance: 7
+  LandingRotationFlatDistance: 10
+  ChanceToTakeoff: 0.01
+  TakeoffLevelingZone: 100

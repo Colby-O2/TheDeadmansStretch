@@ -20,12 +20,12 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CanadianGooseWingMat
+  m_Name: MallardFemaleWing
   m_Shader: {fileID: -6465566751694194690, guid: e33fd88a58c3d4048b28fc59e66b9b92, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
-  - _ANCHORAXIS_X
+  - _ANCHORAXIS_Z
   - _LIGHTINGMETHOD_TEXEL_LIT
   - _TEXTURESAMPLEMODE_N64
   - _VERTEXJITTERMODE_VIEW_SPACE
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 1e84a3bf631a20f41a361623b83ccb62, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a770de2d8275ec43b1e24a5fafba712, type: 3}
         m_Scale: {x: 100, y: 100}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -100,7 +100,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ANCHORAXIS: 0
+    - _ANCHORAXIS: 2
     - _AddPrecomputedVelocity: 0
     - _AffineWrapStrength: 1
     - _AlphaClip: 0
@@ -141,7 +141,7 @@ Material:
     - _ShadowOffset: 0.01
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _SnowAlpha: 0.5
+    - _SnowAlpha: 0
     - _SnowFallOff: 0.72
     - _SnowNoiseExponent: 2
     - _SnowNoiseScale: 237.78
@@ -157,11 +157,11 @@ Material:
     - _UseVertexColor: 0
     - _VERTEXJITTERMODE: 1
     - _VertexPrecision: 32
-    - _WindFallofThresh: 0.052
-    - _WindFalloff: 4.26
+    - _WindFallofThresh: 0.047
+    - _WindFalloff: 4.252
     - _WindNoiseScale: 0.77
-    - _WindSpeed: 1
-    - _WindStrength: 16.35
+    - _WindSpeed: 4
+    - _WindStrength: 3
     - _WorkflowMode: 1
     - _XRMotionVectorsPass: 1
     - _ZTest: 4

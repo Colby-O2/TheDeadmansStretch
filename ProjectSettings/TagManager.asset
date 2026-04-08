@@ -11,6 +11,9 @@ TagManager:
   - test_loc_2
   - ViewFinderImage
   - ViewFinderCrosshair
+  - FowlWaterTarget
+  - FowlFlightArea
+  - Water
   layers:
   - Default
   - TransparentFX
