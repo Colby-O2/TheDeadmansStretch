@@ -20514,6 +20514,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 942818620}
+    - target: {fileID: 4901949354022623139, guid: 9528ca98d5e108a42b2f5639b99bbadc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5573956548714912968, guid: 9528ca98d5e108a42b2f5639b99bbadc, type: 3}
       propertyPath: m_Name
       value: Weather

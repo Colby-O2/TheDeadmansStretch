@@ -1,5 +1,5 @@
-using InteractionSystem.Helpers;
 using PlazmaGames.Attribute;
+using PlazmaGames.Math;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +7,9 @@ namespace ColbyO.Untitled.Wildlife
 {
     public class FlockController : MonoBehaviour
     {
+        [Header("References")]
+        [SerializeField]  private FlockLifecycleHook _lifecycleHook;
+
         [Header("State")]
         [SerializeField, ReadOnly] private FowlState _currentState = FowlState.Flying;
 
@@ -18,10 +21,12 @@ namespace ColbyO.Untitled.Wildlife
         public FowlState State { get => _currentState; set => _currentState = value; }
         public float WaterSwimHeight => _waterPlane.position.y + _settings.HeigtOffset;
 
+        private float _margin = 2.0f;
         private List<FowlMember> _flock = new List<FowlMember>();
         private Vector3 _currentDestination;
         private bool _isChangingWaypoint = false;
         private Bounds _flightBounds;
+        private Bounds _expandedFlightBounds;
         private float _waitTime;
         private float _elapsedTimeSinceMove;
         private float _heightAtLandStart;
@@ -47,7 +52,6 @@ namespace ColbyO.Untitled.Wildlife
 
         public void Initialize
         (
-            FowlState startState,
             BoxCollider flightArea,
             List<Transform> swimmingTargets,
             Transform waterPlane,
@@ -55,71 +59,86 @@ namespace ColbyO.Untitled.Wildlife
         )
         {
             _settings = settings;
-
             _swimmingTargets = swimmingTargets;
-
             _waterPlane = waterPlane;
-
-            _currentState = startState;
-
+            _currentState = FowlState.None;
             _flightArea = flightArea;
-            _flightBounds = flightArea.bounds;
 
-            Bounds rawBounds = flightArea.bounds;
+            _flightBounds = _flightArea.bounds;
+            _flightBounds.Expand(new Vector3(_margin * 2.1f, 100f, _margin * 2.1f));
 
-            float margin = 2.0f;
-            _flightBounds.Expand(new Vector3(margin * 2.1f, 100f, margin * 2.1f));
-
-            SetState(startState);
-
-            if (startState == FowlState.Flying) MoveToRandomPointInAirSpace(rawBounds, margin);
-            else if (startState == FowlState.Swimming) SpawnAtRandomSwimmingWaypoint();
-
-            SpawnFlock(Random.Range(_settings.FlockSize.x, _settings.FlockSize.y));
+            SpawnFlock(Random.Range(_settings.FlockSize.x, _settings.FlockSize.y), true);
         }
 
-        private void SpawnFlock(int flockSize)
+        public void Respawn(FowlState state)
+        {
+            _currentState = state;
+            SetState(state);
+
+            if (state == FowlState.Flying) MoveToRandomPointInAirSpace(_flightArea.bounds, _margin);
+            else if (state == FowlState.Swimming) SpawnAtRandomSwimmingWaypoint();
+
+            SpawnFlock(_flock.Count, false);
+        }
+
+        private void SpawnFlock(int flockSize, bool init)
         {
             for (int i = 0; i < flockSize; i++)
             {
-                Vector3 vOffset;
-                Quaternion initialRotation = transform.rotation;
-
-                if (_currentState == FowlState.Flying)
+                if (init)
                 {
-                    float horizontalStagger = _settings.VSpacing * 0.4f;
-                    float verticalStagger = 0.5f;
-                    int side = (i % 2 == 0) ? 1 : -1;
-                    int row = (i + 1) / 2;
-                    if (i == 0) row = 0;
+                    Fowl fowl = Instantiate<Fowl>(_settings.FowlPrefabs[Random.Range(0, _settings.FowlPrefabs.Count)], Vector3.zero, Quaternion.identity, this.transform);
 
-                    vOffset = new Vector3(side * row * _settings.VSpacing, 0, -row * _settings.VSpacing);
+                    fowl.Show(State);
 
-                    vOffset.x += Random.Range(-horizontalStagger, horizontalStagger);
-                    vOffset.y += Random.Range(-verticalStagger, verticalStagger);
-                    vOffset.z += Random.Range(-horizontalStagger, horizontalStagger);
+                    _flock.Add(new FowlMember
+                    {
+                        Transform = fowl.transform,
+                        Self = fowl,
+                        GroupOffset = Vector3.zero,
+                        NoiseSeed = new Vector3(Random.Range(0f, 10000f), Random.Range(0f, 10000f), Random.Range(0f, 10000f)),
+                        SpeedMultiplier = Random.Range(0.8f, 1.2f),
+                        SwimPhaseShift = Random.Range(0f, Mathf.PI * 2),
+                        NextIdleChangeTime = 0
+                    });
                 }
                 else
                 {
-                    Vector2 randomCircle = Random.insideUnitCircle * _settings.SwimSpread;
-                    vOffset = new Vector3(randomCircle.x, 0, randomCircle.y);
-                    initialRotation = Quaternion.identity;
+                    Vector3 vOffset;
+                    Quaternion initialRotation = transform.rotation;
+
+                    if (_currentState == FowlState.Flying)
+                    {
+                        float horizontalStagger = _settings.VSpacing * 0.4f;
+                        float verticalStagger = 0.5f;
+                        int side = (i % 2 == 0) ? 1 : -1;
+                        int row = (i + 1) / 2;
+                        if (i == 0) row = 0;
+
+                        vOffset = new Vector3(side * row * _settings.VSpacing, 0, -row * _settings.VSpacing);
+
+                        vOffset.x += Random.Range(-horizontalStagger, horizontalStagger);
+                        vOffset.y += Random.Range(-verticalStagger, verticalStagger);
+                        vOffset.z += Random.Range(-horizontalStagger, horizontalStagger);
+                    }
+                    else
+                    {
+                        Vector2 randomCircle = Random.insideUnitCircle * _settings.SwimSpread;
+                        vOffset = new Vector3(randomCircle.x, 0, randomCircle.y);
+                        initialRotation = Quaternion.identity;
+                    }
+
+                    FowlMember fowl = _flock[i];
+
+                    fowl.Transform.SetPositionAndRotation(transform.position + vOffset, initialRotation);
+                    fowl.Self.Show(State);
+
+                    fowl.GroupOffset = vOffset;
+                    fowl.NoiseSeed = new Vector3(Random.Range(0f, 10000f), Random.Range(0f, 10000f), Random.Range(0f, 10000f));
+                    fowl.SpeedMultiplier = Random.Range(0.8f, 1.2f);
+                    fowl.SwimPhaseShift = Random.Range(0f, Mathf.PI * 2);
+                    fowl.NextIdleChangeTime = 0;
                 }
-
-                Fowl fowl = Instantiate<Fowl>(_settings.FowlPrefabs[Random.Range(0, _settings.FowlPrefabs.Count)], transform.position + vOffset, initialRotation, this.transform);
-
-                fowl.Show(State);
-
-                _flock.Add(new FowlMember
-                {
-                    Transform = fowl.transform,
-                    Self = fowl,
-                    GroupOffset = vOffset,
-                    NoiseSeed = new Vector3(Random.Range(0f, 10000f), Random.Range(0f, 10000f), Random.Range(0f, 10000f)),
-                    SpeedMultiplier = Random.Range(0.8f, 1.2f),
-                    SwimPhaseShift = Random.Range(0f, Mathf.PI * 2),
-                    NextIdleChangeTime = 0
-                });
             }
         }
 
@@ -480,8 +499,7 @@ namespace ColbyO.Untitled.Wildlife
 
             if (!_flightBounds.Contains(transform.position))
             {
-                Debug.Log("RIP Bird :<");
-                Destroy(gameObject);
+                _lifecycleHook.OnCleanup();
             }
         }
 

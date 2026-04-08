@@ -6,7 +6,7 @@ namespace ColbyO.Untitled.Wildlife
     {
         public System.Action<GameObject> OnFlockDestroyed;
 
-        private void OnDestroy()
+        public void OnCleanup()
         {
             if (gameObject.scene.isLoaded)
             {

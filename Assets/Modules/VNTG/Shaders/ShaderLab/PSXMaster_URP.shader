@@ -297,10 +297,11 @@ Shader "Hidden/PSXMaster_URP"
 
                     fogColor = lerp(scene, _FogColor.rgb, saturate(dynamicFog));
 
-                    if (rawDepth == 0) 
-                    {
-                        return lerp(scene, fogColor, pow(_FogDensity, 0.1));
-                    }
+                    #if UNITY_REVERSED_Z
+                        if (rawDepth < 0.00001) return lerp(scene, fogColor, pow(_FogDensity, 0.1));
+                    #else
+                        if (rawDepth > 0.99999) return lerp(scene, fogColor, pow(_FogDensity, 0.1));
+                    #endif
                 }
 
                 return fogColor;

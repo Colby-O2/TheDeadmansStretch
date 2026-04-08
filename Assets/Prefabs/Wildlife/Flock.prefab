@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a25eb5c70b575e40a81bfa754746ec0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.Wildlife.FowlController
+  _lifecycleHook: {fileID: 2674722020650242799}
   _currentState: 1
   _waterPlane: {fileID: 0}
 --- !u!114 &2674722020650242799

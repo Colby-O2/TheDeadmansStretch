@@ -12,18 +12,18 @@ namespace ColbyO.Untitled
         {
             if (state == FowlState.Flying || state == FowlState.Takeoff || state == FowlState.Landing)
             {
-                _flyingMesh.SetActive(true);
-                _swimmingMesh.SetActive(false);
+                if (!_flyingMesh.activeSelf) _flyingMesh.SetActive(true);
+                if (_swimmingMesh.activeSelf) _swimmingMesh.SetActive(false);
             }
             else if (state == FowlState.Swimming)
             {
-                _swimmingMesh.SetActive(true);
-                _flyingMesh.SetActive(false);
+                if (!_swimmingMesh.activeSelf) _swimmingMesh.SetActive(true);
+                if (_flyingMesh.activeSelf) _flyingMesh.SetActive(false);
             }
             else
             {
-                _flyingMesh.SetActive(false);
-                _swimmingMesh.SetActive(false);
+                if (_flyingMesh.activeSelf) _flyingMesh.SetActive(false);
+                if (_swimmingMesh.activeSelf) _swimmingMesh.SetActive(false);
             }
         }
     }
