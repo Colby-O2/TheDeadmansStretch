@@ -74,7 +74,7 @@ MonoBehaviour:
     m_Value: 0
   AmbientColor:
     m_OverrideState: 1
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
+    m_Value: {r: 0.11764706, g: 0.11764706, b: 0.11764706, a: 1}
   PixelResolution:
     m_OverrideState: 1
     m_Value: {x: 150, y: 150}
@@ -92,34 +92,34 @@ MonoBehaviour:
     m_Value: 1
   DitherPixelPerfect:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1
   DitherScale:
     m_OverrideState: 1
-    m_Value: 0.137
+    m_Value: 0.335
   DitherThreshold:
     m_OverrideState: 1
     m_Value: 0
   EnableFog:
-    m_OverrideState: 0
-    m_Value: 0
-  FogColor:
-    m_OverrideState: 0
-    m_Value: {r: 0, g: 0, b: 0, a: 1}
-  FogDensity:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 1
+  FogColor:
+    m_OverrideState: 1
+    m_Value: {r: 0.31181028, g: 0.42013708, b: 0.46226418, a: 1}
+  FogDensity:
+    m_OverrideState: 1
+    m_Value: 0.032
   FogNoiseStrength:
-    m_OverrideState: 0
-    m_Value: 0.1
+    m_OverrideState: 1
+    m_Value: 1
   FogEdgeSmoothness:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0.5
   FogNoiseScale:
-    m_OverrideState: 0
-    m_Value: 0.5
+    m_OverrideState: 1
+    m_Value: 0.357
   FogNoiseStart:
-    m_OverrideState: 0
-    m_Value: 0.7
+    m_OverrideState: 1
+    m_Value: 0.416
 --- !u!114 &-2039826128863411681
 MonoBehaviour:
   m_ObjectHideFlags: 3
