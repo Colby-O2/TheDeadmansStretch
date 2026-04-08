@@ -31,6 +31,7 @@ MonoBehaviour:
   IdleWait: {x: 2, y: 7}
   ChanceToLand: 0.1
   LandingDetectionRadius: 20
+  MinLandingDistance: 2
   LandingSlowdownDistance: 1
   LandingRotationFlatttenDistance: 1
   MaxDiveAngle: 15

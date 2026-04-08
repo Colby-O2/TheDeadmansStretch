@@ -8,15 +8,18 @@ namespace ColbyO.Untitled.MonoSystems
     public class FowlMonoSystem : MonoBehaviour, IFowlMonoSystem
     {
         [Header("Settings")]
+        [SerializeField] private FlockController _flockPrefab;
         [SerializeField] private List<FowlSettings> _fowlSettings;
         [SerializeField] private int _maxFlocks = 5;
         [SerializeField] private int _initialSwimmingCount = 2;
+        [SerializeField, Range(0.0f, 1.0f)] private float _newFlockSpawnChance = 0.01f;
+        [SerializeField, Range(0.0f, 1.0f)] private float _awakeSpawnChance = 0.75f;
 
         private BoxCollider _globalFlightArea;
 
         private Transform _waterPlane;
 
-        private List<FowlController> _activeFlocks = new List<FowlController>();
+        private List<FlockController> _activeFlocks = new List<FlockController>();
 
         private List<Transform> _swimmingTargets = new List<Transform>();
 
@@ -31,7 +34,19 @@ namespace ColbyO.Untitled.MonoSystems
             for (int i = 0; i < _maxFlocks; i++)
             {
                 FowlState startState = (i < _initialSwimmingCount) ? FowlState.Swimming : FowlState.Flying;
+                if (i > _initialSwimmingCount && Random.value < _awakeSpawnChance) continue;
                 SpawnFlock(startState);
+            }
+        }
+
+        private void Update()
+        {
+            if (_activeFlocks.Count < _maxFlocks)
+            {
+                if (Random.value < _newFlockSpawnChance * Time.deltaTime)
+                {
+                    SpawnFlock(FowlState.Flying);
+                }
             }
         }
 
@@ -47,15 +62,12 @@ namespace ColbyO.Untitled.MonoSystems
 
             FowlSettings settings = _fowlSettings[Random.Range(0, _fowlSettings.Count)];
 
-            GameObject flockContainer = new GameObject($"{settings.SpeciesName}Flock");
-            flockContainer.transform.parent = transform;
-
-            flockContainer.AddComponent<FlockLifecycleHook>().OnFlockDestroyed += HandleFlockDestroyed;
-            FowlController newFlock = flockContainer.AddComponent<FowlController>();
+            FlockController newFlock = Instantiate<FlockController>(_flockPrefab);
+            newFlock.gameObject.name = $"{settings.SpeciesName}Flock";
+            newFlock.transform.parent = transform;
+            newFlock.GetComponent<FlockLifecycleHook>().OnFlockDestroyed += HandleFlockDestroyed;
 
             newFlock.Initialize(state, _globalFlightArea, _swimmingTargets, _waterPlane, settings);
-
-            _activeFlocks.Add(newFlock);
 
             _activeFlocks.Add(newFlock);
         }
@@ -63,21 +75,6 @@ namespace ColbyO.Untitled.MonoSystems
         private void HandleFlockDestroyed(GameObject flockGO)
         {
             _activeFlocks.RemoveAll(f => f == null || f.gameObject == flockGO);
-
-            SpawnFlock(FowlState.Flying);
-        }
-    }
-
-    public class FlockLifecycleHook : MonoBehaviour
-    {
-        public System.Action<GameObject> OnFlockDestroyed;
-
-        private void OnDestroy()
-        {
-            if (gameObject.scene.isLoaded)
-            {
-                OnFlockDestroyed?.Invoke(gameObject);
-            }
         }
     }
 }

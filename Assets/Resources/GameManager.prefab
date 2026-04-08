@@ -364,11 +364,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d72ddee8345143941b6435ab71929e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.MonoSystems.FowlMonoSystem
+  _flockPrefab: {fileID: 7961729853500704236, guid: 4ec2ed9429d7aff49bdc22561173ebe1, type: 3}
   _fowlSettings:
   - {fileID: 11400000, guid: 9bb540cfb967b1a4a933767a0f0c137a, type: 2}
   - {fileID: 11400000, guid: 3ba3a8dbbb4f9274ba496d993f8a4dab, type: 2}
   _maxFlocks: 10
   _initialSwimmingCount: 3
+  _newFlockSpawnChance: 0.1
+  _awakeSpawnChance: 0.75
 --- !u!1 &8945028520225251560
 GameObject:
   m_ObjectHideFlags: 0

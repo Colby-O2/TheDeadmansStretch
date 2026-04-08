@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ColbyO.Untitled.Wildlife
 {
-    public class FowlController : MonoBehaviour
+    public class FlockController : MonoBehaviour
     {
         [Header("State")]
         [SerializeField, ReadOnly] private FowlState _currentState = FowlState.Flying;
@@ -133,7 +133,7 @@ namespace ColbyO.Untitled.Wildlife
 
             Bounds spawnArea = _flightArea.bounds;
 
-            float randomY = Random.Range(spawnArea.center.y, spawnArea.max.y);
+            float randomY = Random.Range(spawnArea.min.y, spawnArea.max.y);
 
             int attempts = 0;
             while (attempts < 15)
@@ -357,7 +357,7 @@ namespace ColbyO.Untitled.Wildlife
         {
             if (_swimmingTargets == null || _swimmingTargets.Count == 0)
             {
-                Debug.LogWarning("No swimming targets assigned to FowlController!");
+                Debug.LogWarning("No swimming targets assigned to FlockController!");
                 return;
             }
 
@@ -417,6 +417,7 @@ namespace ColbyO.Untitled.Wildlife
             float closestSqrDist = Mathf.Infinity;
 
             float detectionSqrRadius = _settings.LandingDetectionRadius * _settings.LandingDetectionRadius;
+            float minDetectionSqrRadius = _settings.MinLandingDistance * _settings.MinLandingDistance;
 
             foreach (Transform target in _swimmingTargets)
             {
@@ -425,7 +426,7 @@ namespace ColbyO.Untitled.Wildlife
 
                 float sqrDist = (flockPosXZ - targetPosXZ).sqrMagnitude;
 
-                if (sqrDist < closestSqrDist)
+                if (sqrDist < closestSqrDist && sqrDist >= minDetectionSqrRadius)
                 {
                     closestSqrDist = sqrDist;
                     closestTarget = target;
@@ -434,9 +435,14 @@ namespace ColbyO.Untitled.Wildlife
 
             if (closestSqrDist <= detectionSqrRadius)
             {
-                if (Random.value < (_settings.ChanceToLand * Time.deltaTime))
+                Vector3 directionToTarget = (closestTarget.position - transform.position).normalized;
+                float dot = Vector3.Dot(transform.forward, directionToTarget);
+                if (dot > 0)
                 {
-                    TransitionToLanding(closestTarget);
+                    if (Random.value < (_settings.ChanceToLand * Time.deltaTime))
+                    {
+                        TransitionToLanding(closestTarget);
+                    }
                 }
             }
         }
