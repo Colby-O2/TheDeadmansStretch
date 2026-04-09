@@ -56,6 +56,7 @@ namespace InteractionSystem
         internal MoveableHandler GetMoveableHandler() => _moveableHandler;
         internal InspectionHandler GetInspectorHandler() => _inspectorHandler;
         public Transform GetCameraTransform() => _playerCamera;
+        public InteractionState CurrentState { get => _state; }
         public Collider[] Colliders { get => _colliders; }
 
         private void Awake()
@@ -140,6 +141,10 @@ namespace InteractionSystem
 
                 case InteractionState.Inspecting:
                     _player.Freeze();
+                    _interactionHandler.DisableAllHints();
+                    _interactionHandler.HideAllHints = true;
+                    break;
+                case InteractionState.Disabled:
                     _interactionHandler.DisableAllHints();
                     _interactionHandler.HideAllHints = true;
                     break;

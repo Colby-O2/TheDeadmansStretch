@@ -91,7 +91,7 @@ MonoBehaviour:
   _maskMaterial: {fileID: 0}
   _renderEvent: 550
   _outlineColor: {r: 3.0943396, g: 3.0943396, b: 3.0943396, a: 1}
-  _thickness: 2
+  _thickness: 1
   _maskThreshold: 1
   _normalThreshold: 0.5
 --- !u!114 &7833122117494664109

@@ -10,6 +10,7 @@ namespace InteractionSystem.Handlers
     [System.Serializable]
     public class InteractionSettings
     {
+        public QueryTriggerInteraction TriggerInteraction = QueryTriggerInteraction.Collide;
         public Transform InteractionPoint;
         public LayerMask InteractionLayer;
         public LayerMask ObstacleLayerMask;
@@ -55,7 +56,7 @@ namespace InteractionSystem.Handlers
 
         private bool IsBlockedByObstacle(Vector3 from, Vector3 to, LayerMask obstacleMask)
         {
-            return Physics.Linecast(from, to, obstacleMask, QueryTriggerInteraction.Ignore);
+            return Physics.Linecast(from, to, obstacleMask, _settings.TriggerInteraction);
         }
 
         private IInteractable GetPossibleInteractable(
@@ -74,7 +75,7 @@ namespace InteractionSystem.Handlers
                 _tmpHits,
                 _settings.InteractionRadius,
                 _settings.InteractionLayer,
-                QueryTriggerInteraction.Ignore
+                _settings.TriggerInteraction
             );
 
             EvaluateHits(hitCount, ref best, ref bestDist);
@@ -88,7 +89,7 @@ namespace InteractionSystem.Handlers
                     _tmpHits,
                     _settings.InteractionRadius,
                     _settings.InteractionLayer,
-                    QueryTriggerInteraction.Ignore
+                    _settings.TriggerInteraction
                 );
 
                 EvaluateHits(hitCount, ref best, ref bestDist);
@@ -136,7 +137,7 @@ namespace InteractionSystem.Handlers
                 _settings.NearbyHintRadius,
                 _overlapHits,
                 _settings.InteractionLayer,
-                QueryTriggerInteraction.Ignore
+                _settings.TriggerInteraction
             );
 
             for (int i = 0; i < _activeNearbyHints.Count; i++)

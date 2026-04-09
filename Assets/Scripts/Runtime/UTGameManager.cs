@@ -1,3 +1,4 @@
+using InteractionSystem;
 using PlazmaGames.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,13 +12,15 @@ namespace ColbyO.Untitled
         public static Preferences Preferences { get => (Instance as UTGameManager)._preferences; }
         [SerializeField] private Preferences _preferences;
 
+        public static Scheduler GlobalScheduler = new Scheduler();
+
         public static bool IsPaused = false;
         public static bool LockMovement = false;
 
         public static Player.ViewController PlayerViewController;
         public static Player.MovementController PlayerMoveController;
         public static Player.AnimationController PlayerAnimationController;
-
+        public static InteractorController PlayerInteractiorController;
 
         private void Awake()
         {
@@ -27,6 +30,7 @@ namespace ColbyO.Untitled
 
         private void Start()
         {
+            PlayerInteractiorController = FindAnyObjectByType<InteractorController>();
             HideCursor();
         }
 
@@ -40,6 +44,11 @@ namespace ColbyO.Untitled
         {
             SceneManager.sceneLoaded -= OnSceneLoad;
             SceneManager.sceneUnloaded -= OnSceneUnload;
+        }
+
+        private void Update()
+        {
+            GlobalScheduler.Tick(Time.deltaTime);
         }
 
         private void OnApplicationFocus(bool focus)

@@ -496,7 +496,7 @@ namespace DialogueGraph
                     break;
                 case DialogueType.SingleChoice:
                 case DialogueType.MultipleChoice:
-                    PlayDialogueNode();
+                    PlayDialogueNode(_currentNodeType);
                     break;
                 case DialogueType.SetBoolean:
                     InitializeFlag();
@@ -582,7 +582,7 @@ namespace DialogueGraph
             NextNode(choice);
         }
 
-        protected abstract void PlayDialogueNode();
+        protected abstract void PlayDialogueNode(DialogueType type);
         public abstract void OnDialogueFinished();
     }
 }

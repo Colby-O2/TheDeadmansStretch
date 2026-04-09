@@ -11,6 +11,7 @@ namespace ColbyO.Untitled.Interactables
     {
         [SerializeField] private string DialogueName;
         [SerializeField] private bool _isSingleUse;
+        [SerializeField] private bool _isPassive;
 
         private Promise _promise;
 
@@ -20,7 +21,16 @@ namespace ColbyO.Untitled.Interactables
         {
             IsEnabled = !_isSingleUse;
             _owner.CanInteract = false;
-            GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise(DialogueName)
+
+            InteractionState prevState = UTGameManager.PlayerInteractiorController.CurrentState;
+            if (!_isPassive)
+            {
+                UTGameManager.PlayerInteractiorController.ChangeState(InteractionState.Disabled);
+            }
+
+            GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise(DialogueName, passive: _isPassive)
+            .Then(_ => { if (!_isPassive) UTGameManager.PlayerInteractiorController.ChangeState(prevState); })
+            .Then(_ => UTGameManager.GlobalScheduler.Wait(0.2f))
             .Then(_ =>
             {
                 Promise.ResolveExisting(ref _promise);

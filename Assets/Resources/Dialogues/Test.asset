@@ -16,27 +16,6 @@ MonoBehaviour:
   includeInDatabase: 1
   Name: Test
   Nodes:
-  - Guid: e6a1e3ab-fa38-4fe3-bcc5-ba5aeaa11c04
-    ActorName: Other Guy
-    GroupName: 
-    Type: 1
-    Text: yo?
-    EventID: 
-    position: {x: 1411, y: 44}
-    PropertyType: 
-    PropertyBooleanValue: 0
-    PropertyIntValue: 0
-    PropertyName: 
-    IncrementAmount: 0
-    ComparisonType: 0
-    ComparsionCondition: 0
-    CameraFromLocationTag: 
-    CameraToLocationTag: 
-    CameraLookAtTag: 
-    Duration: 0
-    Choices:
-    - Text: 
-      Next: e2fd4f01-c55c-4e00-b1ab-4c822e3da81b
   - Guid: 5efc97e2-53fe-4724-9418-577e08c972d4
     ActorName: Some Guy
     GroupName: 
@@ -58,27 +37,6 @@ MonoBehaviour:
     Choices:
     - Text: 
       Next: 8e9c421c-83dd-4641-bd1d-8b50c021fe17
-  - Guid: 0f61891d-7106-477e-b424-5eedbad24daa
-    ActorName: 
-    GroupName: 
-    Type: 0
-    Text: 
-    EventID: 
-    position: {x: -211, y: -3}
-    PropertyType: 
-    PropertyBooleanValue: 0
-    PropertyIntValue: 0
-    PropertyName: 
-    IncrementAmount: 0
-    ComparisonType: 0
-    ComparsionCondition: 0
-    CameraFromLocationTag: 
-    CameraToLocationTag: 
-    CameraLookAtTag: 
-    Duration: 0
-    Choices:
-    - Text: 
-      Next: 4808ad70-7996-4819-9586-18faf6cf1964
   - Guid: 4808ad70-7996-4819-9586-18faf6cf1964
     ActorName: 
     GroupName: 
@@ -141,7 +99,7 @@ MonoBehaviour:
     Duration: 2
     Choices:
     - Text: 
-      Next: e6a1e3ab-fa38-4fe3-bcc5-ba5aeaa11c04
+      Next: 
   - Guid: 8397f5c3-bfa5-406e-adee-fd859962ba06
     ActorName: 
     GroupName: 
@@ -204,14 +162,100 @@ MonoBehaviour:
     Duration: 0
     Choices:
     - Text: 
+      Next: 
+  - Guid: 0f61891d-7106-477e-b424-5eedbad24daa
+    ActorName: 
+    GroupName: 
+    Type: 0
+    Text: 
+    EventID: 
+    position: {x: -76, y: 488}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 376fe9ec-1aca-4f69-b3d3-04760c54812a
+  - Guid: 376fe9ec-1aca-4f69-b3d3-04760c54812a
+    ActorName: Creepy Guy
+    GroupName: 
+    Type: 1
+    Text: Hi <i>Buddy boy</i>
+    EventID: 
+    position: {x: 313, y: 476}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: f17cca32-454a-4c5e-9a59-5cdd23b166aa
+  - Guid: f17cca32-454a-4c5e-9a59-5cdd23b166aa
+    ActorName: You
+    GroupName: 
+    Type: 2
+    Text: 
+    EventID: 
+    position: {x: 786, y: 464}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 'What a werdo '
+      Next: e6a1e3ab-fa38-4fe3-bcc5-ba5aeaa11c04
+    - Text: 'Hi? '
       Next: 5a0c1e3e-3b3c-40af-9f0d-cf396c390fc7
+  - Guid: e6a1e3ab-fa38-4fe3-bcc5-ba5aeaa11c04
+    ActorName: Other Guy
+    GroupName: 
+    Type: 1
+    Text: yo?
+    EventID: 
+    position: {x: 1215, y: 370}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 
   - Guid: 5a0c1e3e-3b3c-40af-9f0d-cf396c390fc7
     ActorName: Other Guy
     GroupName: 
     Type: 1
     Text: yo?yo?
     EventID: 
-    position: {x: 2370, y: 136}
+    position: {x: 1273, y: 668}
     PropertyType: 
     PropertyBooleanValue: 0
     PropertyIntValue: 0

@@ -3,7 +3,6 @@ using InteractionSystem.Interfaces;
 using PlazmaGames.Attribute;
 using PlazmaGames.Core;
 using PlazmaGames.Math;
-using System;
 using UnityEngine;
 
 namespace ColbyO.Untitled.Player

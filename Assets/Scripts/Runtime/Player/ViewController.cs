@@ -57,7 +57,7 @@ namespace ColbyO.Untitled.Player
 
         private void Start()
         {
-            _inputSystem.OnUseCamera.AddListener(ToggleFirstPerson);
+            //_inputSystem.OnUseCamera.AddListener(ToggleFirstPerson);
         }
 
         private void Update()
@@ -102,7 +102,7 @@ namespace ColbyO.Untitled.Player
                 Vector3 cornerTarget = desiredPos + cornerOffset;
                 Vector3 dir = cornerTarget - targetPos;
 
-                if (Physics.Raycast(targetPos, dir.normalized, out RaycastHit hit, dir.magnitude, ~_ignoreCameraCollisionMask))
+                if (Physics.Raycast(targetPos, dir.normalized, out RaycastHit hit, dir.magnitude, ~_ignoreCameraCollisionMask, QueryTriggerInteraction.Ignore))
                 {
                     float hitDistance = hit.distance - clipBuffer;
                     if (hitDistance < minDistance)
