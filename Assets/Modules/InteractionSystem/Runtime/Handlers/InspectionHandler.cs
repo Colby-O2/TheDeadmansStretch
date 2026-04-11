@@ -52,6 +52,8 @@ namespace InteractionSystem.Handlers
         private MathExt.Transform _lookAtTarget = new();
         private MathExt.Transform _headStart = new();
 
+        private Transform _origHeadLoc; 
+
         private float _transition;
 
         private IInspectorClickable _currentClickable;
@@ -70,6 +72,10 @@ namespace InteractionSystem.Handlers
             _settings = settings;
             _profiles = new List<InspectorProfile>();
             if (_settings.InspectionLight) _settings.InspectionLight.gameObject.SetActive(false);
+
+            GameObject headLoc = new GameObject("HeadLocRef");
+            headLoc.SetActive(false);
+            _origHeadLoc = headLoc.transform;
         }
 
         public void SwitchInspectionTo(int index)
@@ -112,8 +118,10 @@ namespace InteractionSystem.Handlers
             }
 
             _state = State.Starting;
-            _headStart = new MathExt.Transform(from);
 
+            _origHeadLoc.parent = from.transform.parent;
+            _origHeadLoc.SetPositionAndRotation(from.transform.position, from.transform.rotation);
+            _headStart = MathExt.Transform.FromLocal(from);
 
             if (_profiles.Count == 0)
             {
@@ -336,8 +344,10 @@ namespace InteractionSystem.Handlers
             float dir = _state == State.Starting ? 1f : -1f;
             _transition = Mathf.Clamp01(_transition + Time.deltaTime / TRANSITION_TIME * dir);
 
-            HeadTransition(from);
-            if (_currentProfile.Settings.LookType == InspectableLookType.Pickup)
+            CreateTargets(from);
+
+            if (_currentProfile.Settings.LookType == InspectableLookType.LookAt) HeadTransition(from);
+            else if (_currentProfile.Settings.LookType == InspectableLookType.Pickup)
                 PickupTransition();
 
             if (_state == State.Starting && _transition >= 1f) _state = State.Inspecting;
@@ -345,7 +355,7 @@ namespace InteractionSystem.Handlers
         }
 
         private void HeadTransition(Transform from)
-            => MathExt.Transform.Slerp(_headStart, _lookAtTarget, _transition).ApplyTo(from);
+            => MathExt.Transform.Slerp(new MathExt.Transform(_origHeadLoc.position, _origHeadLoc.rotation), _lookAtTarget, _transition).ApplyTo(from);
 
         private void PickupTransition()
         {

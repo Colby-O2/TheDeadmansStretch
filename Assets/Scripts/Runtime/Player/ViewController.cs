@@ -60,6 +60,7 @@ namespace ColbyO.Untitled.Player
         private bool _isTransitioning = false;
 
         public float Sensitivity => _settings.Sensitivity * (InputDeviceHandler.IsCurrentGamepad ? _settings.ControllerSensitivityScaleFactor : 1f);
+        public bool IsFrozen { get; set; }
 
         private void Awake()
         {
@@ -89,7 +90,7 @@ namespace ColbyO.Untitled.Player
 
         private void LateUpdate()
         {
-            if (UTGameManager.LockMovement || UTGameManager.IsPaused || _isTransitioning) return;
+            if (UTGameManager.LockMovement || UTGameManager.IsPaused || IsFrozen || _isTransitioning) return;
 
             UpdateLook();
             UpdateZoom();

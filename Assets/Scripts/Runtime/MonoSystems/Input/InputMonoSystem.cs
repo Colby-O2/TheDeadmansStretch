@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 namespace ColbyO.Untitled.MonoSystems
 {
@@ -85,29 +86,53 @@ namespace ColbyO.Untitled.MonoSystems
         }
 
 
-        public void EnableMovement(bool justMovement = false)
+        public void EnableMovement(bool justMovement = false, bool justView = false)
         {
-            _moveAction.Enable();
-            _movementDisabled = false;
-            if (!justMovement)
+            if (justMovement)
             {
-                _viewDisabled = false;
+                _moveAction.Enable();
+                _movementDisabled = false;
+            }
+            else if (justView)
+            {
                 _lookAction.Enable();
+                _viewDisabled = false;
+            }
+            else
+            {
+                _moveAction.Enable();
+                _lookAction.Enable();
+
+                _movementDisabled = false;
+                _viewDisabled = false;
             }
         }
 
-        public void DisableMovement(bool justMovement = false)
+        public void DisableMovement(bool justMovement = false, bool justView = false)
         {
-            RawMovement = Vector2.zero;
-            RawLook = Vector2.zero;
-
-            _movementDisabled = true;
-
-            _moveAction.Disable();
-            if (!justMovement)
+            if (justMovement)
             {
-                _viewDisabled = true;
+
+                RawMovement = Vector2.zero;
+                _moveAction.Disable();
+                _movementDisabled = true;
+            }
+            else if (justView)
+            {
+                RawLook = Vector2.zero;
                 _lookAction.Disable();
+                _viewDisabled = true;
+            }
+            else
+            {
+                RawMovement = Vector2.zero;
+                RawLook = Vector2.zero;
+
+                _moveAction.Disable();
+                _lookAction.Disable();
+
+                _movementDisabled = true;
+                _viewDisabled = true;
             }
         }
     }

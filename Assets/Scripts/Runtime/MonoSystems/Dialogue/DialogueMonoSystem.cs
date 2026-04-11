@@ -82,8 +82,8 @@ namespace ColbyO.Untitled.MonoSystems
 
         public override void OnDialogueFinished()
         {
-            UTGameManager.LockMovement = false;
-            GameManager.GetMonoSystem<IUIMonoSystem>().Show<GameView>();
+            if (!_isPassive) UTGameManager.LockMovement = false;
+            //GameManager.GetMonoSystem<IUIMonoSystem>().ShowLast();
         }
 
         private void SelectedChoice(int choice)
@@ -94,7 +94,7 @@ namespace ColbyO.Untitled.MonoSystems
 
         protected override void PlayDialogueNode(DialogueType type)
         {
-            if (!_uiSystem.GetCurrentViewIs<DialogueView>()) _uiSystem.Show<DialogueView>();
+            //if (!_uiSystem.GetCurrentViewIs<DialogueView>()) _uiSystem.Show<DialogueView>(hideLastView: false);
 
             if (type == DialogueType.SingleChoice)
             {

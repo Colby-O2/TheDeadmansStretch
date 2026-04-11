@@ -111,7 +111,7 @@ namespace InteractionSystem.Attribute
 
             SerializedProperty offsetProp = property.FindPropertyRelative("OffsetDistance");
             SerializedProperty allowZoomProp = property.FindPropertyRelative("AllowZoom");
-            SerializedProperty zoomProp = property.FindPropertyRelative("ZoomMin");
+            SerializedProperty zoomMinProp = property.FindPropertyRelative("ZoomMin");
             SerializedProperty readTextProp = property.FindPropertyRelative("ReadText");
             SerializedProperty allowRotateProp = property.FindPropertyRelative("AllowRotate");
             SerializedProperty hasInteractionProp = property.FindPropertyRelative("HasInteractions");
@@ -123,7 +123,7 @@ namespace InteractionSystem.Attribute
             y += lineHeight + spacing;
             if (allowZoomProp.boolValue)
             {
-                EditorGUI.PropertyField(new Rect(position.x, y, position.width, lineHeight), zoomProp);
+                EditorGUI.PropertyField(new Rect(position.x, y, position.width, lineHeight), zoomMinProp);
                 y += lineHeight + spacing;
             }
             EditorGUI.PropertyField(new Rect(position.x, y, position.width, lineHeight), readTextProp);

@@ -1,7 +1,5 @@
-using InteractionSystem.Attribute;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using InteractionSystem.Interfaces;
 using InteractionSystem.Hint;
 
@@ -22,6 +20,7 @@ namespace InteractionSystem.Handlers
     internal sealed class InteractionHandler
     {
         private static readonly int HIT_LIMIT = 64;
+        private const float LATCH_DURATION = 0.2f;
 
         private readonly InteractorController _controller;
         private readonly InteractionSettings _settings;
@@ -31,6 +30,8 @@ namespace InteractionSystem.Handlers
         private readonly List<IInteractable> _activeNearbyHints = new(HIT_LIMIT);
 
         private IInteractable _lastPossibleInteractable;
+
+        private float _actionlatchTimer;
 
         public bool CanInteract { get; set; }
         public bool CantInteract { get => !CanInteract; set => CanInteract = !value; }
@@ -192,11 +193,7 @@ namespace InteractionSystem.Handlers
             if (interactable != null) StartInteraction(slot, interactable);
         }
 
-
-        public bool CheckForPossibleInteraction(
-            Transform from,
-            out IInteractable possibleInteractable
-        )
+        public bool CheckForPossibleInteraction(Transform from, out IInteractable possibleInteractable)
         {
             if (HideAllHints)
             {
@@ -204,20 +201,29 @@ namespace InteractionSystem.Handlers
                 return false;
             }
 
-            ShowNearbyHints(from);
-
             IInteractable found = GetPossibleInteractable(from);
-            possibleInteractable = found;
 
-            if (_lastPossibleInteractable != found && _lastPossibleInteractable != null)
-                _lastPossibleInteractable.GetHint().Disable();
+            if (found != null)
+            {
+                _actionlatchTimer = LATCH_DURATION;
+                if (_lastPossibleInteractable != found && _lastPossibleInteractable != null)
+                    _lastPossibleInteractable.GetHint().Disable();
 
-            _lastPossibleInteractable = found;
+                _lastPossibleInteractable = found;
+            }
+            else if (_actionlatchTimer > 0)
+            {
+                _actionlatchTimer -= Time.deltaTime;
+                found = _lastPossibleInteractable;
+            }
+
+            ShowNearbyHints(from);
 
             if (found == null || CantInteract)
             {
                 _lastPossibleInteractable?.GetHint().Disable();
-                possibleInteractable = _lastPossibleInteractable = null;
+                _lastPossibleInteractable = null;
+                possibleInteractable = null;
                 return false;
             }
 
@@ -227,6 +233,7 @@ namespace InteractionSystem.Handlers
             hint.HideName();
             MoveHint(from, hint);
 
+            possibleInteractable = found;
             return true;
         }
 

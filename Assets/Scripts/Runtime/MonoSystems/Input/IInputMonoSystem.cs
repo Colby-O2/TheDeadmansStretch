@@ -11,7 +11,7 @@ namespace ColbyO.Untitled.MonoSystems
         public UnityEvent OnShift { get; }
         public UnityEvent OnUseCamera { get; }
 
-        public void EnableMovement(bool justMovement = false);
-        public void DisableMovement(bool justMovement = false);
+        public void EnableMovement(bool justMovement = false, bool justView = false);
+        public void DisableMovement(bool justMovement = false, bool justView = false);
     }
 }

@@ -29,6 +29,7 @@ namespace ColbyO.Untitled.Player
         [SerializeField, ReadOnly] private Vector2 _movement;
         [SerializeField, ReadOnly] private bool _isSprinting;
         [SerializeField, ReadOnly] private bool _isFrozen = false;
+        [SerializeField, ReadOnly] private bool _isJustMovementFrozen = false;
 
         private CharacterController _controller;
         [SerializeField] private ViewController _viewController;
@@ -58,7 +59,7 @@ namespace ColbyO.Untitled.Player
 
         private void Update()
         {
-            if (UTGameManager.LockMovement || UTGameManager.IsPaused || _isFrozen)
+            if (UTGameManager.LockMovement || UTGameManager.IsPaused || _isFrozen || _isJustMovementFrozen)
             {
                 if (!_isFrozen) _animationController.SetWalking(false);
                 return;
@@ -195,7 +196,7 @@ namespace ColbyO.Untitled.Player
 
         public void FreezeJustMovement()
         {
-            _isFrozen = true;
+            _isJustMovementFrozen = true;
             _input.DisableMovement(justMovement: true);
             _velocity = Vector2.zero;
             _horizontalVelocity = Vector2.zero;
@@ -203,25 +204,27 @@ namespace ColbyO.Untitled.Player
 
         public void UnfreezeJustMovement()
         {
-            _isFrozen = false;
+            _isJustMovementFrozen = false;
             _input.EnableMovement(justMovement: true);
         }
 
 
         public void Freeze()
         {
-            UTGameManager.LockMovement = true;
             _isFrozen = true;
-            _input.DisableMovement();
+            UTGameManager.PlayerViewController.IsFrozen = true;
+            if (_isJustMovementFrozen) _input.DisableMovement(justView: true);
             _velocity = Vector2.zero;
             _horizontalVelocity = Vector2.zero;
         }
 
         public void Unfreeze()
         {
-            UTGameManager.LockMovement = false;
             _isFrozen = false;
-            _input.EnableMovement();
+            UTGameManager.PlayerViewController.IsFrozen = false;
+            
+            if (_isJustMovementFrozen) _input.EnableMovement(justView: true);
+            else _input.EnableMovement();
         }
 
         public void Attach(Transform parnet)
