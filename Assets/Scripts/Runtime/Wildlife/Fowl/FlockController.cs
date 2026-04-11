@@ -149,6 +149,8 @@ namespace ColbyO.Untitled.Wildlife
         {
             _currentState = FowlState.Takeoff;
 
+            _audio.PlayTakeOffSound();
+
             float minDistance = 20f;
             float maxDistance = 60f;
             Vector3 targetPos = transform.position;
@@ -472,6 +474,8 @@ namespace ColbyO.Untitled.Wildlife
         private void TransitionToLanding(Transform target)
         {
             _currentState = FowlState.Landing;
+
+            _audio.PlayTakeOffSound();
 
             _heightAtLandStart = transform.position.y;
 

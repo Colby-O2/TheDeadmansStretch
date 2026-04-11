@@ -1,5 +1,6 @@
 using InteractionSystem;
 using InteractionSystem.UI;
+using PlazmaGames.Audio;
 using PlazmaGames.Core;
 using PlazmaGames.UI;
 using UnityEngine;
@@ -10,10 +11,22 @@ namespace ColbyO.Untitled.UI
     {
         [SerializeField] private InspectionUIController _controller;
 
+        [SerializeField] private AudioSource _as;
+        [SerializeField] private AudioClip _pickupClip;
+        [SerializeField] private AudioClip _dropClip;
+
         public override void Init()
         {
-            _controller.OnShow.AddListener(() => GameManager.GetMonoSystem<IUIMonoSystem>().Show<InspectionView>());
-            _controller.OnHide.AddListener(() => GameManager.GetMonoSystem<IUIMonoSystem>().ShowLast());
+            _controller.OnShow.AddListener(() => 
+            {
+                if (_as && _pickupClip) _as.PlayOneShot(_pickupClip);
+                GameManager.GetMonoSystem<IUIMonoSystem>().Show<InspectionView>();
+            });
+            _controller.OnHide.AddListener(() =>
+            {
+                if (_as && _dropClip) _as.PlayOneShot(_dropClip);
+                GameManager.GetMonoSystem<IUIMonoSystem>().ShowLast();
+            });
         }
 
         public override void Show()

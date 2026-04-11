@@ -32,7 +32,7 @@ MonoBehaviour:
   ChanceToLand: 0.1
   LandingDetectionRadius: 20
   MinLandingDistance: 2
-  LandingSlowdownDistance: 1
+  LandingSlowdownDistance: 0.1
   LandingRotationFlatttenDistance: 0.6
   MaxDiveAngle: 30
   ChanceToTakeoff: 0.01

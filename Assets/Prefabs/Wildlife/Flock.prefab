@@ -84,6 +84,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0c718dcf75929614abc9c7bc6fe2d153, type: 3}
   - {fileID: 8300000, guid: eab796100b22fca40a77fb373c0d2e2b, type: 3}
   - {fileID: 8300000, guid: 7cf56171c101b0a46aa871337cb4c136, type: 3}
+  _flyingOffClip: {fileID: 8300000, guid: 8a69c5a8dca914f47bd89928d2c0481e, type: 3}
   _species: 0
   _timeRange: {x: 1, y: 8}
   _minPitch: 0.8

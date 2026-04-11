@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0ada48a0f4b2b46bb5f1a3f117886a, type: 3}
   m_Name: CanadianGooseSettings
   m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.FowlSettings
-  SpeciesName: CanadianGoose
+  Species: 0
   FowlPrefabs:
   - {fileID: 2596989114807848581, guid: b3f4dd27d829c6b4283fa20819a81a49, type: 3}
   FlockSize: {x: 6, y: 17}
@@ -31,7 +31,7 @@ MonoBehaviour:
   ChanceToLand: 0.1
   LandingDetectionRadius: 20
   MinLandingDistance: 2
-  LandingSlowdownDistance: 1
+  LandingSlowdownDistance: 0.1
   LandingRotationFlatttenDistance: 0.6
   MaxDiveAngle: 30
   ChanceToTakeoff: 0.01

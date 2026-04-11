@@ -2,6 +2,7 @@ using PlazmaGames.Audio;
 using PlazmaGames.Core;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 
 namespace ColbyO.Untitled.Wildlife
@@ -11,6 +12,7 @@ namespace ColbyO.Untitled.Wildlife
         [Header("Audio Settings")]
         [SerializeField] private List<AudioClip> _gooseClips;
         [SerializeField] private List<AudioClip> _duckClips;
+        [SerializeField] private AudioClip _flyingOffClip;
         [SerializeField] private FowlSpecies _species;
         [SerializeField] private Vector2 _timeRange = new Vector2(1f, 8f);
 
@@ -71,6 +73,15 @@ namespace ColbyO.Untitled.Wildlife
                     PlayOneShot(clipToPlay);
                 }
             }
+        }
+
+        public void PlayTakeOffSound()
+        {
+            PlayOneShot(_flyingOffClip);
+
+            List<AudioClip> activeList = (_species == FowlSpecies.CanadaGoose) ? _gooseClips : _duckClips;
+            AudioClip clipToPlay = activeList[Random.Range(0, activeList.Count)];
+            PlayOneShot(clipToPlay);
         }
 
         private void PlayOneShot(AudioClip clip)
