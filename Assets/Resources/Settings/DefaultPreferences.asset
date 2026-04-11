@@ -17,3 +17,7 @@ MonoBehaviour:
   PolaroidCameraShakeImageMag: 0.33333334
   PolaroidCameraShakeCrosshairMag: 0.6666667
   PolaroidCameraShakeRestorationRate: 5
+  PolaroidCameraZoomSpeed: -0.1
+  PolaroidCameraZoomMin: 60
+  PolaroidCameraZoomMax: 2
+  PolaroidCameraShutterTime: 0.15
