@@ -1,8 +1,9 @@
+using InteractionSystem.Actions;
+using InteractionSystem.Hint;
+using InteractionSystem.Interfaces;
+using System.Drawing;
 using System.Linq;
 using UnityEngine;
-using InteractionSystem.Interfaces;
-using InteractionSystem.Hint;
-using InteractionSystem.Actions;
 
 namespace InteractionSystem
 {
@@ -54,7 +55,9 @@ namespace InteractionSystem
             foreach (var action in _actions)
                 action?.Initialize(this);
 
-            _hint.SetPlayer(FindAnyObjectByType<InteractorController>().transform);
+            InteractorController interactorController = FindAnyObjectByType<InteractorController>();
+            _hint.SetPlayer(interactorController.transform);
+            _hint.SetPlayerCamera(interactorController.GetCameraTransform());
             _hint.Set(_objectName, _actions);
         }
 

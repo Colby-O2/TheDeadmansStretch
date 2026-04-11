@@ -506,7 +506,7 @@ RectTransform:
   m_GameObject: {fileID: 3027452768395370524}
   m_LocalRotation: {x: 0.4392525, y: -0.0067891506, z: 0.0033196544, w: 0.8983319}
   m_LocalPosition: {x: 0, y: 0, z: -2.8353496}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5049434402592202979}
@@ -556,8 +556,8 @@ MonoBehaviour:
     KeyboardMaterial: {fileID: 2100000, guid: 8cc6d000ef6f6d74fb92f42abfb2b08d, type: 2}
     PlayStationMaterial: {fileID: 2100000, guid: 1e1a11a7a20b89d4fbd5dbda27fab564, type: 2}
     GenericGamepadMaterial: {fileID: 2100000, guid: 419f553126363c047992727188963a81, type: 2}
-  _lineWidth: 0.01
-  _outlineWidth: 0.006
+  _lineWidth: 0.125
+  _outlineWidth: 0.08
   _hintLine: {fileID: 7765124678348611459}
   _outlineLine: {fileID: 2325567004800709708}
   _hintDot: {fileID: 1311322539066474404}
@@ -574,6 +574,10 @@ MonoBehaviour:
   _fadeStartDistance: 5
   _fadeEndDistance: 3
   _fadeSpeed: 8
+  _useDynamicScaling: 1
+  _baseDistance: 20
+  _minScale: 0.02
+  _maxScale: 0.2
 --- !u!1 &3210383281392441755
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +668,7 @@ LineRenderer:
   - {x: -8.535297, y: 0.10997508, z: -2.7445416}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.075
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -847,7 +851,7 @@ LineRenderer:
   - {x: -8.535297, y: 0.10997508, z: -2.7445416}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.075
     widthCurve:
       serializedVersion: 2
       m_Curve:

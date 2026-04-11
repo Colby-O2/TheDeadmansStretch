@@ -42,8 +42,15 @@ namespace InteractionSystem.Hint
         [SerializeField] private float _fadeEndDistance = 1.5f;    
         [SerializeField] private float _fadeSpeed = 6f;
 
+        [Header("Dynamic Scaling")]
+        [SerializeField] private bool _useDynamicScaling = true;
+        [SerializeField] private float _baseDistance = 2f;
+        [SerializeField] private float _minScale = 0.5f;
+        [SerializeField] private float _maxScale = 3f;
+
         private float _currentAlpha = 0f;
         private Transform _player;
+        private Transform _playerCamera;
         private Interactable _owner;
 
         private float _currentOffset = 0f;
@@ -82,6 +89,7 @@ namespace InteractionSystem.Hint
             _targetOffset = 0f;
 
             UpdateFade();
+            UpdateScale();
             UpdateControls();
             UpdateCurve();
             UpdateDot();
@@ -91,6 +99,7 @@ namespace InteractionSystem.Hint
         private void LateUpdate()
         {
             UpdateFade();
+            UpdateScale();
             UpdateControls();
             UpdateCurve();
             UpdateDot();
@@ -100,6 +109,8 @@ namespace InteractionSystem.Hint
         public void SetOwner(Interactable owner) => _owner = owner;
 
         public void SetPlayer(Transform player) => _player = player;
+
+        public void SetPlayerCamera(Transform cam) => _playerCamera = cam;
 
         public bool AreAnyActionsActive() => !(_unusedActions == _actions.Length);
 
@@ -272,6 +283,30 @@ namespace InteractionSystem.Hint
                     dc.a = newAlpha;
                     r.material.color = dc;
                 }
+            }
+        }
+
+        private void UpdateScale()
+        {
+            if (!_useDynamicScaling || _playerCamera == null) return;
+
+            float dist = Vector3.Distance(_playerCamera.position, transform.position);
+
+            float scaleFactor = dist / _baseDistance;
+            scaleFactor = Mathf.Clamp(scaleFactor, _minScale, _maxScale);
+
+            transform.localScale = Vector3.one * scaleFactor;
+
+            if (_hintLine != null)
+            {
+                _hintLine.startWidth = _lineWidth * scaleFactor;
+                _hintLine.endWidth = _lineWidth * scaleFactor;
+            }
+
+            if (_outlineLine != null)
+            {
+                _outlineLine.startWidth = (_lineWidth + _outlineWidth) * scaleFactor;
+                _outlineLine.endWidth = (_lineWidth + _outlineWidth) * scaleFactor;
             }
         }
 
