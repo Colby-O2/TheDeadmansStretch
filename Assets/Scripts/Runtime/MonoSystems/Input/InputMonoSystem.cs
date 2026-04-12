@@ -72,7 +72,6 @@ namespace ColbyO.Untitled.MonoSystems
         private void HandleLookAction(InputAction.CallbackContext e)
         {
             if (_viewDisabled) return;
-            Debug.Log(e.ReadValue<Vector2>());
             RawLook = e.ReadValue<Vector2>();
         }
 

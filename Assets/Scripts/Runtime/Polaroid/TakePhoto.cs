@@ -35,7 +35,7 @@ namespace ColbyO.Untitled.Polaroid
         {
             if (!GameManager.GetMonoSystem<IGameLogicMonoSystem>().IsInRange("PhotoArea"))
             {
-                GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialogue("NotInPhotoArea");
+                GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise("NotInPhotoArea", true);
                 return;
             }
 
@@ -51,20 +51,20 @@ namespace ColbyO.Untitled.Polaroid
                     {
                         if (_cameraZoom.GetZoom() > UTGameManager.Preferences.PolaroidCameraZoomMinToTakePhoto)
                         {
-                            GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialogue("ZoomMore");
+                            GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise("ZoomMore", true);
                             return;
                         }
                         switch (fowl.Species)
                         {
                             case FowlSpecies.Mallard:
                                 GameManager.GetMonoSystem<IDialogueMonoSystem>().SetFlag("GotDuck", true);
-                                GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialogue("PictureOfDuck");
+                                GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise("PictureOfDuck", true);
                                 _gotDuck = true;
                                 Debug.Log("Got a duck :)");
                                 break;
                             case FowlSpecies.CanadaGoose:
                                 GameManager.GetMonoSystem<IDialogueMonoSystem>().SetFlag("GotGoose", true);
-                                GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialogue("PictureOfGoose");
+                                GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise("PictureOfGoose", true);
                                 _gotGoose = true;
                                 Debug.Log("Got a goose :(");
                                 break;
@@ -79,7 +79,7 @@ namespace ColbyO.Untitled.Polaroid
 
             if (!gotSomething)
             {
-                GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialogue("PictureOfNothing");
+                GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise("PictureOfNothing", true);
             }
 
             if (_gotDuck && _gotGoose)

@@ -1,11 +1,15 @@
+using PlazmaGames.Audio;
+using PlazmaGames.Core;
 using PlazmaGames.Math;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using AudioType = PlazmaGames.Audio.AudioType;
 
 namespace ColbyO.Untitled
 {
     public class SightingScene : MonoBehaviour
     {
+        [SerializeField] private AudioClip _gunshotSound;
         [SerializeField] private BoxCollider _sceneBounds;
         [SerializeField] private Rigidbody _forcePoint;
         [SerializeField] private GameObject _person;
@@ -20,7 +24,7 @@ namespace ColbyO.Untitled
         private bool _found = false;
         private bool _falling = false;
         private float _fallTimer = 0;
-        
+
         private void Start()
         {
             _zoom = _polaroidCamera.GetComponent<CameraZoom>();
@@ -32,6 +36,7 @@ namespace ColbyO.Untitled
 
         public bool IsCameraLookingAtScene()
         {
+            if (!GameManager.GetMonoSystem<IGameLogicMonoSystem>().IsInRange("PhotoArea")) return false;
             if (_zoom.GetZoom() > UTGameManager.Preferences.PolaroidCameraZoomMinToSeeScene) return false;
             Plane[] planes = GeometryUtility.CalculateFrustumPlanes(_polaroidCamera);
             return GeometryUtility.TestPlanesAABB(planes, _sceneBounds.bounds);
@@ -57,33 +62,17 @@ namespace ColbyO.Untitled
             _falling = true;
             _fallTimer = 0;
             _lookAt = false;
-            UTGameManager.PlayerMoveController.Freeze();
         }
 
         public void HideKiller()
         {
             _killer.SetActive(false);
         }
+        
+        public bool IsFalling() => _falling;
 
         private void Update()
         {
-            if (Keyboard.current.uKey.wasPressedThisFrame)
-            {
-                StartScene();
-            }
-            if (!_found && (Keyboard.current.jKey.wasPressedThisFrame || IsCameraLookingAtScene()))
-            {
-                LookAtScene();
-            }
-            if (Keyboard.current.iKey.wasPressedThisFrame)
-            {
-                PushPerson();
-            }
-            if (Keyboard.current.oKey.wasPressedThisFrame)
-            {
-                HideKiller();
-            }
-
             if (_lookAt)
             {
                 DoLookAt(_sceneLookAtPoint.transform.position);
@@ -100,7 +89,6 @@ namespace ColbyO.Untitled
                 if (_fallTimer > UTGameManager.Preferences.SightingSceneFallTime)
                 {
                     _falling = false;
-                    UTGameManager.PlayerMoveController.Unfreeze();
                 }
             }
         }
@@ -113,6 +101,11 @@ namespace ColbyO.Untitled
             rot.x = Mathf.LerpAngle(rot.x, targetRot.x, UTGameManager.Preferences.SightingSceneLookSpeed);
             rot.y = Mathf.LerpAngle(rot.y, targetRot.y, UTGameManager.Preferences.SightingSceneLookSpeed);
             _polaroidCamera.transform.eulerAngles = new Vector3(rot.x, rot.y, _polaroidCamera.transform.eulerAngles.z);
+        }
+
+        public void PlayGunshot()
+        {
+            GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio(_gunshotSound, AudioType.Sfx, false, true);
         }
     }
 }

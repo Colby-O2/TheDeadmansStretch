@@ -86,7 +86,7 @@ namespace ColbyO.Untitled.Player
             _inputSystem.OnUseCamera.AddListener(ToggleFirstPerson);
         }
 
-        private void ToggleFirstPerson()
+        public void ToggleFirstPerson()
         {
             if (UTGameManager.PlayerAnimationController.GetAnimator().GetBool("InDriverSeat")) return;
             _isInFirstPerson = !_isInFirstPerson;

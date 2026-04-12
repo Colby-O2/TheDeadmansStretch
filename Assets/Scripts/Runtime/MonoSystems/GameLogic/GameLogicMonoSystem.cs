@@ -29,6 +29,8 @@ namespace ColbyO.Untitled.MonoSystems
             public static EngineSound PlayerCarAudio;
             public static List<GameObject> PlayerCarMirrorCameras = new List<GameObject>();
 
+            public static SightingScene SightingScene;
+
             public static Interactable PlayerCarDoor;
             public static Interactable CameraInteractable;
 
@@ -63,6 +65,8 @@ namespace ColbyO.Untitled.MonoSystems
         private void Start()
         {
             _dialogueMs = GameManager.GetMonoSystem<IDialogueMonoSystem>();
+
+            Refs.SightingScene = GameObject.FindAnyObjectByType<SightingScene>();
 
             Refs.PlayerCarDriverSeatLoc = GameObject.FindWithTag("Act1_PlayerCarDriverSeatLoc").transform;
             Refs.PlayerCarCameraTarget = GameObject.FindWithTag("Act1_PlayerCarCameraTarget").transform;
@@ -186,13 +190,47 @@ namespace ColbyO.Untitled.MonoSystems
                         UTGameManager.PlayerMoveController.UnfreezeJustMovement();
                         UTGameManager.PlayerMoveController.EnableChacaterController();
                         Refs.PlayerCarDoor.GetAction<CarGetOutAction>().Door.Close();
+                        Debug.Log("HERE  :)");
                     })
+                    .Then(_ => _scheduler.When(() => IsInRange("PhotoArea")))
+                    .Then(_ => _dialogueMs.StartDialoguePromise("Arrive", true))
+                    .Then(_ => _scheduler.When(() => IsTriggered("GotPhotos")))
+                    .Then(_ =>
+                    {
+                        Refs.SightingScene.StartScene();
+                    })
+                    .Then(_ => _scheduler.Wait(4))
+                    .Then(_ =>
+                    {
+                        Refs.SightingScene.PlayGunshot();
+                    })
+                    .Then(_ => _scheduler.Wait(0.4f))
+                    .Then(_ => _dialogueMs.StartDialoguePromise("Gunshot"))
+                    .Then(_ => _scheduler.When(() => Refs.SightingScene.IsCameraLookingAtScene()))
+                    .Then(_ =>
+                    {
+                        UTGameManager.PlayerMoveController.Freeze();
+                        Refs.SightingScene.LookAtScene();
+                    })
+                    .Then(_ => _scheduler.Wait(1.7f))
+                    .Then(_ => _dialogueMs.StartDialoguePromise("SceneComments"))
+                    .Then(_ => _scheduler.Wait(1.0f))
+                    .Then(_ =>
+                    {
+                        Refs.SightingScene.PushPerson();
+                    })
+                    .Then(_ => _scheduler.When(() => !Refs.SightingScene.IsFalling()))
+                    .Then(_ =>
+                    {
+                        UTGameManager.PlayerMoveController.Unfreeze();
+                        UTGameManager.PlayerViewController.ToggleFirstPerson();
+                    })
+                    .Then(_ => _dialogueMs.StartDialoguePromise("GottaGo"))
                     // Car Off
                     .Then(_ =>
                     {
                         Refs.PlayerCarDoor.CanInteract = true;
                         Refs.PlayerCarDoor.GetAction<CarGetOutAction>().IsEnabled = true;
-
                         return Refs.PlayerCarDoor.GetAction<CarGetOutAction>().WaitForDoorToOpen();
                     })
                     .Then(_ =>
