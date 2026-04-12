@@ -27,6 +27,7 @@ namespace ColbyO.Untitled
         private void Awake()
         {
             Application.runInBackground = true;
+            Application.targetFrameRate = 1000;
         }
 
         private void Start()

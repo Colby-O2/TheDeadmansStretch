@@ -34,6 +34,13 @@ TagManager:
   - PlayerCamera
   - Act1_SerialKillerCarKillerLoc
   - Shutter
+  - CC_End3
+  - CC_End4
+  - CC_End5
+  - Act1_EndingPath
+  - Act1_EndingDriversDoor
+  - Act1_EndDoor
+  - SnowFallController
   layers:
   - Default
   - TransparentFX

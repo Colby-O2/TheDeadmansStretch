@@ -20,6 +20,7 @@ namespace ColbyO.Untitled.Player
         private readonly float GROUNDED_VEL = -2f;
 
         [SerializeField] private MovementSettings _settings;
+        public SnowFallController Snow;
 
         [Header("Debug")]
         [SerializeField, ReadOnly] private MovementState _state;
@@ -192,6 +193,38 @@ namespace ColbyO.Untitled.Player
             {
                 if (!wasFrozen) Unfreeze();
                 if (prevChacaterControllerState) EnableChacaterController();
+            });
+        }
+
+        public Promise GetOutOfCar(Vector3 endPos, Quaternion endRot, float duration)
+        {
+            _animationController.SetFlag("InDriverSeat", false);
+
+            Vector3 startPos = transform.position;
+            Quaternion startRot = transform.rotation;
+
+            bool wasFrozen = _isFrozen;
+            bool prevCCState = _controller.enabled;
+
+            if (!wasFrozen) Freeze();
+            if (prevCCState) DisableChacaterController();
+
+            return GameManager.GetMonoSystem<IAnimationMonoSystem>().RequestAnimation(
+                this,
+                duration,
+                (float t) =>
+                {
+                    float alpha = Mathf.SmoothStep(0, 1, t);
+                    transform.SetPositionAndRotation(
+                        Vector3.Lerp(startPos, endPos, alpha),
+                        Quaternion.Slerp(startRot, endRot, alpha)
+                    );
+                }
+            )
+            .Then(_ =>
+            {
+                if (!wasFrozen) Unfreeze();
+                if (prevCCState) EnableChacaterController();
             });
         }
 

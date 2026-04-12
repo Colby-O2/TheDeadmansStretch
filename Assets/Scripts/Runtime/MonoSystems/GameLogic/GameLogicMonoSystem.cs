@@ -1,9 +1,11 @@
 using ColbyO.Untitled.Player;
 using ColbyO.Untitled.Traffic;
 using InteractionSystem;
+using InteractionSystem.Helpers;
 using PlazmaGames.Core;
 using PlazmaGames.Core.Debugging;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
@@ -42,6 +44,16 @@ namespace ColbyO.Untitled.MonoSystems
             public static Transform SerialKillerCarPlayerLoc;
             public static Transform SerialKillerCarKillerLoc;
             public static Openable SerialKillerCarDoor1;
+
+            public static SplineFollower KillerSplineFollower;
+            public static SplineFollower PlayerSplineFollower;
+
+            public static Openable EndDriverDoor;
+            public static Openable EndDoor;
+            public static SplineContainer EndingPath;
+
+            public static VelocityTracker CinematicVelocity;
+            public static SnowFallController SnowFallController;
 
             public static SplineFollower SerialKillerCar;
             public static EngineSound SerialKillerEngine;
@@ -86,6 +98,16 @@ namespace ColbyO.Untitled.MonoSystems
             Refs.SerialKillerCarPlayerLoc = GameObject.FindWithTag("Act1_SerialKillerCarPlayerLoc").transform;
             Refs.SerialKillerCarKillerLoc = GameObject.FindWithTag("Act1_SerialKillerCarKillerLoc").transform;
             Refs.SerialKillerCarDoor1 = GameObject.FindWithTag("Act1_SerialKillerCarDoor1").GetComponent<Openable>();
+
+            Refs.KillerSplineFollower = Refs.SerialKiller.GetComponent<SplineFollower>();
+            Refs.PlayerSplineFollower = UTGameManager.PlayerMoveController.GetComponent<SplineFollower>();
+
+            Refs.CinematicVelocity = GameManager.GetMonoSystem<ICinematicMonoSystem>().GetCamera().GetComponent<VelocityTracker>();
+            Refs.SnowFallController = FindAnyObjectByType<SnowFallController>();
+
+            Refs.EndDoor = GameObject.FindWithTag("Act1_EndDoor").GetComponent<Openable>();
+            Refs.EndDriverDoor = GameObject.FindWithTag("Act1_EndingDriversDoor").GetComponent<Openable>();
+            Refs.EndingPath = GameObject.FindWithTag("Act1_EndingPath").GetComponent<SplineContainer>();
 
             Refs.SerialKillerCar = GameObject.FindWithTag("Act1_SerialKillerCar").GetComponent<SplineFollower>();
             Refs.SerialKillerEngine = GameObject.FindWithTag("Act1_SerialKillerCar").GetComponent<EngineSound>();
@@ -141,7 +163,6 @@ namespace ColbyO.Untitled.MonoSystems
                     Refs.PlayerCarAudio.SetRpmAndThrottle(250f, 0f);
                     Refs.PlayerCarAudio.ToggleEngine(true);
 
-                    
                     Refs.SerialKillerEngine.SetRpmAndThrottle(250f, 0f);
                     Refs.SerialKillerEngine.ToggleEngine(false);
 
@@ -259,15 +280,68 @@ namespace ColbyO.Untitled.MonoSystems
                          Refs.SerialKiller.GetAnimator().SetBool("InDriverSeat", true);
 
                          GameManager.GetMonoSystem<ICinematicMonoSystem>().Enable();
+
+                         UTGameManager.PlayerMoveController.Snow.SetTarget(GameManager.GetMonoSystem<ICinematicMonoSystem>().GetCamera().GetComponent<VelocityTracker>());
                          GameManager.GetMonoSystem<ICinematicMonoSystem>().MoveTo("CC_End1");
                          return GameManager.GetMonoSystem<IVisualEffectMonoSystem>().FadeIn(2f);
                      })
                     .Then(_ =>
                     {
-                        Refs.SerialKillerCar.WaitHalf().Then(_ => GameManager.GetMonoSystem<ICinematicMonoSystem>().HandleCameraTransition("CC_End1", "CC_End2", string.Empty, 2f));
+                        Refs.SerialKillerCar.WaitFor(0.75f).Then(_ => GameManager.GetMonoSystem<ICinematicMonoSystem>().HandleCameraTransition("CC_End1", "CC_End2", string.Empty, 2f));
                         return Refs.SerialKillerCar.Initialize(Refs.TrafficSpline, 4, 30f);
-                    });
+                    })
+                    .Then(_ => Refs.EndDriverDoor.Open())
+                    .Then(_ =>
+                    {
+                        Refs.KillerSplineFollower.AllowRotate = true;
 
+                        Transform splineTransform = Refs.EndingPath.transform;
+
+                        Refs.EndingPath.Splines[0].Evaluate(0f, out float3 localPos, out float3 localTangent, out float3 localUp);
+
+                        Vector3 worldPos = splineTransform.TransformPoint(localPos);
+                        Vector3 worldTangent = splineTransform.TransformDirection(localTangent);
+                        Vector3 worldUp = splineTransform.TransformDirection(localUp);
+
+                        Quaternion lookRotation = Quaternion.LookRotation(worldTangent, worldUp);
+
+                        Refs.SerialKiller.GetOutOfCar(worldPos, lookRotation, 2f);
+                    })
+                    .Then(_ =>
+                    {
+                        return Refs.KillerSplineFollower.Initialize(Refs.EndingPath, 0, 2);
+                    })
+                    .Then(_ =>
+                    {
+                        Refs.KillerSplineFollower.AllowRotate = false;
+                        Refs.SerialKiller.SetAlwaysLookAt(UTGameManager.PlayerMoveController.transform);
+                    })
+                    .Then(_ =>
+                    {
+                        Refs.SerialKiller.Shoot();
+                    })
+                    .Then(_ => Refs.EndDoor.Open())
+                    .Then(_ =>
+                     {
+                         Transform splineTransform = Refs.EndingPath.transform;
+
+                         Refs.EndingPath.Splines[1].Evaluate(0.2f, out float3 localPos, out float3 localTangent, out float3 localUp);
+                         Vector3 worldPos = splineTransform.TransformPoint(localPos);
+                         Vector3 worldTangent = splineTransform.TransformDirection(localTangent);
+                         Quaternion worldRot = Quaternion.LookRotation(worldTangent);
+
+                         return UTGameManager.PlayerMoveController.GetOutOfCar(worldPos.SetY(worldPos.y + 1f), worldRot, 1.5f);
+                     })
+                    .Then(_ =>
+                    {
+                        Refs.PlayerSplineFollower.HeightOffset = 1f;
+                        Refs.KillerSplineFollower.AllowRotate = false;
+
+                        return Promise.All(
+                            Refs.PlayerSplineFollower.Initialize(Refs.EndingPath, 1, 0.1f, startDst: 0.2f),
+                            Refs.KillerSplineFollower.Initialize(Refs.EndingPath, 1, 0.1f)
+                        );
+                    });
                     break;
             }
         }

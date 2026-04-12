@@ -32,6 +32,8 @@ namespace ColbyO.Untitled.MonoSystems
             Disabe(false);
         }
 
+        public GameObject GetCamera() => _cinematicCamera.gameObject;
+
         public void Enable(bool lockMovement = true)
         {
             if (_cinematicCamera && !_cinematicCamera.gameObject.activeSelf) _cinematicCamera.gameObject.SetActive(true);
