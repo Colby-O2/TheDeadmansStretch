@@ -159,11 +159,11 @@ namespace ColbyO.Untitled.Player
             _controller.enabled = prev;
         }
 
-        public void TeleportTo(Vector3 loc)
+        public void TeleportTo(Vector3? loc = null, Quaternion? rot = null)
         {
             bool prev = _controller.enabled;
             _controller.enabled = false;
-            transform.position = loc;
+            transform.SetPositionAndRotation(loc ?? transform.position, rot ?? transform.rotation);
             _controller.enabled = prev;
         }
 

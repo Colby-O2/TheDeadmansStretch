@@ -15,9 +15,12 @@ namespace ColbyO.Untitled.MonoSystems
 
         private CameraShake _cinematicCamera;
         private GameObject _cinematicView;
+        private GameObject _playerCamera;
 
         private void Start()
         {
+            _playerCamera = GameObject.FindWithTag("PlayerCamera");
+
             GameObject cinematicCameraGO = GameObject.FindGameObjectWithTag(_cinematicCameraTag);
             if (cinematicCameraGO != null)
             {
@@ -34,6 +37,8 @@ namespace ColbyO.Untitled.MonoSystems
             if (_cinematicCamera && !_cinematicCamera.gameObject.activeSelf) _cinematicCamera.gameObject.SetActive(true);
             if (_cinematicView != null && !_cinematicView.activeSelf) _cinematicView.SetActive(true);
 
+            if (_playerCamera.activeSelf) _playerCamera.SetActive(false);
+
             UTGameManager.LockMovement = lockMovement;
         }
 
@@ -46,7 +51,11 @@ namespace ColbyO.Untitled.MonoSystems
             }
             if (_cinematicView != null && _cinematicView.activeSelf) _cinematicView.SetActive(false);
 
-            if (setGlobalLock) UTGameManager.LockMovement = false;
+            if (setGlobalLock)
+            {
+                if (!_playerCamera.activeSelf) _playerCamera.SetActive(true);
+                UTGameManager.LockMovement = false;
+            }
         }
 
         private Transform GetCameraLocation(string tag)

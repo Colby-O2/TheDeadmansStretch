@@ -38,7 +38,7 @@ namespace ColbyO.Untitled.Player
         [SerializeField] private float _firstPersonDistance = 0.05f;
         [SerializeField] private Vector2 _zoomLimits = new Vector2(1f, 10f);
 
-        [Header("Current State (Runtime)")]
+        [Header("Current State")]
         [SerializeField, ReadOnly] private float _distance = 5f;
         [SerializeField, ReadOnly] private float _targetOffset = 0.25f;
         [SerializeField, ReadOnly] private PlayerViewType _currentView = PlayerViewType.ThirdPerson;
@@ -48,11 +48,16 @@ namespace ColbyO.Untitled.Player
         [SerializeField] private Vector3 _thirdPersonOffset;
         [SerializeField] private Vector3 _firstPersonOffset = new Vector3(0, 0.1f, 0);
         [SerializeField] private float _heightOffset = 1.5f;
-        
         [SerializeField] private Vector3 _offset;
 
         [Header("Limits")]
         [SerializeField] private Vector2 _xLookLimits = new Vector2(-360f, 360f);
+
+        [Header("Auto Look Settings")]
+        [SerializeField] private float _autoLookSmoothTime = 0.1f;
+        private Vector2 _autoLookVelocity;
+        private Transform _autoLookTarget = null;
+        private bool _isAutoLooking => _autoLookTarget != null;
 
         private IInputMonoSystem _inputSystem;
         private Vector2 _cameraAngle;
@@ -97,6 +102,11 @@ namespace ColbyO.Untitled.Player
             UpdateCamera();
         }
 
+        public void SetAutoLookTarget(Transform target)
+        {
+            _autoLookTarget = target;
+        }
+
         private Vector3 ResolveCameraCollision(Vector3 targetPos, Vector3 desiredPos)
         {
             float clipBuffer = _camera.nearClipPlane * 1.1f;
@@ -139,6 +149,23 @@ namespace ColbyO.Untitled.Player
 
         private void UpdateLook()
         {
+            if (_isAutoLooking)
+            {
+                Vector3 targetPos = _autoLookTarget.position;
+                Vector3 cameraPos = _target.position + _offset + (Vector3.up * _heightOffset);
+                Vector3 dir = (targetPos - cameraPos).normalized;
+                
+                Quaternion lookRot = Quaternion.LookRotation(dir);
+                Vector3 euler = lookRot.eulerAngles;
+
+                _cameraAngle.x = Mathf.SmoothDampAngle(_cameraAngle.x, euler.y, ref _autoLookVelocity.x, _autoLookSmoothTime);
+                _cameraAngle.y = Mathf.SmoothDampAngle(_cameraAngle.y, euler.x, ref _autoLookVelocity.y, _autoLookSmoothTime);
+
+                _cameraAngle.y = ClampAngleRelative(_cameraAngle.y, 0, _settings.YLookLimit.x, _settings.YLookLimit.y);
+
+                return;
+            }
+
             Vector2 look = _inputSystem.RawLook;
             look.y *= -1;
 

@@ -15,6 +15,8 @@ namespace ColbyO.Untitled
 
         private Promise _promise;
 
+        private Promise _promiseHalfway;
+
         public Promise Initialize(SplineContainer spline, int index, float moveSpeed)
         {
             _targetSpline = spline;
@@ -23,9 +25,16 @@ namespace ColbyO.Untitled
 
             _splineLength = _targetSpline.CalculateLength();
 
+            _distanceTraveled = 0;
+
             Promise.CreateExisting(ref _promise);
 
             return _promise;
+        }
+
+        public Promise WaitHalf()
+        {
+            return Promise.CreateExisting(ref _promiseHalfway);
         }
 
         private void Update()
@@ -42,6 +51,12 @@ namespace ColbyO.Untitled
             if (!tangent.Equals(float3.zero))
             {
                 transform.rotation = Quaternion.LookRotation((Vector3)tangent, (Vector3)upVector);
+            }
+
+            if (_promiseHalfway != null && t >= 0.5f)
+            {
+                Promise.ResolveExisting(ref _promiseHalfway);
+                _promiseHalfway = null;
             }
 
             if (t >= 1f)

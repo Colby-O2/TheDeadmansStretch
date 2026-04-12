@@ -22,6 +22,17 @@ TagManager:
   - Act1_PlayerCarDoor
   - Act1_GetOutOfCarLoc
   - Act1_CameraInteractable
+  - Act1_SerialKiller
+  - Act1_SerialKillerGetOutLoc
+  - Act1_SerialKillerGotoLoc
+  - Act1_PlayerCarHeadLoc
+  - CC_End1
+  - Act1_SerialKillerCar
+  - CC_End2
+  - Act1_SerialKillerCarDoor1
+  - Act1_SerialKillerCarPlayerLoc
+  - PlayerCamera
+  - Act1_SerialKillerCarKillerLoc
   layers:
   - Default
   - TransparentFX
