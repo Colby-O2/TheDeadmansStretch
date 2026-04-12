@@ -43,6 +43,9 @@ TagManager:
   - SnowFallController
   - Act1_ParkOOB
   - Act1_RoadOOB
+  - CC_End6
+  - Act1_PlayerJumpLoc
+  - Act1_KillerJumpLoc
   layers:
   - Default
   - TransparentFX
@@ -58,7 +61,7 @@ TagManager:
   - Inspecting
   - InteractionHint
   - PolaroidCamera
-  - 
+  - CinematicCameraTargets
   - 
   - 
   - 

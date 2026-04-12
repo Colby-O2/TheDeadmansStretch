@@ -138,7 +138,7 @@ namespace DialogueGraph
             _currentDialogueNode = null;
             _isDialogueInProgress = false;
 
-            DisabeCinematicCamera();
+            //DisabeCinematicCamera();
             
             OnDialogueFinished();
         }

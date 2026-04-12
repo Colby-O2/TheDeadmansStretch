@@ -75,7 +75,7 @@ namespace ColbyO.Untitled
             return UTGameManager.GlobalScheduler.Wait(1f);
         }
 
-        public Promise<int> Goto(Transform target, float durationMove, float durationRot)
+        public Promise Goto(Transform target, float durationMove, float durationRot)
         {
             transform.GetPositionAndRotation(out Vector3 startPos, out Quaternion startRot);
             return GameManager.GetMonoSystem<IAnimationMonoSystem>().RequestAnimation(
@@ -96,6 +96,20 @@ namespace ColbyO.Untitled
             //        transform.rotation = Quaternion.Slerp(startRot, target.rotation, alpha);
             //    }
             //));
+        }
+
+        public Promise Goto(Vector3 endPos, Quaternion endRot, float durationMove)
+        {
+            transform.GetPositionAndRotation(out Vector3 startPos, out Quaternion startRot);
+            return GameManager.GetMonoSystem<IAnimationMonoSystem>().RequestAnimation(
+                this,
+                durationMove,
+                (float t) =>
+                {
+                    float alpha = Mathf.SmoothStep(0, 1, t);
+                    transform.SetPositionAndRotation(Vector3.Lerp(startPos, endPos, alpha), Quaternion.Slerp(startRot, endRot, alpha));
+                }
+            );
         }
 
         public Promise FaceTarget(Vector3 targetPos, float duration)
