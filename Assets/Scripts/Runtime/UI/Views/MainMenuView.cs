@@ -41,6 +41,8 @@ namespace ColbyO.Untitled.UI
 
             _view.SetActive(true);
 
+            GameManager.GetMonoSystem<ITrafficMonoSystem>().Enabled = true;
+
             VirtualCaster.ShowCursor();
             UTGameManager.HideCursor();
 

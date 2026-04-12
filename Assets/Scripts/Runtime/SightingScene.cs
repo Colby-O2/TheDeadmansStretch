@@ -1,6 +1,7 @@
 using PlazmaGames.Audio;
 using PlazmaGames.Core;
 using PlazmaGames.Math;
+using PlazmaGames.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AudioType = PlazmaGames.Audio.AudioType;
@@ -39,7 +40,7 @@ namespace ColbyO.Untitled
             if (!GameManager.GetMonoSystem<IGameLogicMonoSystem>().IsInRange("PhotoArea")) return false;
             if (_zoom.GetZoom() > UTGameManager.Preferences.PolaroidCameraZoomMinToSeeScene) return false;
             Plane[] planes = GeometryUtility.CalculateFrustumPlanes(_polaroidCamera);
-            return GeometryUtility.TestPlanesAABB(planes, _sceneBounds.bounds);
+            return GeometryUtility.TestPlanesAABB(planes, _sceneBounds.bounds) && GameManager.GetMonoSystem<IUIMonoSystem>().GetCurrentViewIs<PolaroidView>();
         }
 
         public void StartScene()

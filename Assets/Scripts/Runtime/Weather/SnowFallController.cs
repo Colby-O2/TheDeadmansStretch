@@ -19,6 +19,8 @@ namespace ColbyO.Untitled
         private float _vlZMin;
         private float _vlZMax;
 
+        public bool Enable { get; set; }
+
         public void SetTarget(VelocityTracker target)
         {
             _target = target;
@@ -26,6 +28,8 @@ namespace ColbyO.Untitled
 
         private void Awake()
         {
+            Enable = true;
+
             _system = GetComponent<ParticleSystem>();
             _shape = _system.shape;
             _velLifetime = _system.velocityOverLifetime;
@@ -38,6 +42,8 @@ namespace ColbyO.Untitled
 
         private void Update()
         {
+            if (!Enable) return;
+
             Vector3 d = _target.Velocity;
             _velLifetime.x = new ParticleSystem.MinMaxCurve(_vlXMin - d.x, _vlXMax - d.x);
             _velLifetime.z = new ParticleSystem.MinMaxCurve(_vlZMin - d.z, _vlZMax - d.z);

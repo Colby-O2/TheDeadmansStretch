@@ -15,8 +15,11 @@ namespace ColbyO.Untitled
 
         private List<GameObject> _activeCars = new List<GameObject>();
 
+        public bool Enabled { get; set; }
+
         private void Start()
         {
+            Enabled = true;
             _roadSplines = GameObject.FindWithTag("TrafficLanes").GetComponent<SplineContainer>();
             InvokeRepeating(nameof(SpawnCar), 0f, _spawnInterval);
         }
@@ -51,7 +54,7 @@ namespace ColbyO.Untitled
 
         private void SpawnCar()
         {
-            if (UTGameManager.IsPaused) return;
+            if (UTGameManager.IsPaused || !Enabled) return;
 
             int laneIndex = Random.Range(0, 2);
 

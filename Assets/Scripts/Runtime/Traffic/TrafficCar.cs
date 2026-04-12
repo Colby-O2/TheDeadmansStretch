@@ -39,11 +39,6 @@ namespace ColbyO.Untitled.Traffic
             }
         }
 
-        private void Start()
-        {
-            if (_engine) _engine.SetRpmAndThrottle(250f, 0f);
-        }
-
         [System.Serializable]
         private struct CarComponets
         {

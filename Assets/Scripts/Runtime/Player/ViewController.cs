@@ -63,6 +63,8 @@ namespace ColbyO.Untitled.Player
         public float Sensitivity => _settings.Sensitivity * (InputDeviceHandler.IsCurrentGamepad ? _settings.ControllerSensitivityScaleFactor : 1f);
         public bool IsFrozen { get; set; }
 
+        public bool EnableCamera { get; set; }
+
         private void Awake()
         {
             _inputSystem = GameManager.GetMonoSystem<IInputMonoSystem>();
@@ -106,6 +108,7 @@ namespace ColbyO.Untitled.Player
         }
         public void ToggleFirstPerson()
         {
+            if (!EnableCamera && !_isInFirstPerson) return;
             ToggleFirstPerson(!_isInFirstPerson);
         }
 

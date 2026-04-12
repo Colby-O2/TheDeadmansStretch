@@ -500,7 +500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c713772eaff4fb48b6ef9c648698bc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.SplineFollower
-  _speed: 10
+  _duration: 5
+  _heightOffset: 0
+  _allowRoate: 1
 --- !u!114 &643735515460075678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -537,11 +539,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: d187309fd58eecd408e21df9b432e160, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.75
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -662,60 +664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c133b8e9dfee4e46936b27649ef83b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColbyO.Untitled.Traffic.EngineSound
-  _freqScale: 1.2
-  _baseDuty: 200
-  _throttleDuty: 50
-  _waves:
-  - volume: 1
-    overtone: 1
-    offset: 0
-    dutyScale: 1
-    baseDuty: 0
-    throttleDutyScale: 1
-  - volume: 1
-    overtone: 1
-    offset: 18.1
-    dutyScale: 1
-    baseDuty: 0
-    throttleDutyScale: 1
-  - volume: 1
-    overtone: 1
-    offset: 37
-    dutyScale: 1
-    baseDuty: 0
-    throttleDutyScale: 1
-  - volume: 0.2
-    overtone: 1.2
-    offset: 37
-    dutyScale: 0
-    baseDuty: 1
-    throttleDutyScale: 0
-  - volume: 0
-    overtone: 1.45
-    offset: 37
-    dutyScale: 1
-    baseDuty: 0
-    throttleDutyScale: 1
-  - volume: 0.1
-    overtone: 1.8
-    offset: 23
-    dutyScale: 1
-    baseDuty: 0
-    throttleDutyScale: 1
-  - volume: 1.4
-    overtone: 1
-    offset: 20
-    dutyScale: 0.25
-    baseDuty: 0
-    throttleDutyScale: 0
-  - volume: 1.4
-    overtone: 1
-    offset: 0
-    dutyScale: 0.25
-    baseDuty: 0
-    throttleDutyScale: 0
-  engineOn: 1
-  _rpmLerpSpeed: 100
+  _audioSource: {fileID: 4639286706413223610}
 --- !u!1 &3046824709281509445
 GameObject:
   m_ObjectHideFlags: 0

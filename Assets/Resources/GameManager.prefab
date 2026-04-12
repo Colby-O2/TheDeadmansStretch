@@ -275,7 +275,13 @@ MonoBehaviour:
   _musicSound: 1
   _musicSounds: []
   _ambientSounds: []
-  _sfxSounds: []
+  _sfxSounds:
+  - id: 0
+    name: UIClick
+    audio: {fileID: 8300000, guid: 6d93701c58070de4fa3ab5968f92ae94, type: 3}
+  - id: 1
+    name: CarStop
+    audio: {fileID: 8300000, guid: ed73e17a8165b4543992067c2493ffbf, type: 3}
   _musicSource: {fileID: 151247462453361860}
   _ambientSource: {fileID: 496399193996136316}
   _sfxMainSource: {fileID: 7470678809586648083}

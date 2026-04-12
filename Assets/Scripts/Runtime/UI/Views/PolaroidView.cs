@@ -36,6 +36,14 @@ namespace ColbyO.Untitled
             }
         }
 
+        public void SetHints(bool state)
+        {
+            _takePhotoHint.SetActive(state);
+            _closeHint.SetActive(state);
+            _zoomHint.SetActive(state);
+            if (_zoomHint2.activeSelf) _zoomHint2.SetActive(state);
+        }
+
         public override void Init()
         {
 

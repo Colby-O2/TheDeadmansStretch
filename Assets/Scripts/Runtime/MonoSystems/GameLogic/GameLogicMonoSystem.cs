@@ -3,10 +3,12 @@ using ColbyO.Untitled.Traffic;
 using ColbyO.Untitled.UI;
 using InteractionSystem;
 using InteractionSystem.Helpers;
+using PlazmaGames.Audio;
 using PlazmaGames.Core;
 using PlazmaGames.Core.Debugging;
 using PlazmaGames.UI;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -61,6 +63,8 @@ namespace ColbyO.Untitled.MonoSystems
 
             public static RestrictedAreaTrigger RoadOOB;
             public static RestrictedAreaTrigger ParkOOB;
+
+            public static List<Interactable> Interactables;
 
         }
 
@@ -117,6 +121,8 @@ namespace ColbyO.Untitled.MonoSystems
 
             Refs.RoadOOB = GameObject.FindWithTag("Act1_RoadOOB").GetComponent<RestrictedAreaTrigger>();
             Refs.ParkOOB = GameObject.FindWithTag("Act1_ParkOOB").GetComponent<RestrictedAreaTrigger>();
+
+            Refs.Interactables = FindObjectsByType<Interactable>().ToList();
         }
 
         private void Update()
@@ -153,8 +159,12 @@ namespace ColbyO.Untitled.MonoSystems
                         fixedTarget: Refs.PlayerCarCameraTarget
                     );
 
+                    UTGameManager.PlayerInteractiorController.CanInteract = true;
+
                     UTGameManager.PlayerAnimationController.SetFlag("InDriverSeat", true);
                     UTGameManager.PlayerAnimationController.SetFlag("IsParked", false);
+
+                    UTGameManager.PlayerViewController.EnableCamera = false;
 
                     UTGameManager.PlayerWalkingAudio.Enabled = false;
                     UTGameManager.GetMonoSystem<IInventoryMonoSystem>().TakeItem("Camera");
@@ -166,12 +176,11 @@ namespace ColbyO.Untitled.MonoSystems
                     Refs.CameraInteractable.gameObject.SetActive(true);
                     Refs.CameraInteractable.GetAction<TakeAction>().IsEnabled = false;
 
-                    Refs.PlayerCarAudio.SetRpmAndThrottle(250f, 0f);
                     Refs.PlayerCarAudio.ToggleEngine(true);
 
-                    Refs.SerialKillerEngine.SetRpmAndThrottle(250f, 0f);
                     Refs.SerialKillerEngine.ToggleEngine(false);
 
+                    GameManager.GetMonoSystem<ITrafficMonoSystem>().Enabled = true;
                     GameManager.GetMonoSystem<ITrafficMonoSystem>().DisableLeftLane(true);
 
                     Refs.RoadOOB.SetDialogue("RoadOOB");
@@ -229,6 +238,10 @@ namespace ColbyO.Untitled.MonoSystems
                     {
                         Refs.ParkOOB.gameObject.SetActive(true);
 
+                        GameManager.GetMonoSystem<ITrafficMonoSystem>().Enabled = false;
+
+                        UTGameManager.PlayerViewController.EnableCamera = true;
+                        GameManager.GetMonoSystem<IUIMonoSystem>().GetView<PolaroidView>().SetHints(true);
                         GameManager.GetMonoSystem<IUIMonoSystem>().GetView<GameView>().SetCameraHint(true);
 
                         float t = 0f;
@@ -255,6 +268,7 @@ namespace ColbyO.Untitled.MonoSystems
                     .Then(_ => _scheduler.Wait(0.4f))
                     .Then(_ => 
                     {
+                        GameManager.GetMonoSystem<IUIMonoSystem>().GetView<PolaroidView>().SetHints(false);
                         Refs.ParkOOB.SetDialogue("Park2OOB");
                         return _dialogueMs.StartDialoguePromise("Gunshot", passive: true);
                     })
@@ -279,9 +293,11 @@ namespace ColbyO.Untitled.MonoSystems
                     })
                     .Then(_ => 
                     {
+                        UTGameManager.PlayerViewController.EnableCamera = false;
                         Refs.ParkOOB.gameObject.SetActive(false);
+                        GameManager.GetMonoSystem<ITrafficMonoSystem>().Enabled = true;
                         Refs.RoadOOB.SetDialogue("Road2OOB");
-                        return _dialogueMs.StartDialoguePromise("GottaGo");
+                        return _dialogueMs.StartDialoguePromise("GottaGo", passive: true);
                     })
                     // Car Off
                     .Then(_ =>
@@ -292,6 +308,11 @@ namespace ColbyO.Untitled.MonoSystems
                     })
                     .Then(_ =>
                     {
+                        UTGameManager.PlayerMoveController.Snow.Enable = false;
+
+                        UTGameManager.PlayerInteractiorController.CanInteract = false;
+                        foreach (Interactable interactable in Refs.Interactables) interactable.CanInteract = false;
+
                         Refs.RoadOOB.gameObject.SetActive(false);
                         GameManager.GetMonoSystem<ITrafficMonoSystem>().DisableLeftLane(true);
                         UTGameManager.PlayerWalkingAudio.Enabled = false;
@@ -319,7 +340,6 @@ namespace ColbyO.Untitled.MonoSystems
 
                         UTGameManager.PlayerMoveController.Attach(Refs.PlayerCarController.transform);
 
-                        Refs.PlayerCarAudio.SetRpmAndThrottle(250f, 0f);
                         Refs.PlayerCarAudio.ToggleEngine(true);
 
                         Refs.PlayerCarDoor.GetAction<CarGetOutAction>().Door.Close();
@@ -328,9 +348,19 @@ namespace ColbyO.Untitled.MonoSystems
                     {
                         Refs.SerialKiller.ToggleAudio(false);
                         UTGameManager.PlayerAnimationController.SetFlag("IsParked", false);
+
+                        Refs.PlayerCarController.WaitFor(0.975f).Then(_ =>
+                        {
+                            GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio("CarStop", PlazmaGames.Audio.AudioType.Sfx, false, true);
+                        });
+
                         return Refs.PlayerCarController.Initialize(Refs.TrafficSpline, 3, 20f);
                     })
-                    .Then(_ => Refs.SerialKillerCarDoor1.Open())
+                    .Then(_ =>
+                    {
+                        GameManager.GetMonoSystem<ITrafficMonoSystem>().Enabled = false;
+                        return Refs.SerialKillerCarDoor1.Open();
+                    })
                     .Then(_ =>
                     {
                         Refs.SerialKiller.ToggleAudio(true);
