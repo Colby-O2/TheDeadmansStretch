@@ -14,9 +14,14 @@ namespace ColbyO.Untitled.Polaroid
 {
     public class TakePhoto : MonoBehaviour
     {
+        [Header("Settings")]
         [SerializeField] private Camera _camera;
         [SerializeField] private RenderTexture _cameraTexture;
         [SerializeField] private AudioClip _cameraShotSound;
+
+        [Header("Input")]
+        [SerializeField] private InputAction _captureAction;
+
         private CameraZoom _cameraZoom;
         private GameObject _shutter;
         private float _shutterTime = 0f;
@@ -88,6 +93,16 @@ namespace ColbyO.Untitled.Polaroid
             }
         }
 
+        private void OnEnable()
+        {
+            _captureAction.Enable();
+        }
+
+        private void OnDisable()
+        {
+            _captureAction.Disable();
+        }
+
         private void Awake()
         {
             _instance = this;
@@ -111,7 +126,7 @@ namespace ColbyO.Untitled.Polaroid
             }
             _shutterTime += Time.deltaTime;
             
-            if (Keyboard.current.gKey.wasPressedThisFrame)
+            if (_captureAction.WasPressedThisFrame())
             {
                 TakePhoto.Capture();
             }

@@ -245,10 +245,21 @@
                 {
                     "name": "",
                     "id": "fe57dd67-2873-4a26-87b4-73252ec7adc3",
-                    "path": "<Keyboard>/space",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Camera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "acc44786-9c9f-4b4d-8b26-3868e385ad71",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad;Joystick",
                     "action": "Camera",
                     "isComposite": false,
                     "isPartOfComposite": false
