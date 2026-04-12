@@ -197,12 +197,14 @@ namespace ColbyO.Untitled.MonoSystems
                     .Then(_ => _scheduler.When(() => IsTriggered("GotPhotos")))
                     .Then(_ =>
                     {
+                        UTGameManager.PlayerViewController.ToggleFirstPerson(false);
                         Refs.SightingScene.StartScene();
                     })
                     .Then(_ => _scheduler.Wait(4))
                     .Then(_ =>
                     {
                         Refs.SightingScene.PlayGunshot();
+                        UTGameManager.PlayerViewController.ToggleFirstPerson(false);
                     })
                     .Then(_ => _scheduler.Wait(0.4f))
                     .Then(_ => _dialogueMs.StartDialoguePromise("Gunshot"))

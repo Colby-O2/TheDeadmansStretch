@@ -86,10 +86,12 @@ namespace ColbyO.Untitled.Player
             _inputSystem.OnUseCamera.AddListener(ToggleFirstPerson);
         }
 
-        public void ToggleFirstPerson()
+        public void ToggleFirstPerson(bool state)
         {
+            if (state == _isInFirstPerson) return;
+            if (UTGameManager.LockMovement || UTGameManager.IsPaused || IsFrozen || _isTransitioning) return;
             if (UTGameManager.PlayerAnimationController.GetAnimator().GetBool("InDriverSeat")) return;
-            _isInFirstPerson = !_isInFirstPerson;
+            _isInFirstPerson = state;
             if (_isInFirstPerson)
             {
                 GameManager.GetMonoSystem<IUIMonoSystem>().Show<PolaroidView>();
@@ -106,6 +108,10 @@ namespace ColbyO.Untitled.Player
                 _targetOffset = _thirdPersonTargetOffset;
                 _offset = _thirdPersonOffset;
             }
+        }
+        public void ToggleFirstPerson()
+        {
+            ToggleFirstPerson(!_isInFirstPerson);
         }
 
         private void Update()
