@@ -46,6 +46,12 @@ TagManager:
   - CC_End6
   - Act1_PlayerJumpLoc
   - Act1_KillerJumpLoc
+  - CC_FallTop
+  - CC_FallBottom
+  - CC_Graveyard
+  - PushPerson
+  - PushPersonRig
+  - PushPersonRb
   layers:
   - Default
   - TransparentFX

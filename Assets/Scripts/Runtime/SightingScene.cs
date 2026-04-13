@@ -2,6 +2,7 @@ using PlazmaGames.Audio;
 using PlazmaGames.Core;
 using PlazmaGames.Math;
 using PlazmaGames.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using AudioType = PlazmaGames.Audio.AudioType;
@@ -90,6 +91,7 @@ namespace ColbyO.Untitled
                 if (_fallTimer > UTGameManager.Preferences.SightingSceneFallTime)
                 {
                     _falling = false;
+                    _person.SetActive(false);
                 }
             }
         }

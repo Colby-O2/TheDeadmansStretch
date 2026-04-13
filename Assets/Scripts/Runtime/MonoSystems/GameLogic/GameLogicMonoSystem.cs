@@ -69,6 +69,9 @@ namespace ColbyO.Untitled.MonoSystems
 
             public static List<Interactable> Interactables;
 
+            public static GameObject PushPerson;
+            public static GameObject PushPersonRig;
+            public static Rigidbody PushPersonRb;
         }
 
         private void OnEnable()
@@ -96,6 +99,11 @@ namespace ColbyO.Untitled.MonoSystems
         private void OnSceneLoad(Scene scene, LoadSceneMode mode)
         {
             _dialogueMs = GameManager.GetMonoSystem<IDialogueMonoSystem>();
+
+            Refs.PushPerson = GameObject.FindWithTag("PushPerson");
+            Refs.PushPersonRig = GameObject.FindWithTag("PushPersonRig");
+            Refs.PushPersonRb = GameObject.FindWithTag("PushPersonRb").GetComponent<Rigidbody>();
+            Refs.PushPersonRig.SetActive(false);
 
             Refs.SightingScene = GameObject.FindAnyObjectByType<SightingScene>();
 
@@ -183,6 +191,8 @@ namespace ColbyO.Untitled.MonoSystems
                     Refs.CameraInteractable.CanInteract = true;
                     Refs.CameraInteractable.gameObject.SetActive(true);
                     Refs.CameraInteractable.GetAction<TakeAction>().IsEnabled = false;
+                    
+                    Refs.PushPerson.SetActive(false);
 
                     Refs.PlayerCarAudio.ToggleEngine(true);
 
@@ -242,7 +252,7 @@ namespace ColbyO.Untitled.MonoSystems
                         Debug.Log("HERE  :)");
                     })
                     .Then(_ => _scheduler.When(() => IsInRange("PhotoArea")))
-                    .Then(_ =>
+                    .Then(_ => 
                     {
                         Refs.ParkOOB.gameObject.SetActive(true);
 
@@ -534,6 +544,14 @@ namespace ColbyO.Untitled.MonoSystems
                     break;
 
                 case "Jump":
+                    _dialogueMs.StartDialoguePromise("JumpOff");
+                    _dialogueMs.AddListener("Push", _ =>
+                    {
+                        UTGameManager.PlayerMoveController.gameObject.SetActive(false);
+                        Refs.PushPerson.SetActive(true);
+                        Refs.PushPersonRig.SetActive(true);
+                        Refs.PushPersonRb.AddForce(Vector3.back * 15.0f, ForceMode.VelocityChange);
+                    });
                     break;
                 case "NoJump":
                     GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise("NoJump", passive: true)

@@ -1,0 +1,188 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dde6bf8a896c98c48b27db112dac91a0, type: 3}
+  m_Name: JumpOff
+  m_EditorClassIdentifier: DialogueGraph::DialogueGraph.Data.DialogueGraphSO
+  id: -1
+  includeInDatabase: 1
+  Name: JumpOff
+  Nodes:
+  - Guid: 0f61891d-7106-477e-b424-5eedbad24daa
+    ActorName: 
+    GroupName: 
+    Type: 0
+    Text: 
+    EventID: 
+    position: {x: -201, y: 446}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 376fe9ec-1aca-4f69-b3d3-04760c54812a
+  - Guid: 376fe9ec-1aca-4f69-b3d3-04760c54812a
+    ActorName: Iris
+    GroupName: 
+    Type: 1
+    Text: <i>Guess I have no choice...</i>
+    EventID: 
+    position: {x: 102, y: 429}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: a73ba6b4-39f5-474e-bcd1-95453db7535f
+  - Guid: a187ecf9-5fb5-4f32-bb76-32c15191d4f2
+    ActorName: 
+    GroupName: 
+    Type: 9
+    Text: 
+    EventID: 
+    position: {x: 847, y: 429}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 1
+    Choices:
+    - Text: 
+      Next: d7f72828-c57a-4152-ba6b-f7db9e3db8d4
+  - Guid: b8f39f0e-e478-4bc9-9894-5ae8cb5fbb72
+    ActorName: 
+    GroupName: 
+    Type: 15
+    Text: 
+    EventID: 
+    position: {x: 1094, y: 469}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: CC_FallTop
+    CameraToLocationTag: CC_FallBottom
+    CameraLookAtTag: 
+    Duration: 4
+    Choices:
+    - Text: 
+      Next: 2214770d-6c69-458f-93bb-653f802efc00
+  - Guid: 2214770d-6c69-458f-93bb-653f802efc00
+    ActorName: 
+    GroupName: 
+    Type: 9
+    Text: 
+    EventID: 
+    position: {x: 1426, y: 551}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 1
+    Choices:
+    - Text: 
+      Next: a6b054f3-c9cc-48e7-8277-5da59d06f3fa
+  - Guid: a73ba6b4-39f5-474e-bcd1-95453db7535f
+    ActorName: 
+    GroupName: 
+    Type: 15
+    Text: 
+    EventID: 
+    position: {x: 498, y: 396}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: CC_End6
+    CameraToLocationTag: CC_FallTop
+    CameraLookAtTag: 
+    Duration: 4
+    Choices:
+    - Text: 
+      Next: a187ecf9-5fb5-4f32-bb76-32c15191d4f2
+  - Guid: a6b054f3-c9cc-48e7-8277-5da59d06f3fa
+    ActorName: 
+    GroupName: 
+    Type: 15
+    Text: 
+    EventID: 
+    position: {x: 1633, y: 588}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: CC_FallBottom
+    CameraToLocationTag: CC_Graveyard
+    CameraLookAtTag: 
+    Duration: 4
+    Choices:
+    - Text: 
+      Next: 
+  - Guid: d7f72828-c57a-4152-ba6b-f7db9e3db8d4
+    ActorName: 
+    GroupName: 
+    Type: 10
+    Text: 
+    EventID: Push
+    position: {x: 1000, y: 318}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: b8f39f0e-e478-4bc9-9894-5ae8cb5fbb72
+  Groups: []
+  Properties: []

@@ -2077,8 +2077,8 @@
     "m_ObjectId": "055bf941888a4edc9dc6904244e5667a",
     "m_Title": "Normal UV",
     "m_Position": {
-        "x": -3179.000244140625,
-        "y": 1734.0001220703125
+        "x": -3179.0,
+        "y": 1734.0
     }
 }
 
@@ -3833,8 +3833,8 @@
     "m_ObjectId": "34e4f432840e4c159f88c662de89fdf2",
     "m_Title": "Vertex Shading",
     "m_Position": {
-        "x": 914.0000610351563,
-        "y": 175.00001525878907
+        "x": 914.0,
+        "y": 175.0
     }
 }
 
@@ -3986,7 +3986,7 @@
     "m_ObjectId": "39ac4b6174b4492291a7cd10baf8b12d",
     "m_Title": "Water Texture",
     "m_Position": {
-        "x": -1768.9998779296875,
+        "x": -1769.0,
         "y": 1612.0
     }
 }
@@ -4431,8 +4431,8 @@
     "m_ObjectId": "43467818d5ed467c915d9ed7b198ed0a",
     "m_Title": "Distance From Shore",
     "m_Position": {
-        "x": -1305.9998779296875,
-        "y": 966.0000610351563
+        "x": -1306.0,
+        "y": 966.0
     }
 }
 
@@ -4700,8 +4700,8 @@
     "m_ObjectId": "4b1df5429e1f47a68fd89d4c6ee4cff5",
     "m_Title": "Vertex Snapping",
     "m_Position": {
-        "x": -73.0000228881836,
-        "y": -1294.0001220703125
+        "x": -73.0,
+        "y": -1294.0
     }
 }
 
@@ -6099,7 +6099,7 @@
     "m_Title": "Gouraud Shading",
     "m_Position": {
         "x": 259.0,
-        "y": -681.0001220703125
+        "y": -681.0
     }
 }
 
@@ -6950,7 +6950,7 @@
     "m_ZTestMode": 4,
     "m_ZWriteControl": 0,
     "m_AlphaMode": 0,
-    "m_RenderFace": 2,
+    "m_RenderFace": 0,
     "m_AlphaClip": false,
     "m_CastShadows": false,
     "m_ReceiveShadows": true,
@@ -8474,7 +8474,7 @@
     "m_ObjectId": "a9965c48c7724d7a95128b96f97b049e",
     "m_Title": "Lit Shading",
     "m_Position": {
-        "x": 911.0001220703125,
+        "x": 911.0,
         "y": 1017.0
     }
 }
@@ -8583,8 +8583,8 @@
     "m_ObjectId": "acc849cb1f2440a18f70e5dcedc95de7",
     "m_Title": "Downsample UV",
     "m_Position": {
-        "x": -3367.000244140625,
-        "y": 1964.0001220703125
+        "x": -3367.0,
+        "y": 1964.0
     }
 }
 
@@ -11001,8 +11001,8 @@
     "m_ObjectId": "e1f637c38fc244649101f01c427de86d",
     "m_Title": "Affine Texture Mapping",
     "m_Position": {
-        "x": -2869.000244140625,
-        "y": -854.0000610351563
+        "x": -2869.0,
+        "y": -854.0
     }
 }
 

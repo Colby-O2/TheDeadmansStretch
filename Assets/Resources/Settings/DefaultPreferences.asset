@@ -23,6 +23,6 @@ MonoBehaviour:
   PolaroidCameraShutterTime: 0.15
   SightingScenePushForce: 30
   SightingSceneLookSpeed: 0.15
-  SightingSceneFallTime: 5
+  SightingSceneFallTime: 6.6
   PolaroidCameraZoomMinToTakePhoto: 20
   PolaroidCameraZoomMinToSeeScene: 10

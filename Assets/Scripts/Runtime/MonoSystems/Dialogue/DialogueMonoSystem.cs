@@ -110,6 +110,7 @@ namespace ColbyO.Untitled.MonoSystems
 
         public void SelectedChoice(int choice)
         {
+            if (_currentDialogueNode == null) return;
             if (_currentDialogueNode.Choices.Count == 0) FinishDialogue();
             else NextNode(choice);
         }
