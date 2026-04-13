@@ -21,6 +21,7 @@ namespace ColbyO.Untitled.Player
         [SerializeField] private Transform _thirdPersonTarget;
         [SerializeField] private Camera _camera;
         [SerializeField] private GameObject _mesh;
+        [SerializeField] private Camera _polaroid;
 
         private Transform _target;
 
@@ -91,6 +92,8 @@ namespace ColbyO.Untitled.Player
             _isInFirstPerson = state;
             if (_isInFirstPerson)
             {
+                _polaroid.fieldOfView = UTGameManager.Preferences.PolaroidCameraZoomMin;
+
                 GameManager.GetMonoSystem<IUIMonoSystem>().Show<PolaroidView>();
                 _mesh.SetActive(false);
                 _distance = _firstPersonDistance;

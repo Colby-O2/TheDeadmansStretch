@@ -162,7 +162,7 @@ MonoBehaviour:
     Duration: 4
     Choices:
     - Text: 
-      Next: 
+      Next: 3256e9ee-6a2a-4f99-92f1-9c74cfffb1c5
   - Guid: d7f72828-c57a-4152-ba6b-f7db9e3db8d4
     ActorName: 
     GroupName: 
@@ -184,5 +184,26 @@ MonoBehaviour:
     Choices:
     - Text: 
       Next: b8f39f0e-e478-4bc9-9894-5ae8cb5fbb72
+  - Guid: 3256e9ee-6a2a-4f99-92f1-9c74cfffb1c5
+    ActorName: 
+    GroupName: 
+    Type: 9
+    Text: 
+    EventID: 
+    position: {x: 2058, y: 645}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 4
+    Choices:
+    - Text: 
+      Next: 
   Groups: []
   Properties: []

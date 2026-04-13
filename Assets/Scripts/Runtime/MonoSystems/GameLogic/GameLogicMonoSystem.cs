@@ -544,13 +544,23 @@ namespace ColbyO.Untitled.MonoSystems
                     break;
 
                 case "Jump":
-                    _dialogueMs.StartDialoguePromise("JumpOff");
                     _dialogueMs.AddListener("Push", _ =>
                     {
                         UTGameManager.PlayerMoveController.gameObject.SetActive(false);
                         Refs.PushPerson.SetActive(true);
                         Refs.PushPersonRig.SetActive(true);
                         Refs.PushPersonRb.AddForce(Vector3.back * 15.0f, ForceMode.VelocityChange);
+                    });
+                    _dialogueMs.StartDialoguePromise("JumpOff")
+                    .Then(_ =>
+                    {
+                        return GameManager.GetMonoSystem<IVisualEffectMonoSystem>().FadeOut(3f);
+                    })
+                    .Then(_ => _scheduler.Wait(3f))
+                    .Then(_ =>
+                    {
+                        GameManager.GetMonoSystem<IVisualEffectMonoSystem>().FadeIn(2f);
+                        GameManager.GetMonoSystem<IUIMonoSystem>().Show<EndView>();
                     });
                     break;
                 case "NoJump":
@@ -560,7 +570,12 @@ namespace ColbyO.Untitled.MonoSystems
                         GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio("Shoot", PlazmaGames.Audio.AudioType.Sfx, false, true);
                         return GameManager.GetMonoSystem<IVisualEffectMonoSystem>().FadeOut(1f);
                     })
-                    .Then(_ => _scheduler.Wait(5f));
+                    .Then(_ => _scheduler.Wait(4f))
+                    .Then(_ =>
+                     {
+                         GameManager.GetMonoSystem<IVisualEffectMonoSystem>().FadeIn(2f);
+                         GameManager.GetMonoSystem<IUIMonoSystem>().Show<EndView>();
+                     });
                     break;
             }
         }

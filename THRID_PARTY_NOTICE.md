@@ -1,5 +1,9 @@
 ## Font(s):
 
+* Alfaqix Algorithum semi-bold by Raymond Larabie
+
+  * https://www.1001fonts.com/alfaqix-font.html
+
 
 
 ## Raw Sounds (all sourced from Pixabay)
@@ -13,11 +17,18 @@
 * Mallard Duck Anas Platyrhynchos Singing by rzalmanialmani
 
   * https://pixabay.com/sound-effects/nature-mallard-duck-anas-platyrhynchos-singing-261877/
-* Footsteps in thin snow by freesound\_community 
+* Footsteps in thin snow by freesound\_community
 
   * https://pixabay.com/sound-effects/film-special-effects-footsteps-in-thin-snow-46199/
 * Birds taking off fly by freesound\_community
 
-  * https://pixabay.com/sound-effects/nature-birds-taking-off-fly-6277/ 
-* 
+  * https://pixabay.com/sound-effects/nature-birds-taking-off-fly-6277/
+* Car Stop Breaks Screech Engine Rev by freesound\_community
+
+  * https://pixabay.com/sound-effects/city-car-stop-breaks-screech-engine-rev-6171/
+* Gunshot sound by okieactor
+
+  * https://freesound.org/people/okieactor/sounds/415912/
+
+
 

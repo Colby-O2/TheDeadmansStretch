@@ -62,7 +62,7 @@ MonoBehaviour:
     ActorName: Stranger
     GroupName: 
     Type: 1
-    Text: Be quiet and get to the top of the hill <b>NOW</b>.
+    Text: Be quiet and go to the edge of cliff <b>NOW</b>.
     EventID: 
     position: {x: 772, y: -36}
     PropertyType: 

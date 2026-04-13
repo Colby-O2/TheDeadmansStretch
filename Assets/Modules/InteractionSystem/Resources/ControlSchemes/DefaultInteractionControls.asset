@@ -293,6 +293,14 @@ MonoBehaviour:
       m_Groups: 
       m_Action: Inspection Leave
       m_Flags: 0
+    - m_Name: 
+      m_Id: 4e2140a1-75a5-4545-98e3-97ff1fe34819
+      m_Path: <Keyboard>/p
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Inspection Leave
+      m_Flags: 0
     m_Flags: 0
   InspectionNextAction:
     m_Name: Inspection Next

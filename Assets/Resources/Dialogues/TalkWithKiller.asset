@@ -128,7 +128,7 @@ MonoBehaviour:
     ActorName: Iris
     GroupName: 
     Type: 1
-    Text: "\u2026someone shot her."
+    Text: Someone shot her.
     EventID: 
     position: {x: 1907, y: -237}
     PropertyType: 
@@ -150,7 +150,7 @@ MonoBehaviour:
     GroupName: 
     Type: 1
     Text: "There was a woman up on the mountian. I had my camera up\u2026 I was taking
-      a shot and"
+      a shot and..."
     EventID: 
     position: {x: 1523, y: -247}
     PropertyType: 
@@ -167,27 +167,6 @@ MonoBehaviour:
     Choices:
     - Text: 
       Next: ef745f42-2912-4f75-8017-fc4839031943
-  - Guid: 3051dcb5-f367-4565-82e2-5cde5b4f1a1a
-    ActorName: Stranger
-    GroupName: 
-    Type: 1
-    Text: I know what I saw.
-    EventID: 
-    position: {x: 2650, y: -245}
-    PropertyType: 
-    PropertyBooleanValue: 0
-    PropertyIntValue: 0
-    PropertyName: 
-    IncrementAmount: 0
-    ComparisonType: 0
-    ComparsionCondition: 0
-    CameraFromLocationTag: 
-    CameraToLocationTag: 
-    CameraLookAtTag: 
-    Duration: 0
-    Choices:
-    - Text: 
-      Next: 7568cdd9-b415-4253-aa2e-285d6521b79f
   - Guid: 7568cdd9-b415-4253-aa2e-285d6521b79f
     ActorName: Stranger
     GroupName: 
@@ -213,7 +192,7 @@ MonoBehaviour:
     ActorName: Stranger
     GroupName: 
     Type: 1
-    Text: "You said you had your camera up. \u2026you get a picture of it?"
+    Text: "You said you had your camera up\u2026 Did you get a picture of it?"
     EventID: 
     position: {x: 3412, y: -260}
     PropertyType: 
@@ -678,5 +657,26 @@ MonoBehaviour:
       Next: 433fb818-f047-41fa-8b91-dc34c394f57a
     - Text: No
       Next: 34526754-25a1-440e-baa4-5701a2a0ea71
+  - Guid: 3051dcb5-f367-4565-82e2-5cde5b4f1a1a
+    ActorName: Iris
+    GroupName: 
+    Type: 1
+    Text: I know what I saw.
+    EventID: 
+    position: {x: 2650, y: -245}
+    PropertyType: 
+    PropertyBooleanValue: 0
+    PropertyIntValue: 0
+    PropertyName: 
+    IncrementAmount: 0
+    ComparisonType: 0
+    ComparsionCondition: 0
+    CameraFromLocationTag: 
+    CameraToLocationTag: 
+    CameraLookAtTag: 
+    Duration: 0
+    Choices:
+    - Text: 
+      Next: 7568cdd9-b415-4253-aa2e-285d6521b79f
   Groups: []
   Properties: []
