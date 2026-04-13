@@ -312,6 +312,9 @@ namespace ColbyO.Untitled.MonoSystems
                     .Then(_ =>
                     {
                         UTGameManager.PlayerViewController.EnableCamera = false;
+
+                        if (GameManager.GetMonoSystem<IUIMonoSystem>().GetCurrentViewIs<PolaroidView>()) GameManager.GetMonoSystem<IUIMonoSystem>().ShowLast();
+
                         Refs.ParkOOB.gameObject.SetActive(false);
                         GameManager.GetMonoSystem<ITrafficMonoSystem>().Enabled = true;
                         Refs.RoadOOB.SetDialogue("Road2OOB");

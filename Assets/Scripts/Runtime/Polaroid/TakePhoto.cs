@@ -29,16 +29,22 @@ namespace ColbyO.Untitled.Polaroid
         private bool _gotDuck = false;
         private bool _gotGoose = false;
         private static TakePhoto _instance;
-        
+
         public static void Capture()
         {
             _instance.CheckForBirds();
-            GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio(_instance._cameraShotSound, AudioType.Sfx, false, true);
+
+             GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio(_instance._cameraShotSound, AudioType.Sfx, false, true);
             _instance._shutterTime = 0;
         }
 
         private void CheckForBirds()
         {
+            bool gotDuck = GameManager.GetMonoSystem<IDialogueMonoSystem>().GetFlag("GotDuck");
+            bool gotGoose = GameManager.GetMonoSystem<IDialogueMonoSystem>().GetFlag("GotGoose");
+
+            if (gotDuck && gotGoose) return;
+
             if (!GameManager.GetMonoSystem<IGameLogicMonoSystem>().IsInRange("PhotoArea"))
             {
                 GameManager.GetMonoSystem<IDialogueMonoSystem>().StartDialoguePromise("NotInPhotoArea", true);

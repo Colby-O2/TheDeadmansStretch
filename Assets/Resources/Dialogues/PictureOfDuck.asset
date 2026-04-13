@@ -41,7 +41,7 @@ MonoBehaviour:
     ActorName: Iris
     GroupName: 
     Type: 1
-    Text: <i>That's a great look duck!</i>
+    Text: <i>That's a great looking duck!</i>
     EventID: 
     position: {x: 313, y: 476}
     PropertyType: 
