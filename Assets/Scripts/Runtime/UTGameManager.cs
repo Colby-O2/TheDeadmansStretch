@@ -32,7 +32,6 @@ namespace ColbyO.Untitled
 
         private void Start()
         {
-            PlayerInteractiorController = FindAnyObjectByType<InteractorController>();
             HideCursor();
         }
 
@@ -100,7 +99,7 @@ namespace ColbyO.Untitled
 
         private void OnSceneLoad(Scene scene, LoadSceneMode mode)
         {
-
+            PlayerInteractiorController = FindAnyObjectByType<InteractorController>();
         }
 
         private void OnSceneUnload(Scene scene)

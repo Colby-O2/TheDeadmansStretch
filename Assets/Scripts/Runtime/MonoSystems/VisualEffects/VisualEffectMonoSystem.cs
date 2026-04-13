@@ -1,7 +1,13 @@
+using ColbyO.Untitled.MonoSystems;
+using ColbyO.Untitled.Traffic;
 using ColbyO.VNTG.PSX;
+using InteractionSystem;
 using PlazmaGames.Core;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
+using UnityEngine.Splines;
 
 namespace ColbyO.Untitled
 {
@@ -11,10 +17,27 @@ namespace ColbyO.Untitled
 
         private ScreenFade _screenFade;
 
-        private void Start()
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoad;
+            SceneManager.sceneUnloaded += OnSceneUnload;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoad;
+            SceneManager.sceneUnloaded -= OnSceneUnload;
+        }
+
+        private void OnSceneLoad(Scene scene, LoadSceneMode mode)
         {
             _volume = FindAnyObjectByType<Volume>();
             _screenFade = FindAnyObjectByType<ScreenFade>();
+        }
+
+        private void OnSceneUnload(Scene scene)
+        {
+
         }
 
         public Promise FadeIn(float duration)

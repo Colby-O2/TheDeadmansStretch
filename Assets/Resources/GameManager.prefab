@@ -282,6 +282,9 @@ MonoBehaviour:
   - id: 1
     name: CarStop
     audio: {fileID: 8300000, guid: ed73e17a8165b4543992067c2493ffbf, type: 3}
+  - id: 2
+    name: Shoot
+    audio: {fileID: 8300000, guid: f58cddd16cfd00d7aa19a52daddcc556, type: 3}
   _musicSource: {fileID: 151247462453361860}
   _ambientSource: {fileID: 496399193996136316}
   _sfxMainSource: {fileID: 7470678809586648083}
@@ -530,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9da330e6435104dbd42dda19171608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: PlazmaGames.Runtime::PlazmaGames.UI.UIMonoSystem
-  _preserveUIAcrossScenes: 1
+  _preserveUIAcrossScenes: 0
   _startingView: ColbyO.Untitled.UI.MainMenuView, Assembly-CSharp
   _views: []
   _currentView: {fileID: 0}

@@ -1,12 +1,13 @@
-using System.Collections.Generic;
-using System.Linq;
 using ColbyO.Untitled.MonoSystems;
 using ColbyO.Untitled.Wildlife;
 using PlazmaGames.Audio;
 using PlazmaGames.Core;
+using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using AudioType = PlazmaGames.Audio.AudioType;
 using IDialogueMonoSystem = ColbyO.Untitled.MonoSystems.IDialogueMonoSystem;
 
@@ -23,7 +24,7 @@ namespace ColbyO.Untitled.Polaroid
         [SerializeField] private InputAction _captureAction;
 
         private CameraZoom _cameraZoom;
-        private GameObject _shutter;
+        [SerializeField] private GameObject _shutter;
         private float _shutterTime = 0f;
         private bool _gotDuck = false;
         private bool _gotGoose = false;
@@ -93,30 +94,40 @@ namespace ColbyO.Untitled.Polaroid
             }
         }
 
-        private void OnEnable()
-        {
-            _captureAction.Enable();
-        }
-
-        private void OnDisable()
-        {
-            _captureAction.Disable();
-        }
-
         private void Awake()
         {
             _instance = this;
             _cameraZoom = _camera.GetComponent<CameraZoom>();
         }
 
-        private void Start()
+        private void OnEnable()
         {
-            _shutter = GameObject.FindWithTag("Shutter");
+            SceneManager.sceneLoaded += OnSceneLoad;
+            SceneManager.sceneUnloaded += OnSceneUnload;
+            _captureAction.Enable();
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoad;
+            SceneManager.sceneUnloaded -= OnSceneUnload;
+            _captureAction.Disable();
+        }
+
+        private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+        {
             _shutter.SetActive(false);
         }
 
+        private void OnSceneUnload(Scene scene)
+        {
+        }
+
+
         private void Update()
         {
+            if (_shutter == null) return;
+
             if (!_shutter.activeSelf && _shutterTime < UTGameManager.Preferences.PolaroidCameraShutterTime)
             {
                 _shutter.SetActive(true);

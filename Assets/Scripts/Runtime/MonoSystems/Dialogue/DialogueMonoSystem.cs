@@ -4,6 +4,7 @@ using DialogueGraph.Enumeration;
 using PlazmaGames.Core;
 using PlazmaGames.UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ColbyO.Untitled.MonoSystems
 {
@@ -18,10 +19,31 @@ namespace ColbyO.Untitled.MonoSystems
         private void Start()
         {
             _uiSystem = GameManager.GetMonoSystem<IUIMonoSystem>();
-            _uiSystem.GetView<DialogueView>().OnChoiceSelected.AddListener(SelectedChoice);
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoad;
+            SceneManager.sceneUnloaded += OnSceneUnload;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoad;
+            SceneManager.sceneUnloaded -= OnSceneUnload;
+        }
+
+        private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+        {
             _cinematicView = GameObject.FindWithTag("CinematicView");
             DisabeCinematicCamera();
         }
+
+        private void OnSceneUnload(Scene scene)
+        {
+            FinishDialogue();
+        }
+
 
         private void StartDialogue(string dialogueName, System.Action finsihCallback, bool passive)
         {
@@ -43,7 +65,7 @@ namespace ColbyO.Untitled.MonoSystems
         {
             Promise p = new Promise();
             _isPassive = passive;
-            StartDialogue(dialogueName, () => p.Resolve(), passive);
+            StartDialogue(dialogueName, () => Promise.ResolveExisting(ref p), passive);
             return p;
         }
 
@@ -86,7 +108,7 @@ namespace ColbyO.Untitled.MonoSystems
             //GameManager.GetMonoSystem<IUIMonoSystem>().ShowLast();
         }
 
-        private void SelectedChoice(int choice)
+        public void SelectedChoice(int choice)
         {
             if (_currentDialogueNode.Choices.Count == 0) FinishDialogue();
             else NextNode(choice);

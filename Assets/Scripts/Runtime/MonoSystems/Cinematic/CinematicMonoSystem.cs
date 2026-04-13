@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 namespace ColbyO.Untitled.MonoSystems
 {
@@ -22,6 +24,22 @@ namespace ColbyO.Untitled.MonoSystems
 
         private void Start()
         {
+        }
+
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoad;
+            SceneManager.sceneUnloaded += OnSceneUnload;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoad;
+            SceneManager.sceneUnloaded -= OnSceneUnload;
+        }
+
+        private void OnSceneLoad(Scene scene, LoadSceneMode mode)
+        {
             _playerCamera = GameObject.FindWithTag("PlayerCamera");
 
             GameObject cinematicCameraGO = GameObject.FindGameObjectWithTag(_cinematicCameraTag);
@@ -34,6 +52,11 @@ namespace ColbyO.Untitled.MonoSystems
             _cinematicView = GameObject.FindWithTag("CinematicView");
 
             Disabe(false);
+        }
+
+        private void OnSceneUnload(Scene scene)
+        {
+
         }
 
         public VelocityTracker GetCameraVelocity() => _vel;

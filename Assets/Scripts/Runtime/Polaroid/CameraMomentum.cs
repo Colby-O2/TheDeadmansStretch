@@ -1,26 +1,24 @@
 using PlazmaGames.Core;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Splines;
 
 namespace ColbyO.Untitled.Polaroid
 {
     public class CameraMomentum : MonoBehaviour
     {
-        private RectTransform _viewFinderImage;
-        private RectTransform _viewFinderCrosshair;
+        [SerializeField] private RectTransform _viewFinderImage;
+        [SerializeField] private RectTransform _viewFinderCrosshair;
         
         private Vector2 _imagePosition = Vector2.zero;
         private Vector2 _crosshairPosition = Vector2.zero;
         
         private Vector3 _prevRotation = Vector3.zero;
-        
-        void Awake()
-        {
-            _viewFinderImage = GameObject.FindWithTag("ViewFinderImage").GetComponent<RectTransform>();
-            _viewFinderCrosshair = GameObject.FindWithTag("ViewFinderCrosshair").GetComponent<RectTransform>();
-        }
 
-        void Update()
+        private void Update()
         {
+            if (_viewFinderImage == null || _viewFinderCrosshair == null) return;
+
             float delta = Vector3.Angle(_prevRotation, transform.forward);
             Vector3 r = Vector3.ProjectOnPlane(transform.InverseTransformDirection(_prevRotation), Vector3.forward);
             Vector2 dir = new Vector2(r.x, r.y).normalized;

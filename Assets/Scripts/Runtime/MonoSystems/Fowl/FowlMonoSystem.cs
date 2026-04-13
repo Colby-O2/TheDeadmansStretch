@@ -2,6 +2,7 @@ using ColbyO.Untitled.Wildlife;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ColbyO.Untitled.MonoSystems
 {
@@ -27,7 +28,32 @@ namespace ColbyO.Untitled.MonoSystems
 
         public List<FlockController> GetFlocks() => _activeFlocks;
 
-        private void Start()
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoad;
+            SceneManager.sceneUnloaded += OnSceneUnload;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoad;
+            SceneManager.sceneUnloaded -= OnSceneUnload;
+        }
+
+        private void Update()
+        {
+            if (UTGameManager.IsPaused) return;
+
+            if (_activeFlocks.Count < _maxFlocks)
+            {
+                if (Random.value < _newFlockSpawnChance * Time.deltaTime)
+                {
+                    SpawnFlock(FowlState.Flying);
+                }
+            }
+        }
+
+        private void OnSceneLoad(Scene scene, LoadSceneMode mode)
         {
             _globalFlightArea = GameObject.FindWithTag("FowlFlightArea").GetComponent<BoxCollider>();
 
@@ -45,17 +71,13 @@ namespace ColbyO.Untitled.MonoSystems
             }
         }
 
-        private void Update()
+        private void OnSceneUnload(Scene scene)
         {
-            if (UTGameManager.IsPaused) return;
+            foreach (FlockController flock in _activeFlocks) Destroy(flock.gameObject);
+            foreach (FlockController flock in _flockPool) Destroy(flock.gameObject);
 
-            if (_activeFlocks.Count < _maxFlocks)
-            {
-                if (Random.value < _newFlockSpawnChance * Time.deltaTime)
-                {
-                    SpawnFlock(FowlState.Flying);
-                }
-            }
+            _activeFlocks.Clear();
+            _flockPool.Clear();
         }
 
         public void ForceAllToFlyOff()

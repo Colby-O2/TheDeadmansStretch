@@ -195,7 +195,7 @@ namespace PlazmaGames.UI
 
         public void Refresh()
         {
-            _views = null;
+            //_views = null;
             _currentView = null;
             _history.Clear();
             _inTransition = false;

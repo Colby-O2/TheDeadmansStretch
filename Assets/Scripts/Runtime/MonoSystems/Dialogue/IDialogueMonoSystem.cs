@@ -17,5 +17,6 @@ namespace ColbyO.Untitled.MonoSystems
         public void OnDialogueNodeFinish(int choice);
         public void OnDialogueFinished();
         public void FinishDialogue();
+        public void SelectedChoice(int choice);
     }
 }

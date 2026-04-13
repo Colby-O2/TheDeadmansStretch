@@ -30,7 +30,7 @@ namespace DialogueGraph
         [SerializeField, ReadOnly] protected bool _isDialogueInProgress;
 
         private Camera _cinematicCamera;
-        private System.Action _completelyFinishedCallback;
+        protected System.Action _completelyFinishedCallback;
 
         protected virtual void Awake()
         {
@@ -132,15 +132,16 @@ namespace DialogueGraph
 
         public void FinishDialogue()
         {
-            _completelyFinishedCallback?.Invoke();
-            _completelyFinishedCallback = null;
             _currentDialogue = null;
             _currentDialogueNode = null;
             _isDialogueInProgress = false;
 
             //DisabeCinematicCamera();
-            
+
             OnDialogueFinished();
+            var func = _completelyFinishedCallback;
+            _completelyFinishedCallback = null;
+            func?.Invoke();
         }
 
         protected void InitializeFlag()
@@ -172,12 +173,20 @@ namespace DialogueGraph
 
         protected void NextNode(int choice)
         {
-            if (_currentDialogueNode.Choices.Count <= choice || _currentDialogueNode.Choices[choice].Next == string.Empty || _currentDialogueNode.Choices[choice].Next == null)
+            if (_currentDialogueNode.Choices.Count == 0 || _currentDialogueNode.Choices.Count <= choice || _currentDialogueNode.Choices[choice].Next == string.Empty || _currentDialogueNode.Choices[choice].Next == null)
             {
                 FinishDialogue();
                 return;
             }
+
             _currentDialogueNode = _currentDialogue.Nodes.FirstOrDefault<DialogueNodeData>(n => _currentDialogueNode.Choices[choice].Next == n.Guid);
+
+            if (_currentDialogueNode == null)
+            {
+                FinishDialogue();
+                return;
+            } 
+
             _currentNodeType = _currentDialogueNode.Type;
             ProcessCurrentNode();
         }

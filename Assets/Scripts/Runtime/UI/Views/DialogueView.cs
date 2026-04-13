@@ -1,6 +1,8 @@
+using ColbyO.Untitled.MonoSystems;
 using DialogueGraph.Data;
 using InteractionSystem.UI;
 using PlazmaGames.Attribute;
+using PlazmaGames.Core;
 using PlazmaGames.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -55,6 +57,8 @@ namespace ColbyO.Untitled.UI
         {
             OnChoiceSelected = new UnityEvent<int>();
             OnRequestNext = new UnityEvent();
+
+            OnChoiceSelected.AddListener(GameManager.GetMonoSystem<IDialogueMonoSystem>().SelectedChoice);
 
             OnRequestNext.AddListener(OnDiagoueEnd);
         }
@@ -237,6 +241,7 @@ namespace ColbyO.Untitled.UI
         private void OnDiagoueEnd()
         {
             HideDialogue();
+            _canAutoAdvance = false;
             _isWaitingForInput = false;
             _timeWaitingForInput = 0.0f;
             OnChoiceSelected?.Invoke(0);

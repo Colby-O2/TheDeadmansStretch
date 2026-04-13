@@ -1,5 +1,7 @@
+using ColbyO.Untitled.Wildlife;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Splines;
 
 namespace ColbyO.Untitled
@@ -17,11 +19,29 @@ namespace ColbyO.Untitled
 
         public bool Enabled { get; set; }
 
-        private void Start()
+        private void OnEnable()
+        {
+            SceneManager.sceneLoaded += OnSceneLoad;
+            SceneManager.sceneUnloaded += OnSceneUnload;
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoad;
+            SceneManager.sceneUnloaded -= OnSceneUnload;
+        }
+
+        private void OnSceneLoad(Scene scene, LoadSceneMode mode)
         {
             Enabled = true;
             _roadSplines = GameObject.FindWithTag("TrafficLanes").GetComponent<SplineContainer>();
             InvokeRepeating(nameof(SpawnCar), 0f, _spawnInterval);
+        }
+
+        private void OnSceneUnload(Scene scene)
+        {
+            foreach (GameObject car in _activeCars) Destroy(car);
+            _activeCars.Clear();
         }
 
         public void DisableLeftLane(bool state)
