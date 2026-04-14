@@ -63,8 +63,8 @@ MonoBehaviour:
     ActorName: Iris
     GroupName: 
     Type: 1
-    Text: <i>I've got to rember to take the camera before I leave. last time I saw
-      a pair of Snowbunting and I left my damm camera in the car. </i>
+    Text: <i>I've got to remember to take the camera before I leave. last time I
+      saw a pair of Snowbunting and I left my damm camera in the car. </i>
     EventID: 
     position: {x: 1098, y: -5}
     PropertyType: 
@@ -85,7 +85,7 @@ MonoBehaviour:
     ActorName: Iris
     GroupName: 
     Type: 1
-    Text: "<i>Deadman\u2019s Peak\u2026 yeah. Great name.</i>"
+    Text: "<i>Deadman\u2019s Point\u2026 yeah. Great name.</i>"
     EventID: 
     position: {x: 267, y: -3}
     PropertyType: 
