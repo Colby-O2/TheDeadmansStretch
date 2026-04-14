@@ -261,7 +261,7 @@ namespace ColbyO.Untitled.UI
 
         private void HandleNextPressed()
         {
-            if (UTGameManager.IsPaused) return;
+            if (UTGameManager.IsPaused || _isPassive) return;
 
             if (_isTyping)
             {
