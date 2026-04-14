@@ -31,5 +31,5 @@
   * https://freesound.org/people/okieactor/sounds/415912/ 
 * SPLASH (by blaukreuz) by freesound\_community
 
-  * qhttps://pixabay.com/sound-effects/nature-splash-by-blaukreuz-6261/
+  * https://pixabay.com/sound-effects/nature-splash-by-blaukreuz-6261/
 
