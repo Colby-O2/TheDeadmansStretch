@@ -28,6 +28,7 @@ namespace ColbyO.Untitled.MonoSystems
         private static class Refs
         {
             /*Act 1*/
+            public static Transform WaterPlane;
             public static Transform PlayerCarDriverSeatLoc;
             public static Transform PlayerCarCameraTarget;
             public static Transform PlayerCarHeadLoc;
@@ -99,6 +100,8 @@ namespace ColbyO.Untitled.MonoSystems
         private void OnSceneLoad(Scene scene, LoadSceneMode mode)
         {
             _dialogueMs = GameManager.GetMonoSystem<IDialogueMonoSystem>();
+
+            Refs.WaterPlane = GameObject.FindWithTag("Water").transform;
 
             Refs.PushPerson = GameObject.FindWithTag("PushPerson");
             Refs.PushPersonRig = GameObject.FindWithTag("PushPersonRig");
@@ -553,6 +556,10 @@ namespace ColbyO.Untitled.MonoSystems
                         Refs.PushPerson.SetActive(true);
                         Refs.PushPersonRig.SetActive(true);
                         Refs.PushPersonRb.AddForce(Vector3.back * 15.0f, ForceMode.VelocityChange);
+                        _scheduler.When(() => Refs.PushPersonRb.transform.position.y <= Refs.WaterPlane.position.y).Then(_ =>
+                        {
+                            GameManager.GetMonoSystem<IAudioMonoSystem>().PlayAudio("Splash", PlazmaGames.Audio.AudioType.Sfx, false, true);
+                        });
                     });
                     _dialogueMs.StartDialoguePromise("JumpOff")
                     .Then(_ =>
@@ -562,6 +569,8 @@ namespace ColbyO.Untitled.MonoSystems
                     .Then(_ => _scheduler.Wait(3f))
                     .Then(_ =>
                     {
+                        UTGameManager.PlayerMoveController.Snow.Enable = true;
+                        UTGameManager.PlayerMoveController.Snow.gameObject.GetComponent<FollowXZ>().SetTarget(GameManager.GetMonoSystem<IUIMonoSystem>().GetView<EndView>().GetCamera().transform);
                         GameManager.GetMonoSystem<IVisualEffectMonoSystem>().FadeIn(2f);
                         GameManager.GetMonoSystem<IUIMonoSystem>().Show<EndView>();
                     });
@@ -576,6 +585,8 @@ namespace ColbyO.Untitled.MonoSystems
                     .Then(_ => _scheduler.Wait(4f))
                     .Then(_ =>
                      {
+                         UTGameManager.PlayerMoveController.Snow.Enable = true;
+                         UTGameManager.PlayerMoveController.Snow.gameObject.GetComponent<FollowXZ>().SetTarget(GameManager.GetMonoSystem<IUIMonoSystem>().GetView<EndView>().GetCamera().transform);
                          GameManager.GetMonoSystem<IVisualEffectMonoSystem>().FadeIn(2f);
                          GameManager.GetMonoSystem<IUIMonoSystem>().Show<EndView>();
                      });

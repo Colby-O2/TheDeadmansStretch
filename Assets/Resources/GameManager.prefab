@@ -285,6 +285,9 @@ MonoBehaviour:
   - id: 2
     name: Shoot
     audio: {fileID: 8300000, guid: f58cddd16cfd00d7aa19a52daddcc556, type: 3}
+  - id: 3
+    name: Splash
+    audio: {fileID: 8300000, guid: c19d7e641f0ac4c42ad5436f94d46738, type: 3}
   _musicSource: {fileID: 151247462453361860}
   _ambientSource: {fileID: 496399193996136316}
   _sfxMainSource: {fileID: 7470678809586648083}

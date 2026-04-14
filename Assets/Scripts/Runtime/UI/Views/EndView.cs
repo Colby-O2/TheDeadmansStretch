@@ -32,6 +32,11 @@ namespace ColbyO.Untitled
 
         }
 
+        public GameObject GetCamera()
+        {
+            return _menuCamera;
+        }
+
         private IEnumerator FadeInMusic(AudioSource source, float duration)
         {
             if (!_musicSource.isPlaying) _musicSource.Play();
